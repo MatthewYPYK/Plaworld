@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void createLevel()
@@ -38,14 +38,18 @@ public class LevelManager : MonoBehaviour
         char[] rowData = null;
 
         Vector3 maxTile = Vector3.zero;
-        
+
         Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
-        for (int y = 0; y < mapData.Length; y++) {
+        GameObject mapObject = new GameObject("Map");
+
+        for (int y = 0; y < mapData.Length; y++)
+        {
             rowData = mapData[y].ToCharArray();
 
-            for (int x = 0; x < rowData.Length; x++) {
-                PlaceTile(rowData[x].ToString(), x, y, worldStart);
+            for (int x = 0; x < rowData.Length; x++)
+            {
+                PlaceTile(rowData[x].ToString(), x, y, worldStart, mapObject);
             }
         }
         maxTile = Tiles[new Point(rowData.Length - 1, mapData.Length - 1)].transform.position;
@@ -53,12 +57,14 @@ public class LevelManager : MonoBehaviour
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
     }
 
-    private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)
+    private void PlaceTile(string tileType, int x, int y, Vector3 worldStart, GameObject mapObject)
     {
         int tileIndex = int.Parse(tileType);
         TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
 
         newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0));
+
+        newTile.transform.parent = mapObject.transform;
 
         Tiles.Add(new Point(x, y), newTile);
     }
