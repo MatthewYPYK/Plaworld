@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField]
     private GameObject[] tilePrefabs;
@@ -65,8 +65,6 @@ public class LevelManager : MonoBehaviour
         newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0));
 
         newTile.transform.parent = mapObject.transform;
-
-        Tiles.Add(new Point(x, y), newTile);
     }
 
     private string[] ReadLevelText()

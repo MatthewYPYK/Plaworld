@@ -20,18 +20,20 @@ public class TileScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Setup(Point gridPos, Vector3 worldPos)
     {
         this.GridPosition = gridPos;
         transform.position = worldPos;
+
+        LevelManager.Instance.Tiles.Add(gridPos, this);
     }
 }
