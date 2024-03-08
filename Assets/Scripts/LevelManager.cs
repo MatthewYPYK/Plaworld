@@ -11,6 +11,9 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     public CameraMovement cameraMovement;
 
+    [SerializeField]
+    private Transform map;
+
     public Dictionary<Point, TileScript> Tiles { get; set; }
 
     public float TileSize
@@ -41,7 +44,6 @@ public class LevelManager : Singleton<LevelManager>
 
         Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
-        GameObject mapObject = new GameObject("Map");
 
         for (int y = 0; y < mapData.Length; y++)
         {
@@ -49,7 +51,7 @@ public class LevelManager : Singleton<LevelManager>
 
             for (int x = 0; x < rowData.Length; x++)
             {
-                PlaceTile(rowData[x].ToString(), x, y, worldStart, mapObject);
+                PlaceTile(rowData[x].ToString(), x, y, worldStart);
             }
         }
         maxTile = Tiles[new Point(rowData.Length - 1, mapData.Length - 1)].transform.position;
@@ -57,14 +59,13 @@ public class LevelManager : Singleton<LevelManager>
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
     }
 
-    private void PlaceTile(string tileType, int x, int y, Vector3 worldStart, GameObject mapObject)
+    private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)
     {
         int tileIndex = int.Parse(tileType);
         TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
 
-        newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0));
+        newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map);
 
-        newTile.transform.parent = mapObject.transform;
     }
 
     private string[] ReadLevelText()
