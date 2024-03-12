@@ -11,7 +11,7 @@ public class UIUpdater : Singleton<UIUpdater>
 
     public void UpdateCurrency()
     {
-        textMesh_balance.text = GameManager.Instance.Currency.ToString();
+        textMesh_balance.text = string.Format("{0}", GameManager.Instance.Currency);
     }
     void Start()
     {
