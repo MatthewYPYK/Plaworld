@@ -41,7 +41,7 @@ public class TileScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if(!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn != null)
+        if (GameManager.Instance.ClickedBtn != null)
         {
             if (Input.GetMouseButtonDown(0))
             {

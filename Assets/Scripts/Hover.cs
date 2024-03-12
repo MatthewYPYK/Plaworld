@@ -33,5 +33,6 @@ public class Hover : Singleton<Hover>
     public void Deactivate()
     {
         spriteRenderer.enabled = false;
+
     }
 }
