@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TileScript : MonoBehaviour
 {
@@ -36,5 +37,28 @@ public class TileScript : MonoBehaviour
 
         transform.SetParent(parent);
         LevelManager.Instance.Tiles.Add(gridPos, this);
+    }
+
+    private void OnMouseOver()
+    {
+        if (!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn != null)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                PlacePla();
+            }
+        }
+    }
+
+    private void PlacePla()
+    {
+        GameObject pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
+        pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
+
+        pla.transform.SetParent(transform);
+
+        Hover.Instance.Deactivate();
+
+        GameManager.Instance.BuyPla();
     }
 }
