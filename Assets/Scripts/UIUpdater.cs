@@ -6,16 +6,19 @@ public class UIUpdater : Singleton<UIUpdater>
 {
     // Start is called before the first frame update
     public GameObject BalanceValue;
+    public TextMeshProUGUI textMesh_balance;
 
-    TextMeshProUGUI textMesh_balance;
-
-    public void UpdateCurrency()
+    public void UpdateCurrency(int value)
     {
-        textMesh_balance.text = string.Format("{0}", GameManager.Instance.Currency);
+        textMesh_balance.text = value.ToString();
     }
-    void Start()
+
+
+
+    void Awake()
     {
         textMesh_balance = BalanceValue.GetComponent<TextMeshProUGUI>();
+        Debug.Log("AWAKE UIUpdater: " + textMesh_balance.text);
     }
 
     // Update is called once per frame

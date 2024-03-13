@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private int currency;
+
     public int Currency
     {
         get
@@ -17,13 +18,18 @@ public class GameManager : Singleton<GameManager>
         set
         {
             this.currency = value;
-            UIUpdater.Instance.UpdateCurrency();
+            UIUpdater.Instance.UpdateCurrency(currency);
         }
+    }
+
+    private void Awake() {
+        Currency = 150;
+        Debug.Log("AWAKE Currency: " + Currency);
     }
     // Start is called before the first frame update
     void Start()
     {
-        Currency = 150;
+        // Currency = 150;
     }
 
     // Update is called once per frame

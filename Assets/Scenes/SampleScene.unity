@@ -498,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BalanceValue: {fileID: 1691191094}
+  textMesh_balance: {fileID: 0}
 --- !u!1 &734975522
 GameObject:
   m_ObjectHideFlags: 0
