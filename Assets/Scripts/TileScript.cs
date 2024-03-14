@@ -8,6 +8,14 @@ public class TileScript : MonoBehaviour
     public Point GridPosition { get; private set; }
     public bool WalkAble { get; set; }
 
+    public bool IsEmpty { get; private set; }
+
+    private Color32 fullColor = new Color32(255, 118, 118, 255);
+
+    private Color32 emptyColor = new Color32(96, 255, 90, 255);
+
+    private SpriteRenderer spriteRenderer;
+
     public Vector2 WorldPosition
     {
         get
@@ -28,15 +36,15 @@ public class TileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Setup(Point gridPos, Vector3 worldPos, Transform parent)
     {
+        IsEmpty = true;
         WalkAble = true;
         this.GridPosition = gridPos;
         transform.position = worldPos;
-
         transform.SetParent(parent);
         LevelManager.Instance.Tiles.Add(gridPos, this);
     }
@@ -45,11 +53,24 @@ public class TileScript : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn != null)
         {
+            if (IsEmpty)
+            {
+                ColorTile(emptyColor);
+            }
+            else if (!IsEmpty)
+            {
+                ColorTile(fullColor);
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 PlacePla();
             }
         }
+    }
+
+    private void OnMouseExit()
+    {
+        ColorTile(Color.white);
     }
 
     private void PlacePla()
@@ -59,10 +80,17 @@ public class TileScript : MonoBehaviour
 
         pla.transform.SetParent(transform);
 
-        Hover.Instance.Deactivate();
+        IsEmpty = false;
+
+        ColorTile(Color.white);
 
         GameManager.Instance.BuyPla();
 
         WalkAble = false;
+    }
+
+    private void ColorTile(Color newColor)
+    {
+        spriteRenderer.color = newColor;
     }
 }

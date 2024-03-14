@@ -1139,7 +1139,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   plaPrefab: {fileID: 4039773410698365106, guid: 368f1150d743a1641bc2cb781d155f64, type: 3}
   sprite: {fileID: 21300000, guid: f8903892fdbb70044b25c9792c2fd20d, type: 3}
   towerName: GoldFish
-  price: 50
+  price: 25
   buttonText: {fileID: 830970893}
 --- !u!1 &2043184200
 GameObject:

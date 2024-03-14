@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-    public PlaBtn ClickedBtn { get; private set; }
+    public PlaBtn ClickedBtn { get; set; }
 
     [SerializeField]
     private int currency;
@@ -56,7 +56,7 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-
+        HandleEscape();
     }
 
     public void PickPla(PlaBtn plaBtn)
@@ -65,20 +65,23 @@ public class GameManager : Singleton<GameManager>
         {
             this.ClickedBtn = plaBtn;
             Hover.Instance.Activate(plaBtn.Sprite);
-
         }
-
     }
 
     public void BuyPla()
     {
-
-
         if (Currency >= ClickedBtn.Price)
         {
             Currency = Currency - ClickedBtn.Price;
             Hover.Instance.Deactivate();
-            this.ClickedBtn = null;
+        }
+    }
+
+    private void HandleEscape()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Hover.Instance.Deactivate();
         }
     }
 
