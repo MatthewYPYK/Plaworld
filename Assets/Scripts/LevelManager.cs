@@ -11,6 +11,14 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     public CameraMovement cameraMovement;
 
+    private Point greenSpawn,coral;
+
+    [SerializeField]
+    private GameObject greenPortalPrefab;
+
+    [SerializeField]
+    private GameObject coralPrefab;
+
     [SerializeField]
     private Transform map;
 
@@ -57,6 +65,8 @@ public class LevelManager : Singleton<LevelManager>
         maxTile = Tiles[new Point(rowData.Length - 1, mapData.Length - 1)].transform.position;
 
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
+
+        SpawnPortals();
     }
 
     private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)
@@ -68,6 +78,8 @@ public class LevelManager : Singleton<LevelManager>
 
     }
 
+    
+
     private string[] ReadLevelText()
     {
         TextAsset bindData = Resources.Load("Level") as TextAsset;
@@ -75,5 +87,16 @@ public class LevelManager : Singleton<LevelManager>
         string data = bindData.text.Replace(Environment.NewLine, string.Empty);
 
         return data.Split('-');
+    }
+
+    private void SpawnPortals()
+    {
+        greenSpawn = new Point(0,3);
+
+        Instantiate(greenPortalPrefab,Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+
+        coral = new Point(10,1);
+
+        Instantiate(coralPrefab,Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
     }
 }
