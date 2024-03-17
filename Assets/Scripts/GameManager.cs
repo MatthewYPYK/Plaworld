@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager>
     public PlaBtn ClickedBtn { get; set; }
 
     [SerializeField]
+    private PlaRange selectedPla;
+    [SerializeField]
     private int currency;
 
     private int wave = 0;
@@ -64,6 +66,7 @@ public class GameManager : Singleton<GameManager>
         if (Currency >= plaBtn.Price)
         {
             this.ClickedBtn = plaBtn;
+            Debug.Log("PlaBtn: " + ClickedBtn);
             Hover.Instance.Activate(plaBtn.Sprite);
         }
     }
@@ -73,7 +76,9 @@ public class GameManager : Singleton<GameManager>
         if (Currency >= ClickedBtn.Price)
         {
             Currency = Currency - ClickedBtn.Price;
+            Debug.Log("Currency: " + Currency);
             Hover.Instance.Deactivate();
+            Debug.Log("PlaBtn deac: " + ClickedBtn);
         }
     }
 
@@ -137,5 +142,18 @@ public class GameManager : Singleton<GameManager>
         {
             waveBtn.SetActive(true);
         }
+    }
+
+    public void SelectPla(PlaRange plaTower)
+    {
+        Debug.Log("GameManager: SelectPla: " + plaTower);
+        // if (selectedPla != null)
+        // {
+        //     selectedPla.Select();
+        // }
+        selectedPla = plaTower;
+        selectedPla.Select();
+        // Hover.Instance.Activate(selectedPla.plaData.Sprite);
+
     }
 }

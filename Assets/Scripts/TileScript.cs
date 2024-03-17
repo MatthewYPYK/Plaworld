@@ -10,6 +10,8 @@ public class TileScript : MonoBehaviour
 
     public bool IsEmpty { get; private set; }
 
+    private PlaRange myPla;
+
     private Color32 fullColor = new Color32(255, 118, 118, 255);
 
     private Color32 emptyColor = new Color32(96, 255, 90, 255);
@@ -51,19 +53,32 @@ public class TileScript : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn != null)
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (IsEmpty)
+            // Debug.Log("TileScript: OnMouseOver: GameManager.Instance.ClickedBtn: " + GameManager.Instance.ClickedBtn);
+            if (GameManager.Instance.ClickedBtn != null)
             {
-                ColorTile(emptyColor);
+                if (IsEmpty)
+                {
+                    ColorTile(emptyColor);
+                }
+                else if (!IsEmpty)
+                {
+                    ColorTile(fullColor);
+                }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    PlacePla();
+                }
             }
-            else if (!IsEmpty)
+            else if (GameManager.Instance.ClickedBtn == null
+            && Input.GetMouseButtonDown(0))
             {
-                ColorTile(fullColor);
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                PlacePla();
+                Debug.Log("TileScript: OnMouseOver: myPla: " + myPla);
+                if (myPla != null)
+                {
+                    GameManager.Instance.SelectPla(myPla);
+                }
             }
         }
     }
@@ -75,11 +90,17 @@ public class TileScript : MonoBehaviour
 
     private void PlacePla()
     {
+
         GameObject pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
         pla.transform.SetParent(transform);
 
+        // set myPla to PlaTower script
+        myPla = pla.transform.GetChild(0).GetComponent<PlaRange>();
+
+        Debug.Log("TileScript: PlacePla: pla: " + pla);
+        Debug.Log("TileScript: PlacePla: myPla: " + myPla);
         IsEmpty = false;
 
         ColorTile(Color.white);
