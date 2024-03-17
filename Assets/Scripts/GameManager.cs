@@ -46,13 +46,11 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake() {
         Pool = GetComponent<ObjectPool>();
-        Currency = 150;
-        Debug.Log("AWAKE Currency: " + Currency);
     }
     // Start is called before the first frame update
     void Start()
     {
-        // Currency = 150;
+        Currency = 150;
     }
 
     // Update is called once per frame
