@@ -19,6 +19,8 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     private GameObject coralPrefab;
 
+    public Portal GreenPortal {get; set;}
+
     [SerializeField]
     private Transform map;
 
@@ -91,12 +93,12 @@ public class LevelManager : Singleton<LevelManager>
 
     private void SpawnPortals()
     {
-        greenSpawn = new Point(0,3);
-
-        Instantiate(greenPortalPrefab,Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+        greenSpawn = new Point(1,3);
+        GameObject tmp = (GameObject)Instantiate(greenPortalPrefab,Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+        GreenPortal = tmp.GetComponent<Portal>();
+        GreenPortal.name = "GreenPortal";
 
         coral = new Point(10,1);
-
         Instantiate(coralPrefab,Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
     }
 }
