@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
     private void Release()
     {
         IsActive = false;
-        GridPosition = levelManager.Instance.GreenSpawn;
+        //GridPosition = LevelManager.Instance.GreenSpawn;
         GameManager.Instance.Pool.ReleaseObject(gameObject);
     }
 }
