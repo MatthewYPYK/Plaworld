@@ -9,6 +9,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private int currency;
 
+    public ObjectPool Pool {get; set;}
+
     public int Currency
     {
         get
@@ -23,6 +25,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     private void Awake() {
+        Pool = GetComponent<ObjectPool>();
         Currency = 150;
         Debug.Log("AWAKE Currency: " + Currency);
     }
@@ -59,5 +62,37 @@ public class GameManager : Singleton<GameManager>
             Hover.Instance.Deactivate();
             this.ClickedBtn = null;
         }
+    }
+
+    public void StartWave()
+    {
+        StartCoroutine(SpawnWave());
+    }
+
+    private IEnumerator SpawnWave()
+    {
+        int enemyIndex = Random.Range(0,4);
+
+        string type = string.Empty;
+
+        switch (enemyIndex)
+        {
+            case 0:
+                type = "Soldier";
+                break;
+            case 1:
+                type = "Tank";
+                break;
+            case 2:
+                type = "Jeep";
+                break;
+            case 3:
+                type = "AirShip";
+                break;
+        }
+
+        Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
+        enemy.Spawn();
+        yield return new WaitForSeconds(2.5f);
     }
 }

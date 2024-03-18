@@ -11,6 +11,16 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     public CameraMovement cameraMovement;
 
+    private Point greenSpawn,coral;
+
+    [SerializeField]
+    private GameObject greenPortalPrefab;
+
+    [SerializeField]
+    private GameObject coralPrefab;
+
+    public Portal GreenPortal {get; set;}
+
     [SerializeField]
     private Transform map;
 
@@ -61,6 +71,8 @@ public class LevelManager : Singleton<LevelManager>
         maxTile = Tiles[new Point(rowData.Length - 1, mapData.Length - 1)].transform.position;
 
         cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
+
+        SpawnPortals();
     }
 
     private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)
@@ -71,6 +83,8 @@ public class LevelManager : Singleton<LevelManager>
         newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map);
 
     }
+
+    
 
     private string[] ReadLevelText()
     {
@@ -84,5 +98,22 @@ public class LevelManager : Singleton<LevelManager>
     public bool InBounds(Point a)
     {
         return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
+    }
+    private void SpawnPortals()
+    {
+        greenSpawn = new Point(1,3);
+        GameObject tmp = (GameObject)Instantiate(greenPortalPrefab,Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+        GreenPortal = tmp.GetComponent<Portal>();
+        GreenPortal.name = "GreenPortal";
+
+        coral = new Point(10,1);
+        Instantiate(coralPrefab,Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+    }
+
+    public Point GreenSpawn
+    {
+        get{
+            return greenSpawn;
+        }
     }
 }
