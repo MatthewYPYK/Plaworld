@@ -8,10 +8,10 @@ public class Enemy : MonoBehaviour
    {
         transform.position = LevelManager.Instance.GreenPortal.transform.position;
 
-        StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1)));
+        StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
    }
 
-    public IEnumerator Scale(Vector3 from, Vector3 to)
+    public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
     {
         float progress = 0;
 
@@ -25,5 +25,17 @@ public class Enemy : MonoBehaviour
         }
 
         transform.localScale = to;
+        if (remove)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Coral")
+        {
+            StartCoroutine(Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
+        }
     }
 }
