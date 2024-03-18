@@ -101,4 +101,11 @@ public class LevelManager : Singleton<LevelManager>
         coral = new Point(10,1);
         Instantiate(coralPrefab,Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
     }
+
+    public Point GreenSpawn
+    {
+        get{
+            return greenSpawn;
+        }
+    }
 }

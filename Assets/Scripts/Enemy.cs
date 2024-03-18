@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private bool IsActive;
    public void Spawn()
    {
         transform.position = LevelManager.Instance.GreenPortal.transform.position;
@@ -25,9 +26,10 @@ public class Enemy : MonoBehaviour
         }
 
         transform.localScale = to;
+        IsActive = true;
         if (remove)
         {
-            Destroy(gameObject);
+            Release();
         }
     }
 
@@ -37,5 +39,12 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
         }
+    }
+
+    private void Release()
+    {
+        IsActive = false;
+        GridPosition = levelManager.Instance.GreenSpawn;
+        GameManager.Instance.Pool.ReleaseObject(gameObject);
     }
 }
