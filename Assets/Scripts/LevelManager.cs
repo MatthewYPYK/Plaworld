@@ -14,6 +14,8 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     private Transform map;
 
+    private Point mapSize;
+
     public Dictionary<Point, TileScript> Tiles { get; set; }
 
     public float TileSize
@@ -39,6 +41,8 @@ public class LevelManager : Singleton<LevelManager>
 
         string[] mapData = ReadLevelText();
         char[] rowData = null;
+
+        mapSize = new Point(mapData[0].ToCharArray().Length, mapData.Length);
 
         Vector3 maxTile = Vector3.zero;
 
@@ -75,5 +79,10 @@ public class LevelManager : Singleton<LevelManager>
         string data = bindData.text.Replace(Environment.NewLine, string.Empty);
 
         return data.Split('-');
+    }
+
+    public bool InBounds(Point a)
+    {
+        return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
     }
 }

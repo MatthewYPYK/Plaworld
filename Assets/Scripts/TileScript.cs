@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class TileScript : MonoBehaviour
 {
     public Point GridPosition { get; private set; }
+    public bool WalkAble { get; set; }
 
     public Vector2 WorldPosition
     {
@@ -32,6 +33,7 @@ public class TileScript : MonoBehaviour
 
     public void Setup(Point gridPos, Vector3 worldPos, Transform parent)
     {
+        WalkAble = true;
         this.GridPosition = gridPos;
         transform.position = worldPos;
 
@@ -60,5 +62,7 @@ public class TileScript : MonoBehaviour
         Hover.Instance.Deactivate();
 
         GameManager.Instance.BuyPla();
+
+        WalkAble = false;
     }
 }
