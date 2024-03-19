@@ -63,11 +63,11 @@ public class TileScript : MonoBehaviour
                 {
                     ColorTile(emptyColor);
                 }
-                else if (!IsEmpty)
+                if (!IsEmpty)
                 {
                     ColorTile(fullColor);
                 }
-                if (Input.GetMouseButtonDown(0))
+                else if (Input.GetMouseButtonDown(0))
                 {
                     PlacePla();
                 }
