@@ -7,9 +7,17 @@ public class PlaRange : MonoBehaviour
     [SerializeField]
     private string projectileType;
 
-    private SpriteRenderer spriteRenderer;
+    // private SpriteRenderer spriteRenderer;
 
     private Enemy target;
+
+    public Enemy Target
+    {
+        get
+        {
+            return target;
+        }
+    }
 
     private Queue<Enemy> enemy = new Queue<Enemy>();
 
@@ -20,9 +28,20 @@ public class PlaRange : MonoBehaviour
     [SerializeField]
     private float attackCooldown;
 
+
+    [SerializeField]
+    private float projectileSpeed;
+
+    public float ProjectileSpeed
+    {
+        get
+        {
+            return projectileSpeed;
+        }
+    }
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        Debug.Log("Initial Projectile speed: " + projectileSpeed);
     }
 
     // Update is called once per frame
@@ -34,7 +53,15 @@ public class PlaRange : MonoBehaviour
     public void Select()
     {
         //Debug.Log("Tower selected");
-        spriteRenderer.enabled = !spriteRenderer.enabled;
+        // spriteRenderer.enabled = !spriteRenderer.enabled;
+        foreach (Transform child in transform)
+        {
+            SpriteRenderer childSpriteRenderer = child.GetComponent<SpriteRenderer>();
+            if (childSpriteRenderer != null)
+            {
+                childSpriteRenderer.enabled = !childSpriteRenderer.enabled;
+            }
+        }
     }
 
     private void Attack()
@@ -67,8 +94,10 @@ public class PlaRange : MonoBehaviour
     private void Shoot()
     {
         Projectile projectile = GameManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
-    
+
         projectile.transform.position = transform.position;
+        Debug.Log("Projectile speed PArent: " + projectileSpeed);
+        projectile.Initialize(this);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
