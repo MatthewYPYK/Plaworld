@@ -11,7 +11,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     public CameraMovement cameraMovement;
 
-    private Point greenSpawn,coral;
+    private Point greenSpawn, coral;
 
     [SerializeField]
     private GameObject greenPortalPrefab;
@@ -19,7 +19,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     private GameObject coralPrefab;
 
-    public Portal GreenPortal {get; set;}
+    public Portal GreenPortal { get; set; }
 
     [SerializeField]
     private Transform map;
@@ -97,7 +97,7 @@ public class LevelManager : Singleton<LevelManager>
         newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map);
     }
 
-    
+
 
     private string[] ReadLevelText()
     {
@@ -110,13 +110,13 @@ public class LevelManager : Singleton<LevelManager>
 
     private void SpawnPortals()
     {
-        greenSpawn = new Point(1,3);
-        GameObject tmp = (GameObject)Instantiate(greenPortalPrefab,Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+        greenSpawn = new Point(1, 3);
+        GameObject tmp = (GameObject)Instantiate(greenPortalPrefab, Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
         GreenPortal = tmp.GetComponent<Portal>();
         GreenPortal.name = "GreenPortal";
 
-        coral = new Point(10,1);
-        Instantiate(coralPrefab,Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+        coral = new Point(10, 1);
+        Instantiate(coralPrefab, Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
     }
 
     public bool InBounds(Point a)
@@ -131,13 +131,10 @@ public class LevelManager : Singleton<LevelManager>
 
     public Point GreenSpawn
     {
-        get{
+        get
+        {
             return greenSpawn;
         }
     }
-    
-    public bool InBounds(Point a)
-    {
-        return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
-    }
+
 }

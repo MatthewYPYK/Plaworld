@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
     private int currency;
 
     private int wave = 0;
-    
+
     // [SerializeField]
     // private Text waveText;
 
@@ -22,11 +22,12 @@ public class GameManager : Singleton<GameManager>
 
     private List<Enemy> activeEnemies = new List<Enemy>();
 
-    public ObjectPool Pool {get; set;}
+    public ObjectPool Pool { get; set; }
 
     public bool WaveActive
     {
-        get {
+        get
+        {
             return activeEnemies.Count > 0;
         }
     }
@@ -44,7 +45,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         Pool = GetComponent<ObjectPool>();
     }
     // Start is called before the first frame update
@@ -61,7 +63,7 @@ public class GameManager : Singleton<GameManager>
 
     public void PickPla(PlaBtn plaBtn)
     {
-        if (Currency >= plaBtn.Price)
+        if (Currency >= plaBtn.Price && !WaveActive)
         {
             this.ClickedBtn = plaBtn;
             Debug.Log("PlaBtn: " + ClickedBtn);
@@ -93,7 +95,7 @@ public class GameManager : Singleton<GameManager>
         wave++;
         // waveText.text = string.Format("Wave : ",wave);
         StartCoroutine(SpawnWave());
-        
+
         waveBtn.SetActive(false);
     }
 
@@ -101,26 +103,27 @@ public class GameManager : Singleton<GameManager>
     {
         LevelManager.Instance.GeneratePath();
 
-        for (int i = 0; i < wave; i++){
-            int enemyIndex = Random.Range(0,4);
+        for (int i = 0; i < wave; i++)
+        {
+            int enemyIndex = Random.Range(0, 4);
 
             string type = string.Empty;
 
             switch (enemyIndex)
-        {
-            case 0:
-                type = "Soldier";
-                break;
-            case 1:
-                type = "Tank";
-                break;
-            case 2:
-                type = "Jeep";
-                break;
-            case 3:
-                type = "AirShip";
-                break;
-        }
+            {
+                case 0:
+                    type = "Soldier";
+                    break;
+                case 1:
+                    type = "Tank";
+                    break;
+                case 2:
+                    type = "Jeep";
+                    break;
+                case 3:
+                    type = "AirShip";
+                    break;
+            }
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
             enemy.Spawn();
