@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -11,12 +12,22 @@ public class GameManager : Singleton<GameManager>
     private int currency;
 
     private int wave = 0;
+
+    private int lives = 2;
+
+    private bool gameOver = false;
+
+    // [SerializeField]
+    // private Text livesTxt;
     
     // [SerializeField]
     // private Text waveText;
 
     [SerializeField]
     private GameObject waveBtn;
+
+    [SerializeField]
+    private GameObject gameOverMenu;
 
     private List<Enemy> activeEnemies = new List<Enemy>();
 
@@ -42,6 +53,26 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public int Lives
+    {
+        get {
+            return lives;
+        }
+
+        set{
+            this.lives = value;
+
+            if (lives <= 0)
+            {
+                this.lives = 0;
+                GameOver();
+            }
+            
+            // livesTxt.text = lives.ToString();
+
+        }
+    }
+
     private void Awake() {
         Pool = GetComponent<ObjectPool>();
         Currency = 150;
@@ -50,6 +81,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
+        Lives = 10;
         // Currency = 150;
     }
 
@@ -130,9 +162,26 @@ public class GameManager : Singleton<GameManager>
     {
         activeEnemies.Remove(enemy);
 
-        if (!WaveActive)
+        if (!WaveActive && !gameOver)
         {
             waveBtn.SetActive(true);
         }
+    }
+
+    public void GameOver()
+    {
+        if (!gameOver)
+        {
+            gameOver = true;
+            gameOverMenu.SetActive(true);
+        }
+
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -137,8 +137,8 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
     
-    public bool InBounds(Point a)
-    {
-        return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
-    }
+    // public bool InBounds(Point a)
+    // {
+    //     return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
+    // }
 }
