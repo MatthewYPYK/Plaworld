@@ -8,20 +8,32 @@ public class Enemy : MonoBehaviour
     private float speed;
 
     private Stack<Node> path;
+
+    [SerializeField]
+    private Stat health;
+
     public Point GridPositon { get; set; }
 
     private Vector3 destination;
 
     public bool IsActive { get; set; }
 
+    private void Awake()
+    {
+        health.Initialize();
+    }
+
     private void Update()
     {
         Move();
     }
 
-    public void Spawn()
+    public void Spawn(int health)
     {
         transform.position = LevelManager.Instance.GreenPortal.transform.position;
+
+        this.health.MaxVal = health;
+        this.health.CurrentVal = this.health.MaxVal;
 
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
 
@@ -82,7 +94,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Coral")
         {
-            StartCoroutine(Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
+            StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
         }
     }
 
@@ -94,4 +106,16 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.RemoveEnemy(this);
     }
 
+    public void TakeDamage(int damage)
+    {
+        if (IsActive)
+        {
+            health.CurrentVal -= damage;
+            Debug.Log(health.CurrentVal);
+        }
+        if (health.CurrentVal <= 0)
+        {
+            StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
+        }
+    }
 }

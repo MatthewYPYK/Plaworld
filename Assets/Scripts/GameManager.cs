@@ -14,6 +14,8 @@ public class GameManager : Singleton<GameManager>
 
     private int wave = 0;
 
+    private int health = 10;
+
     // [SerializeField]
     // private Text waveText;
 
@@ -126,7 +128,12 @@ public class GameManager : Singleton<GameManager>
             }
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
-            enemy.Spawn();
+            enemy.Spawn(health);
+
+            if (wave % 3 == 0) // monster max health increase every 3 wave
+            {
+                health += 5;
+            }
 
             activeEnemies.Add(enemy);
 

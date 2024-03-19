@@ -26,6 +26,9 @@ public class PlaRange : MonoBehaviour
     private float attackTimer;
 
     [SerializeField]
+    private int damage;
+
+    [SerializeField]
     private float attackCooldown;
 
 
@@ -39,6 +42,9 @@ public class PlaRange : MonoBehaviour
             return projectileSpeed;
         }
     }
+
+    public int Damage { get => damage; set => damage = value; }
+
     void Start()
     {
         Debug.Log("Initial Projectile speed: " + projectileSpeed);
@@ -96,16 +102,16 @@ public class PlaRange : MonoBehaviour
         Projectile projectile = GameManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
 
         projectile.transform.position = transform.position;
-        Debug.Log("Projectile speed PArent: " + projectileSpeed);
+        //Debug.Log("Projectile speed PArent: " + projectileSpeed);
         projectile.Initialize(this);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Enter");
+        //Debug.Log("Enter");
         if (other.tag == "Enemy")
         {
-            Debug.Log("Enter the enemy");
+            //Debug.Log("Enter the enemy");
             enemy.Enqueue(other.GetComponent<Enemy>());
         }
     }
