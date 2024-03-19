@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16197b442740a7c488518134dd2669e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedPla: {fileID: 0}
   currency: 100
   waveBtn: {fileID: 721804326}
 --- !u!224 &431957890
@@ -326,6 +327,7 @@ MonoBehaviour:
   - {fileID: 4252168734141729360, guid: 722633125781d31448fe8c1b2074ce65, type: 3}
   - {fileID: 6419608292955598060, guid: fb1a417e10adc9944b7479a4c01efd4e, type: 3}
   - {fileID: 464481206073287924, guid: 302d5e1f45a408a4a8b04da364ea01ec, type: 3}
+  - {fileID: 1047260143022203445, guid: 2386ade7ea6ab4440a594663b2c8d823, type: 3}
 --- !u!23 &431957892
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1135,7 +1137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1678,7 +1680,7 @@ MonoBehaviour:
   plaPrefab: {fileID: 4039773410698365106, guid: 368f1150d743a1641bc2cb781d155f64, type: 3}
   sprite: {fileID: 21300000, guid: f8903892fdbb70044b25c9792c2fd20d, type: 3}
   towerName: GoldFish
-  price: 50
+  price: 25
   buttonText: {fileID: 830970893}
 --- !u!1 &2110236303
 GameObject:
