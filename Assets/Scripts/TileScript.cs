@@ -23,8 +23,9 @@ public class TileScript : MonoBehaviour
         get
         {
             return new Vector2(
-                transform.position.x - (GetComponent<SpriteRenderer>().bounds.size.x / 2),
+                transform.position.x - (GetComponent<SpriteRenderer>().bounds.size.x / 2) + 2.134f,
                 transform.position.y - (GetComponent<SpriteRenderer>().bounds.size.y / 2)
+
             );
         }
     }
