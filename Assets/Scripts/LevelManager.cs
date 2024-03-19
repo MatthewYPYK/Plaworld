@@ -26,6 +26,20 @@ public class LevelManager : Singleton<LevelManager>
 
     private Point mapSize;
 
+    private Stack<Node> path;
+
+    public Stack<Node> Path
+    {
+        get
+        {
+            if (path == null)
+            {
+                GeneratePath();
+            }
+            return new(new Stack<Node>(path));
+        }
+    }
+
     public Dictionary<Point, TileScript> Tiles { get; set; }
 
     public float TileSize
@@ -95,10 +109,6 @@ public class LevelManager : Singleton<LevelManager>
         return data.Split('-');
     }
 
-    public bool InBounds(Point a)
-    {
-        return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
-    }
     private void SpawnPortals()
     {
         greenSpawn = new Point(1,3);
@@ -108,6 +118,16 @@ public class LevelManager : Singleton<LevelManager>
 
         coral = new Point(10,1);
         Instantiate(coralPrefab,Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+    }
+
+    public bool InBounds(Point a)
+    {
+        return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
+    }
+
+    public void GeneratePath()
+    {
+        path = AStar.GetPath(greenSpawn, coral);
     }
 
     public Point GreenSpawn
