@@ -35,6 +35,10 @@ public class Projectile : MonoBehaviour
             // Debug.Log(Time.deltaTime * parent.ProjectileSpeed);
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * parent.ProjectileSpeed);
 
+            Vector2 orientation = target.transform.position - transform.position;
+            float angle = Mathf.Atan2(orientation.y, orientation.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
         else if (!target.IsActive)
