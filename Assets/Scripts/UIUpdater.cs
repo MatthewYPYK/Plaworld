@@ -11,6 +11,8 @@ public class UIUpdater : Singleton<UIUpdater>
     public TextMeshProUGUI textMesh_balance;
 
     public TextMeshProUGUI textMesh_lives;
+    public GameObject Waves;
+    public TextMeshProUGUI textMesh_waves;
 
     public void UpdateCurrency(int value)
     {
@@ -22,6 +24,11 @@ public class UIUpdater : Singleton<UIUpdater>
         textMesh_lives.text = value.ToString();
     }
 
+    public void UpdateWaves(int value)
+    {
+        textMesh_waves.text = "Wave : " + value.ToString();
+    }
+
     void Awake()
     {
         textMesh_balance = BalanceValue.GetComponent<TextMeshProUGUI>();
@@ -29,6 +36,9 @@ public class UIUpdater : Singleton<UIUpdater>
 
         textMesh_lives = Lives.GetComponent<TextMeshProUGUI>();
         Debug.Log("AWAKE UIUpdater: " + textMesh_lives.text);
+
+        textMesh_waves = Waves.GetComponent<TextMeshProUGUI>();
+        Debug.Log("AWAKE UIUpdater: " + textMesh_waves.text);
     }
 
     // Update is called once per frame

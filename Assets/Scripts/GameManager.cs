@@ -119,6 +119,7 @@ public class GameManager : Singleton<GameManager>
         wave++;
         // waveText.text = string.Format("Wave : ",wave);
         StartCoroutine(SpawnWave());
+        UIUpdater.Instance.UpdateWaves(wave);
         
         waveBtn.SetActive(false);
     }

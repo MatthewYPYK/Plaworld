@@ -274,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &134421473
 RectTransform:
   m_ObjectHideFlags: 0
@@ -932,6 +932,8 @@ MonoBehaviour:
   Lives: {fileID: 1974987584}
   textMesh_balance: {fileID: 0}
   textMesh_lives: {fileID: 0}
+  Waves: {fileID: 134421472}
+  textMesh_waves: {fileID: 0}
 --- !u!1 &721804326
 GameObject:
   m_ObjectHideFlags: 0
