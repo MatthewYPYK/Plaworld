@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -9,7 +10,24 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private int currency;
 
+    private int wave = 0;
+    
+    // [SerializeField]
+    // private Text waveText;
+
+    [SerializeField]
+    private GameObject waveBtn;
+
+    private List<Enemy> activeEnemies = new List<Enemy>();
+
     public ObjectPool Pool {get; set;}
+
+    public bool WaveActive
+    {
+        get {
+            return activeEnemies.Count > 0;
+        }
+    }
 
     public int Currency
     {
@@ -66,18 +84,23 @@ public class GameManager : Singleton<GameManager>
 
     public void StartWave()
     {
+        wave++;
+        // waveText.text = string.Format("Wave : ",wave);
         StartCoroutine(SpawnWave());
+        
+        waveBtn.SetActive(false);
     }
 
     private IEnumerator SpawnWave()
     {
         LevelManager.Instance.GeneratePath();
 
-        int enemyIndex = Random.Range(0,4);
+        for (int i = 0; i < wave; i++){
+            int enemyIndex = Random.Range(0,4);
 
-        string type = string.Empty;
+            string type = string.Empty;
 
-        switch (enemyIndex)
+            switch (enemyIndex)
         {
             case 0:
                 type = "Soldier";
@@ -93,8 +116,23 @@ public class GameManager : Singleton<GameManager>
                 break;
         }
 
-        Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
-        enemy.Spawn();
-        yield return new WaitForSeconds(2.5f);
+            Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
+            enemy.Spawn();
+
+            activeEnemies.Add(enemy);
+
+            yield return new WaitForSeconds(2.5f);
+        }
+
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        activeEnemies.Remove(enemy);
+
+        if (!WaveActive)
+        {
+            waveBtn.SetActive(true);
+        }
     }
 }
