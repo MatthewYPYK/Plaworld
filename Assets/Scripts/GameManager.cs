@@ -93,7 +93,7 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator SpawnWave()
     {
-        // LevelManager.Instance.GeneratePath();
+        LevelManager.Instance.GeneratePath();
 
         for (int i = 0; i < wave; i++){
             int enemyIndex = Random.Range(0,4);
