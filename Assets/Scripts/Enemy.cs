@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     private Vector3 destination;
 
-    private bool IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     private void Update()
     {

@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-    public PlaBtn ClickedBtn { get; private set; }
+    public PlaBtn ClickedBtn { get; set; }
 
+    [SerializeField]
+    private PlaRange selectedPla;
     [SerializeField]
     private int currency;
 
     private int wave = 0;
-    
+
     // [SerializeField]
     // private Text waveText;
 
@@ -20,11 +22,12 @@ public class GameManager : Singleton<GameManager>
 
     private List<Enemy> activeEnemies = new List<Enemy>();
 
-    public ObjectPool Pool {get; set;}
+    public ObjectPool Pool { get; set; }
 
     public bool WaveActive
     {
-        get {
+        get
+        {
             return activeEnemies.Count > 0;
         }
     }
@@ -42,43 +45,48 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         Pool = GetComponent<ObjectPool>();
-        Currency = 150;
-        Debug.Log("AWAKE Currency: " + Currency);
     }
     // Start is called before the first frame update
     void Start()
     {
-        // Currency = 150;
+        Currency = 150;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        HandleEscape();
     }
 
     public void PickPla(PlaBtn plaBtn)
     {
-        if (Currency >= plaBtn.Price)
+        if (Currency >= plaBtn.Price && !WaveActive)
         {
             this.ClickedBtn = plaBtn;
+            Debug.Log("PlaBtn: " + ClickedBtn);
             Hover.Instance.Activate(plaBtn.Sprite);
-
         }
-
     }
 
     public void BuyPla()
     {
-
-
         if (Currency >= ClickedBtn.Price)
         {
             Currency = Currency - ClickedBtn.Price;
+            Debug.Log("Currency: " + Currency);
             Hover.Instance.Deactivate();
-            this.ClickedBtn = null;
+            Debug.Log("PlaBtn deac: " + ClickedBtn);
+        }
+    }
+
+    private void HandleEscape()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Hover.Instance.Deactivate();
         }
     }
 
@@ -87,7 +95,7 @@ public class GameManager : Singleton<GameManager>
         wave++;
         // waveText.text = string.Format("Wave : ",wave);
         StartCoroutine(SpawnWave());
-        
+
         waveBtn.SetActive(false);
     }
 
@@ -95,26 +103,27 @@ public class GameManager : Singleton<GameManager>
     {
         LevelManager.Instance.GeneratePath();
 
-        for (int i = 0; i < wave; i++){
-            int enemyIndex = Random.Range(0,4);
+        for (int i = 0; i < wave; i++)
+        {
+            int enemyIndex = Random.Range(0, 4);
 
             string type = string.Empty;
 
             switch (enemyIndex)
-        {
-            case 0:
-                type = "Soldier";
-                break;
-            case 1:
-                type = "Tank";
-                break;
-            case 2:
-                type = "Jeep";
-                break;
-            case 3:
-                type = "AirShip";
-                break;
-        }
+            {
+                case 0:
+                    type = "Soldier";
+                    break;
+                case 1:
+                    type = "Tank";
+                    break;
+                case 2:
+                    type = "Jeep";
+                    break;
+                case 3:
+                    type = "AirShip";
+                    break;
+            }
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
             enemy.Spawn();
@@ -134,5 +143,18 @@ public class GameManager : Singleton<GameManager>
         {
             waveBtn.SetActive(true);
         }
+    }
+
+    public void SelectPla(PlaRange plaTower)
+    {
+        Debug.Log("GameManager: SelectPla: " + plaTower);
+        // if (selectedPla != null)
+        // {
+        //     selectedPla.Select();
+        // }
+        selectedPla = plaTower;
+        selectedPla.Select();
+        // Hover.Instance.Activate(selectedPla.plaData.Sprite);
+
     }
 }
