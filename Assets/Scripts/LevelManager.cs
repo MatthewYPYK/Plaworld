@@ -9,9 +9,12 @@ public class LevelManager : Singleton<LevelManager>
     private GameObject[] tilePrefabs;
 
     [SerializeField]
+    private float _TileSize = 0;
+
+    [SerializeField]
     public CameraMovement cameraMovement;
 
-    private Point greenSpawn,coral;
+    private Point greenSpawn, coral;
 
     [SerializeField]
     private GameObject greenPortalPrefab;
@@ -19,7 +22,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     private GameObject coralPrefab;
 
-    public Portal GreenPortal {get; set;}
+    public Portal GreenPortal { get; set; }
 
     [SerializeField]
     private Transform map;
@@ -44,7 +47,10 @@ public class LevelManager : Singleton<LevelManager>
 
     public float TileSize
     {
-        get { return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x; }
+        get {
+            if (_TileSize > 0) return _TileSize;
+            else return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+         }
     }
 
     // Start is called before the first frame update
@@ -68,8 +74,6 @@ public class LevelManager : Singleton<LevelManager>
 
         mapSize = new Point(mapData[0].ToCharArray().Length, mapData.Length);
 
-        Vector3 maxTile = Vector3.zero;
-
         Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
 
@@ -82,9 +86,8 @@ public class LevelManager : Singleton<LevelManager>
                 PlaceTile(rowData[x].ToString(), x, y, worldStart);
             }
         }
-        maxTile = Tiles[new Point(rowData.Length - 1, mapData.Length - 1)].transform.position;
-
-        cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
+        cameraMovement.SetCam(BoundingBox);
+        // cameraMovement.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
 
         SpawnPortals();
     }
@@ -95,10 +98,9 @@ public class LevelManager : Singleton<LevelManager>
         TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
 
         newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map);
-
     }
 
-    
+
 
     private string[] ReadLevelText()
     {
@@ -111,13 +113,13 @@ public class LevelManager : Singleton<LevelManager>
 
     private void SpawnPortals()
     {
-        greenSpawn = new Point(1,3);
-        GameObject tmp = (GameObject)Instantiate(greenPortalPrefab,Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+        greenSpawn = new Point(1, 3);
+        GameObject tmp = (GameObject)Instantiate(greenPortalPrefab, Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
         GreenPortal = tmp.GetComponent<Portal>();
         GreenPortal.name = "GreenPortal";
 
-        coral = new Point(10,1);
-        Instantiate(coralPrefab,Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
+        coral = new Point(10, 1);
+        Instantiate(coralPrefab, Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
     }
 
     public bool InBounds(Point a)
@@ -132,13 +134,24 @@ public class LevelManager : Singleton<LevelManager>
 
     public Point GreenSpawn
     {
-        get{
+        get
+        {
             return greenSpawn;
         }
     }
     
-    // public bool InBounds(Point a)
-    // {
-    //     return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
-    // }
+    public Bounds BoundingBox{
+        get{
+            Vector3 bottomRight = Tiles[new Point(mapSize.X - 1, mapSize.Y - 1)].transform.position;
+            bottomRight += new Vector3(TileSize,-TileSize,0);
+            Vector3 topLeft = Tiles[new Point(0, 0)].transform.position;
+
+            Vector3 center = (topLeft + bottomRight)/2;
+            Vector3 size = bottomRight - topLeft;
+            Vector3 absSize = new Vector3(Mathf.Abs(size.x), Mathf.Abs(size.y), Mathf.Abs(size.z));
+            Bounds boundingBox = new Bounds(center, absSize);
+            return boundingBox;
+        }
+    }
+
 }

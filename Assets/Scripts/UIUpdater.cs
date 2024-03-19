@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class UIUpdater : Singleton<UIUpdater>
 {
     // Start is called before the first frame update

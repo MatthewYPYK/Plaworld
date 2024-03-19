@@ -8,6 +8,8 @@ public class CameraMovement : MonoBehaviour
     private float cameraSpeed = 0;
     private float xMax;
     private float yMin;
+    private Bounds boundingBox;
+    private float padding = 1.0f; // Padding around the bounding box
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,8 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        SetCam(boundingBox);
+        return;
         GetInput();
     }
 
@@ -42,6 +46,17 @@ public class CameraMovement : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin, 0), -10);
     }
 
+    public void SetCam(Bounds _boundingBox)
+    {
+        boundingBox = _boundingBox;
+        Camera camera = Camera.main;
+        float screenAspect = Screen.width / (float)Screen.height;
+        float boundAspect = boundingBox.size.x / boundingBox.size.y;
+        camera.orthographicSize = (boundAspect > screenAspect) ? (boundingBox.size.x / screenAspect) / 2 : boundingBox.size.y / 2;
+        camera.orthographicSize += padding;
+        camera.transform.position = new Vector3(boundingBox.center.x, boundingBox.center.y, camera.transform.position.z);
+    
+    }
     public void SetLimits(Vector3 maxTile)
     {
         Vector3 wp = Camera.main.ViewportToWorldPoint(new Vector3(1, 0));
