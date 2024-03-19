@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -8,6 +9,25 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private int currency;
+
+    private int wave = 0;
+    
+    // [SerializeField]
+    // private Text waveText;
+
+    [SerializeField]
+    private GameObject waveBtn;
+
+    private List<Enemy> activeEnemies = new List<Enemy>();
+
+    public ObjectPool Pool {get; set;}
+
+    public bool WaveActive
+    {
+        get {
+            return activeEnemies.Count > 0;
+        }
+    }
 
     public int Currency
     {
@@ -23,6 +43,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     private void Awake() {
+        Pool = GetComponent<ObjectPool>();
         Currency = 150;
         Debug.Log("AWAKE Currency: " + Currency);
     }
@@ -58,6 +79,60 @@ public class GameManager : Singleton<GameManager>
             Currency = Currency - ClickedBtn.Price;
             Hover.Instance.Deactivate();
             this.ClickedBtn = null;
+        }
+    }
+
+    public void StartWave()
+    {
+        wave++;
+        // waveText.text = string.Format("Wave : ",wave);
+        StartCoroutine(SpawnWave());
+        
+        waveBtn.SetActive(false);
+    }
+
+    private IEnumerator SpawnWave()
+    {
+        LevelManager.Instance.GeneratePath();
+
+        for (int i = 0; i < wave; i++){
+            int enemyIndex = Random.Range(0,4);
+
+            string type = string.Empty;
+
+            switch (enemyIndex)
+        {
+            case 0:
+                type = "Soldier";
+                break;
+            case 1:
+                type = "Tank";
+                break;
+            case 2:
+                type = "Jeep";
+                break;
+            case 3:
+                type = "AirShip";
+                break;
+        }
+
+            Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
+            enemy.Spawn();
+
+            activeEnemies.Add(enemy);
+
+            yield return new WaitForSeconds(2.5f);
+        }
+
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        activeEnemies.Remove(enemy);
+
+        if (!WaveActive)
+        {
+            waveBtn.SetActive(true);
         }
     }
 }
