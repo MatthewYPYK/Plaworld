@@ -30,8 +30,8 @@ public class Projectile : MonoBehaviour
     {
         if (target != null && target.IsActive)
         {
-            Debug.Log(parent);
-            Debug.Log(parent.ProjectileSpeed);
+            //Debug.Log(parent);
+            //Debug.Log(parent.ProjectileSpeed);
             // Debug.Log(Time.deltaTime * parent.ProjectileSpeed);
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * parent.ProjectileSpeed);
 
@@ -43,8 +43,20 @@ public class Projectile : MonoBehaviour
 
         else if (!target.IsActive)
         {
-            Debug.Log("Target is not active");
+            //Debug.Log("Target is not active");
             GameManager.Instance.Pool.ReleaseObject(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (target.gameObject == other.gameObject)
+            {
+                target.TakeDamage(parent.Damage);
+                GameManager.Instance.Pool.ReleaseObject(gameObject);
+            }
         }
     }
 }

@@ -15,7 +15,9 @@ public class GameManager : Singleton<GameManager>
 
     private int wave = 0;
 
-    private int lives = 2;
+    private int health = 10;
+
+    private int lives;
 
     private bool gameOver = false;
 
@@ -99,7 +101,7 @@ public class GameManager : Singleton<GameManager>
         if (Currency >= plaBtn.Price && !WaveActive)
         {
             this.ClickedBtn = plaBtn;
-            Debug.Log("PlaBtn: " + ClickedBtn);
+            //Debug.Log("PlaBtn: " + ClickedBtn);
             Hover.Instance.Activate(plaBtn.Sprite);
         }
     }
@@ -109,9 +111,9 @@ public class GameManager : Singleton<GameManager>
         if (Currency >= ClickedBtn.Price)
         {
             Currency = Currency - ClickedBtn.Price;
-            Debug.Log("Currency: " + Currency);
+            //Debug.Log("Currency: " + Currency);
             Hover.Instance.Deactivate();
-            Debug.Log("PlaBtn deac: " + ClickedBtn);
+            //Debug.Log("PlaBtn deac: " + ClickedBtn);
         }
     }
 
@@ -160,7 +162,12 @@ public class GameManager : Singleton<GameManager>
             }
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
-            enemy.Spawn();
+            enemy.Spawn(health);
+
+            if (wave % 3 == 0) // monster max health increase every 3 wave
+            {
+                health += 3;
+            }
 
             activeEnemies.Add(enemy);
 
@@ -176,12 +183,15 @@ public class GameManager : Singleton<GameManager>
         if (!WaveActive && !gameOver)
         {
             waveBtn.SetActive(true);
+            Debug.Log("currency is added");
+            currency += wave * 10;
+            UIUpdater.Instance.UpdateCurrency(GameManager.Instance.Currency);
         }
     }
 
     public void SelectPla(PlaRange plaTower)
     {
-        Debug.Log("GameManager: SelectPla: " + plaTower);
+        //Debug.Log("GameManager: SelectPla: " + plaTower);
         // if (selectedPla != null)
         // {
         //     selectedPla.Select();
