@@ -157,7 +157,7 @@ public class AStarDebugger : MonoBehaviour
         GameObject debugTile = (GameObject)Instantiate(debugTilePrefab, worldPos + new Vector3((float)2.1344444, 0,0), Quaternion.identity);
         if (node != null)
         {
-            Debug.Log("("+ node.GridPosition.X + "," + node.GridPosition.Y + ")" + " " + node.G);
+            //Debug.Log("("+ node.GridPosition.X + "," + node.GridPosition.Y + ")" + " " + node.G);
             GameObject instantiated_G_Canvas = (GameObject)Instantiate(gPrefab, worldPos + new Vector3((float)2.1344444, 0, 0), Quaternion.identity);
             TextMeshProUGUI[] componentG = instantiated_G_Canvas.GetComponentsInChildren<TextMeshProUGUI>();
             componentG[0].text += node.G;

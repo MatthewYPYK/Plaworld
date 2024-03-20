@@ -17,6 +17,10 @@ public class Stat
         set
         {
             currentVal = value;
+            if (bar is not null)
+            {
+                bar.Value = currentVal;
+            }
             //bar.Value = currentVal;
         }
     }
@@ -25,6 +29,10 @@ public class Stat
         set
         {
             this.maxVal = value;
+            if (bar is not null)
+            {
+                bar.MaxValue = maxVal;
+            }
             //bar.MaxValue = maxVal;
         } 
     }

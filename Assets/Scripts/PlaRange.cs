@@ -47,7 +47,7 @@ public class PlaRange : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Initial Projectile speed: " + projectileSpeed);
+        //Debug.Log("Initial Projectile speed: " + projectileSpeed);
     }
 
     // Update is called once per frame

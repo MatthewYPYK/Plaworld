@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
 
         else if (!target.IsActive)
         {
-            Debug.Log("Target is not active");
+            //Debug.Log("Target is not active");
             GameManager.Instance.Pool.ReleaseObject(gameObject);
         }
     }

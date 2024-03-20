@@ -75,7 +75,7 @@ public class TileScript : MonoBehaviour
             else if (GameManager.Instance.ClickedBtn == null
             && Input.GetMouseButtonDown(0))
             {
-                Debug.Log("TileScript: OnMouseOver: myPla: " + myPla);
+                //Debug.Log("TileScript: OnMouseOver: myPla: " + myPla);
                 if (myPla != null)
                 {
                     GameManager.Instance.SelectPla(myPla);
@@ -100,8 +100,8 @@ public class TileScript : MonoBehaviour
         // set myPla to PlaTower script
         myPla = pla.transform.GetChild(0).GetComponent<PlaRange>();
 
-        Debug.Log("TileScript: PlacePla: pla: " + pla);
-        Debug.Log("TileScript: PlacePla: myPla: " + myPla);
+        //Debug.Log("TileScript: PlacePla: pla: " + pla);
+        //Debug.Log("TileScript: PlacePla: myPla: " + myPla);
         IsEmpty = false;
 
         ColorTile(Color.white);

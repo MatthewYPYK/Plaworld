@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
         if (IsActive)
         {
             health.CurrentVal -= damage;
-            Debug.Log(health.CurrentVal);
+            //Debug.Log(health.CurrentVal);
         }
         if (health.CurrentVal <= 0)
         {
