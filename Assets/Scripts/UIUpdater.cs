@@ -15,7 +15,8 @@ public class UIUpdater : Singleton<UIUpdater>
     public GameObject Waves;
     public TextMeshProUGUI textMesh_waves;
 
-    public void UpdateCurrency(int value)
+    private GameManager gameManager;
+    public void UpdateBalance(int value)
     {
         textMesh_balance.text = value.ToString();
     }
@@ -32,10 +33,13 @@ public class UIUpdater : Singleton<UIUpdater>
 
     void Awake()
     {
+
+        gameManager = GameManager.Instance;
         textMesh_balance = BalanceValue.GetComponent<TextMeshProUGUI>();
         //Debug.Log("AWAKE UIUpdater: " + textMesh_balance.text);
 
         textMesh_lives = Lives.GetComponent<TextMeshProUGUI>();
+        UpdateBalance(gameManager.Balance);
         //Debug.Log("AWAKE UIUpdater: " + textMesh_lives.text);
 
         textMesh_waves = Waves.GetComponent<TextMeshProUGUI>();
