@@ -10,8 +10,9 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private PlaRange selectedPla;
+
     [SerializeField]
-    private int currency;
+    private int balance;
 
     private int wave = 0;
 
@@ -23,7 +24,7 @@ public class GameManager : Singleton<GameManager>
 
     // [SerializeField]
     // private Text livesTxt;
-    
+
     // [SerializeField]
     // private Text waveText;
 
@@ -45,26 +46,28 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public int Currency
+    public int Balance
     {
         get
         {
-            return currency;
+            return balance;
         }
         set
         {
-            this.currency = value;
-            UIUpdater.Instance.UpdateCurrency(currency);
+            this.balance = value;
+            UIUpdater.Instance.UpdateBalance(balance);
         }
     }
 
     public int Lives
     {
-        get {
+        get
+        {
             return lives;
         }
 
-        set{
+        set
+        {
             this.lives = value;
 
             if (lives <= 0)
@@ -72,13 +75,14 @@ public class GameManager : Singleton<GameManager>
                 this.lives = 0;
                 GameOver();
             }
-            
+
             // livesTxt.text = lives.ToString();
 
         }
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         Pool = GetComponent<ObjectPool>();
     }
     // Start is called before the first frame update
@@ -86,7 +90,6 @@ public class GameManager : Singleton<GameManager>
     {
 
         Lives = 10;
-        Currency = 150;
 
     }
 
@@ -98,7 +101,7 @@ public class GameManager : Singleton<GameManager>
 
     public void PickPla(PlaBtn plaBtn)
     {
-        if (Currency >= plaBtn.Price && !WaveActive)
+        if (Balance >= plaBtn.Price && !WaveActive)
         {
             this.ClickedBtn = plaBtn;
             //Debug.Log("PlaBtn: " + ClickedBtn);
@@ -108,9 +111,9 @@ public class GameManager : Singleton<GameManager>
 
     public void BuyPla()
     {
-        if (Currency >= ClickedBtn.Price)
+        if (Balance >= ClickedBtn.Price)
         {
-            Currency = Currency - ClickedBtn.Price;
+            Balance = Balance - ClickedBtn.Price;
             //Debug.Log("Currency: " + Currency);
             Hover.Instance.Deactivate();
             //Debug.Log("PlaBtn deac: " + ClickedBtn);
@@ -131,7 +134,7 @@ public class GameManager : Singleton<GameManager>
         // waveText.text = string.Format("Wave : ",wave);
         StartCoroutine(SpawnWave());
         UIUpdater.Instance.UpdateWaves(wave);
-        
+
         waveBtn.SetActive(false);
     }
 
@@ -184,8 +187,8 @@ public class GameManager : Singleton<GameManager>
         {
             waveBtn.SetActive(true);
             Debug.Log("currency is added");
-            currency += wave * 10;
-            UIUpdater.Instance.UpdateCurrency(GameManager.Instance.Currency);
+            balance += wave * 10;
+            UIUpdater.Instance.UpdateBalance(GameManager.Instance.Balance);
         }
     }
 
