@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private string type;
+    
     [SerializeField]
     private float speed;
 
@@ -28,16 +30,18 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
-    public void Spawn(int health)
+    public void Spawn(int health, string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
     {
-        transform.position = LevelManager.Instance.GreenPortal.transform.position;
+        transform.position = spawnpoint ?? LevelManager.Instance.GreenPortal.transform.position;
 
         this.health.MaxVal = health;
         this.health.CurrentVal = this.health.MaxVal;
+        this.type = type;
 
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
 
-        SetPath(LevelManager.Instance.Path);
+        if (initialPath == null) SetPath(LevelManager.Instance.Path);
+        else SetPath(initialPath);
     }
 
     public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
@@ -107,6 +111,13 @@ public class Enemy : MonoBehaviour
         //GridPosition = LevelManager.Instance.GreenSpawn;
         GameManager.Instance.Pool.ReleaseObject(gameObject);
         GameManager.Instance.RemoveEnemy(this);
+        if (type == "Jeep")
+        {
+            // Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
+            // enemy.Spawn(health,"Soldier");
+            // activeEnemies.Add(enemy);
+            GameManager.Instance.JeepDestroy(transform.position, path);
+        }
     }
 
     public void TakeDamage(int damage)

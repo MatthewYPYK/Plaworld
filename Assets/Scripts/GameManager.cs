@@ -33,6 +33,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject gameOverMenu;
 
+    // TODO : this is a list of active enemies
     private List<Enemy> activeEnemies = new List<Enemy>();
 
     public ObjectPool Pool { get; set; }
@@ -98,6 +99,7 @@ public class GameManager : Singleton<GameManager>
 
     public void PickPla(PlaBtn plaBtn)
     {
+        // TODO : if finish set new path activate place pla between wave
         if (Currency >= plaBtn.Price && !WaveActive)
         {
             this.ClickedBtn = plaBtn;
@@ -141,7 +143,7 @@ public class GameManager : Singleton<GameManager>
 
         for (int i = 0; i < wave; i++)
         {
-            int enemyIndex = Random.Range(0, 4);
+            int enemyIndex = Random.Range(2, 3);
 
             string type = string.Empty;
 
@@ -162,7 +164,7 @@ public class GameManager : Singleton<GameManager>
             }
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
-            enemy.Spawn(health);
+            enemy.Spawn(health,type);
 
             if (wave % 3 == 0) // monster max health increase every 3 wave
             {
@@ -219,4 +221,14 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void JeepDestroy(Vector3 position, Stack<Node> initialPath)
+    {
+        int total_number = 2;
+        for (int i = 0; i < total_number; i++)
+        {
+            Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
+            enemy.Spawn(health, "Soldier", position, new(initialPath));
+            activeEnemies.Add(enemy);
+        }
+    }
 }

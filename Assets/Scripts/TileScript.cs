@@ -57,19 +57,25 @@ public class TileScript : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             // Debug.Log("TileScript: OnMouseOver: GameManager.Instance.ClickedBtn: " + GameManager.Instance.ClickedBtn);
+            // Debug.Log("Mouse over tile: " + "(" + GridPosition.X + ", " + GridPosition.Y + ")");
             if (GameManager.Instance.ClickedBtn != null)
             {
-                if (IsEmpty)
+                bool IsBlocked = !LevelManager.Instance.CanPlacePla(GridPosition);
+                if (IsBlocked){
+                    ColorTile(fullColor);
+                }
+                else if (IsEmpty)
                 {
                     ColorTile(emptyColor);
                 }
-                if (!IsEmpty)
+                if (!IsEmpty || IsBlocked)
                 {
                     ColorTile(fullColor);
                 }
                 else if (Input.GetMouseButtonDown(0))
                 {
                     PlacePla();
+                    // TODO : set new path for enemy
                 }
             }
             else if (GameManager.Instance.ClickedBtn == null

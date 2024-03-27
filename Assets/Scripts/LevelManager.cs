@@ -132,6 +132,11 @@ public class LevelManager : Singleton<LevelManager>
         path = AStar.GetPath(greenSpawn, coral);
     }
 
+    public bool CanPlacePla(Point target)
+    {
+        return AStar.CanPlacePla(greenSpawn, coral, target);
+    }
+
     public Point GreenSpawn
     {
         get
