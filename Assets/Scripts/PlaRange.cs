@@ -34,6 +34,7 @@ public class PlaRange : MonoBehaviour
 
     [SerializeField]
     private float projectileSpeed;
+    private bool onStartEnableRange;
 
     public float ProjectileSpeed
     {
@@ -48,6 +49,7 @@ public class PlaRange : MonoBehaviour
     void Start()
     {
         //Debug.Log("Initial Projectile speed: " + projectileSpeed);
+        setRangeEnable(false);
     }
 
     // Update is called once per frame
@@ -60,12 +62,19 @@ public class PlaRange : MonoBehaviour
     {
         //Debug.Log("Tower selected");
         // spriteRenderer.enabled = !spriteRenderer.enabled;
+        setRangeEnable(!onStartEnableRange);
+    }
+
+    public void setRangeEnable(bool enable)
+    {
+        //Debug.Log("Tower selected");
+        // spriteRenderer.enabled = !spriteRenderer.enabled;
         foreach (Transform child in transform)
         {
             SpriteRenderer childSpriteRenderer = child.GetComponent<SpriteRenderer>();
             if (childSpriteRenderer != null)
             {
-                childSpriteRenderer.enabled = !childSpriteRenderer.enabled;
+                childSpriteRenderer.enabled = enable;
             }
         }
     }

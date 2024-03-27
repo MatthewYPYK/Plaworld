@@ -336,6 +336,7 @@ MonoBehaviour:
   damage: 1
   attackCooldown: 1
   projectileSpeed: 5
+  onStartEnableRange: 1
 --- !u!61 &2606873630906593916
 BoxCollider2D:
   m_ObjectHideFlags: 0
