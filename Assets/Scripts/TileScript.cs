@@ -95,20 +95,26 @@ public class TileScript : MonoBehaviour
         GameObject pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
-        pla.transform.SetParent(transform);
 
-        // set myPla to PlaTower script
-        myPla = pla.transform.GetChild(0).GetComponent<PlaRange>();
+        // if component has a Plarange child
+        if (pla.transform.childCount > 0)
+        {
+            Debug.Log("TileScript: PlacePla: pla.transform.childCount: " + pla.transform.childCount);
+            pla.transform.SetParent(transform);
+
+            myPla = pla.transform.GetChild(0).GetComponent<PlaRange>();
+            IsEmpty = false;
+
+            ColorTile(Color.white);
+
+
+            WalkAble = false;
+        }
+        GameManager.Instance.BuyPla();
 
         //Debug.Log("TileScript: PlacePla: pla: " + pla);
         //Debug.Log("TileScript: PlacePla: myPla: " + myPla);
-        IsEmpty = false;
 
-        ColorTile(Color.white);
-
-        GameManager.Instance.BuyPla();
-
-        WalkAble = false;
     }
 
     private void ColorTile(Color newColor)
