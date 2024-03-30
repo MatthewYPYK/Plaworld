@@ -101,7 +101,9 @@ public class GameManager : Singleton<GameManager>
 
     public void PickPla(PlaBtn plaBtn)
     {
-        if (Balance >= plaBtn.Price && !WaveActive)
+        if (Balance >= plaBtn.Price)
+
+        // if (Balance >= plaBtn.Price && !WaveActive)
         {
             this.ClickedBtn = plaBtn;
             //Debug.Log("PlaBtn: " + ClickedBtn);

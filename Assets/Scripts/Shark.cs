@@ -10,7 +10,7 @@ public class Shark : MonoBehaviour
     private float speed;
 
     [SerializeField]
-    private float damage;
+    private int damage;
 
     void Start()
     {
@@ -26,5 +26,18 @@ public class Shark : MonoBehaviour
     private void Move()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Enemy target = other.GetComponent<Enemy>();
+            if (target.gameObject == other.gameObject)
+            {
+                target.TakeDamage(damage);
+                GameManager.Instance.Pool.ReleaseObject(gameObject);
+            }
+        }
     }
 }
