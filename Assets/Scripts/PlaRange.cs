@@ -14,7 +14,7 @@ public abstract class PlaRange : MonoBehaviour
     private bool isEnableRange;
 
 
-    void Start()
+    protected void Start()
     {
         //Debug.Log("Initial Projectile speed: " + projectileSpeed);
         setRangeEnable(onStartEnableRange);
