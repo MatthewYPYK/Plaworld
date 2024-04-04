@@ -101,7 +101,7 @@ public class TileScript : MonoBehaviour
         // if component is not a shark
         if (plaBtn.HasRange)
         {
-            myPlaRange = pla.transform.GetChild(0).GetComponent<PlaRange>();
+            myPlaRange = (PlaRange)pla.transform.GetChild(0).GetComponent<PlaRange>();
         }
         if (plaBtn.IsPermanent)
         {

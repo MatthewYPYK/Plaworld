@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
 
     private Enemy target;
 
-    private PlaRange parent;
+    private PlaRangeProjectile parent;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void Initialize(PlaRange parent)
+    public void Initialize(PlaRangeProjectile parent)
     {
         this.target = parent.Target;
         this.parent = parent;
