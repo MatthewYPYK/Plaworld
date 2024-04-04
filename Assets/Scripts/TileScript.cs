@@ -10,7 +10,7 @@ public class TileScript : MonoBehaviour
 
     public bool IsEmpty { get; private set; }
 
-    private PlaRange myPla;
+    private PlaRange myPlaRange;
 
     private Color32 fullColor = new Color32(255, 118, 118, 255);
 
@@ -76,9 +76,9 @@ public class TileScript : MonoBehaviour
             && Input.GetMouseButtonDown(0))
             {
                 //Debug.Log("TileScript: OnMouseOver: myPla: " + myPla);
-                if (myPla != null)
+                if (myPlaRange != null)
                 {
-                    GameManager.Instance.SelectPla(myPla);
+                    GameManager.Instance.SelectPla(myPlaRange);
                 }
             }
         }
@@ -99,17 +99,17 @@ public class TileScript : MonoBehaviour
 
 
         // if component is not a shark
-        if (plaBtn.TowerName != "Shark")
+        if (plaBtn.HasRange)
+        {
+            myPlaRange = pla.transform.GetChild(0).GetComponent<PlaRange>();
+        }
+        if (plaBtn.IsPermanent)
         {
             pla.transform.SetParent(transform);
 
-            myPla = pla.transform.GetChild(0).GetComponent<PlaRange>();
             IsEmpty = false;
-
-            ColorTile(Color.white);
-
-
             WalkAble = false;
+            ColorTile(Color.white);
         }
         GameManager.Instance.BuyPla();
 
