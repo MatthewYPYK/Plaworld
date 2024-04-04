@@ -45,24 +45,22 @@ public class PlaRangeDot : PlaRange
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("OnTriggerEnter2D");
+
         if (other.CompareTag("Enemy"))
         {
             enemies.Add(other.GetComponent<Enemy>());
         }
-        Debug.Log(enemies.Count);
+
 
     }
 
     public override void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("OnTriggerExit2D");
 
         if (other.CompareTag("Enemy"))
         {
             enemies.Remove(other.GetComponent<Enemy>());
         }
-        Debug.Log(enemies.Count);
 
     }
 
