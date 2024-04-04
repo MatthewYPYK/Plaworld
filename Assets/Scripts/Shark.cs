@@ -21,6 +21,8 @@ public class Shark : MonoBehaviour
     void Update()
     {
         Move();
+        // if position is off the camera, return to pool
+        DeleteOnExit();
     }
 
     private void Move()
@@ -38,6 +40,14 @@ public class Shark : MonoBehaviour
                 target.TakeDamage(damage);
                 GameManager.Instance.Pool.ReleaseObject(gameObject);
             }
+        }
+    }
+
+    private void DeleteOnExit()
+    {
+        if (transform.position.x < -20)
+        {
+            GameManager.Instance.Pool.ReleaseObject(gameObject);
         }
     }
 }

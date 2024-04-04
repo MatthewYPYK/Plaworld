@@ -92,14 +92,15 @@ public class TileScript : MonoBehaviour
     private void PlacePla()
     {
 
-        GameObject pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
+
+        PlaBtn plaBtn = GameManager.Instance.ClickedBtn;
+        GameObject pla = (GameObject)Instantiate(plaBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
 
-        // if component has a Plarange child
-        if (pla.transform.childCount > 0)
+        // if component is not a shark
+        if (plaBtn.TowerName != "Shark")
         {
-            Debug.Log("TileScript: PlacePla: pla.transform.childCount: " + pla.transform.childCount);
             pla.transform.SetParent(transform);
 
             myPla = pla.transform.GetChild(0).GetComponent<PlaRange>();
