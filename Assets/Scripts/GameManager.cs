@@ -211,6 +211,7 @@ public class GameManager : Singleton<GameManager>
         {
             gameOver = true;
             gameOverMenu.SetActive(true);
+            Time.timeScale = 0;
         }
 
     }
@@ -220,6 +221,13 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Quit()
+    {
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene(0);
     }
 
 }
