@@ -1233,6 +1233,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefabs:
   - {fileID: 4148433066773952399, guid: 735d816451b71de4192155b090144bbe, type: 3}
+  - {fileID: 4148433066773952399, guid: 649aca88651714a4c87c7bae52921f5a, type: 3}
+  - {fileID: 4148433066773952399, guid: 8d37d0dd40ce65d47ac9a104a11dfe4e, type: 3}
+  - {fileID: 4148433066773952399, guid: a0548b72efbdf2b48847aa1941dce47d, type: 3}
+  - {fileID: 4148433066773952399, guid: 45c305f329020624d9ffee2fc4f912ee, type: 3}
   _TileSize: 0
   cameraMovement: {fileID: 519420033}
   greenPortalPrefab: {fileID: 6384036394462969762, guid: 7914755e2762195498aa36d1a282273a, type: 3}
