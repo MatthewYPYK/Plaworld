@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
 
     private int wave = 0;
 
-    private int lives = 2;
+    private int lives;
 
     private bool gameOver = false;
 
@@ -83,7 +83,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
 
-        Lives = 10;
+        Lives = 1000;
         Currency = 150;
 
     }
@@ -136,10 +136,87 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator SpawnWave()
     {
         LevelManager.Instance.GeneratePath();
+        int waveValue = 0;
+        int enemyIndex = 0;
 
-        for (int i = 0; i < wave; i++)
+        while (waveValue < wave)
         {
-            int enemyIndex = Random.Range(0, 4);
+            if (wave < 3){
+                enemyIndex = 0;
+                waveValue++;
+            } else if (wave < 5){
+                enemyIndex = Random.Range(0, 2);
+                switch (enemyIndex)
+                {
+                case 0:
+                    waveValue++;
+                    break;
+                case 1:
+                    waveValue += 3;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 3;
+                    waveValue++;
+                    }
+                    break;
+                }
+            } else if (wave < 7){
+                enemyIndex = Random.Range(0, 3);
+                switch (enemyIndex)
+                {
+                case 0:
+                    waveValue++;
+                    break;
+                case 1:
+                    waveValue += 3;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 3;
+                    waveValue++;
+                    }
+                    break;
+                case 2:
+                    waveValue += 5;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 5;
+                    waveValue++;
+                    }
+                    break;
+                }
+            } else {
+                enemyIndex = Random.Range(0, 4);
+                switch (enemyIndex)
+                {
+                case 0:
+                    waveValue++;
+                    break;
+                case 1:
+                    waveValue += 3;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 3;
+                    waveValue++;
+                    }
+                    break;
+                case 2:
+                    waveValue += 5;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 5;
+                    waveValue++;
+                    }
+                    break;
+                case 3:
+                    waveValue += 5;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 5;
+                    waveValue++;
+                    }
+                    break;
+                }
+            }
 
             string type = string.Empty;
 
@@ -149,10 +226,10 @@ public class GameManager : Singleton<GameManager>
                     type = "Soldier";
                     break;
                 case 1:
-                    type = "Tank";
+                    type = "Jeep";
                     break;
                 case 2:
-                    type = "Jeep";
+                    type = "Tank";
                     break;
                 case 3:
                     type = "AirShip";
@@ -163,9 +240,11 @@ public class GameManager : Singleton<GameManager>
             enemy.Spawn();
 
             activeEnemies.Add(enemy);
+            //Debug.Log(waveValue);
 
             yield return new WaitForSeconds(2.5f);
         }
+        
 
     }
 
