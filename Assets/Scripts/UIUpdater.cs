@@ -33,13 +33,13 @@ public class UIUpdater : Singleton<UIUpdater>
     void Awake()
     {
         textMesh_balance = BalanceValue.GetComponent<TextMeshProUGUI>();
-        Debug.Log("AWAKE UIUpdater: " + textMesh_balance.text);
+        //Debug.Log("AWAKE UIUpdater: " + textMesh_balance.text);
 
         textMesh_lives = Lives.GetComponent<TextMeshProUGUI>();
-        Debug.Log("AWAKE UIUpdater: " + textMesh_lives.text);
+        //Debug.Log("AWAKE UIUpdater: " + textMesh_lives.text);
 
         textMesh_waves = Waves.GetComponent<TextMeshProUGUI>();
-        Debug.Log("AWAKE UIUpdater: " + textMesh_waves.text);
+        //Debug.Log("AWAKE UIUpdater: " + textMesh_waves.text);
     }
 
     // Update is called once per frame

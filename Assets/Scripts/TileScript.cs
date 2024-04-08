@@ -10,6 +10,8 @@ public class TileScript : MonoBehaviour
 
     public bool IsEmpty { get; private set; }
 
+    private GameObject pla = null;
+
     private PlaRange myPla;
 
     private Color32 fullColor = new Color32(255, 118, 118, 255);
@@ -57,25 +59,31 @@ public class TileScript : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             // Debug.Log("TileScript: OnMouseOver: GameManager.Instance.ClickedBtn: " + GameManager.Instance.ClickedBtn);
+            // Debug.Log("Mouse over tile: " + "(" + GridPosition.X + ", " + GridPosition.Y + ")");
             if (GameManager.Instance.ClickedBtn != null)
             {
-                if (IsEmpty)
+                bool IsBlocked = !LevelManager.Instance.CanPlacePla(GridPosition);
+                if (IsBlocked){
+                    ColorTile(fullColor);
+                }
+                else if (IsEmpty)
                 {
                     ColorTile(emptyColor);
                 }
-                if (!IsEmpty)
+                if (!IsEmpty || IsBlocked)
                 {
                     ColorTile(fullColor);
                 }
                 else if (Input.GetMouseButtonDown(0))
                 {
                     PlacePla();
+                    // TODO : set new path for enemy
                 }
             }
             else if (GameManager.Instance.ClickedBtn == null
             && Input.GetMouseButtonDown(0))
             {
-                Debug.Log("TileScript: OnMouseOver: myPla: " + myPla);
+                //Debug.Log("TileScript: OnMouseOver: myPla: " + myPla);
                 if (myPla != null)
                 {
                     GameManager.Instance.SelectPla(myPla);
@@ -92,7 +100,7 @@ public class TileScript : MonoBehaviour
     private void PlacePla()
     {
 
-        GameObject pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
+        pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
         pla.transform.SetParent(transform);
@@ -100,8 +108,8 @@ public class TileScript : MonoBehaviour
         // set myPla to PlaTower script
         myPla = pla.transform.GetChild(0).GetComponent<PlaRange>();
 
-        Debug.Log("TileScript: PlacePla: pla: " + pla);
-        Debug.Log("TileScript: PlacePla: myPla: " + myPla);
+        //Debug.Log("TileScript: PlacePla: pla: " + pla);
+        //Debug.Log("TileScript: PlacePla: myPla: " + myPla);
         IsEmpty = false;
 
         ColorTile(Color.white);
@@ -114,5 +122,18 @@ public class TileScript : MonoBehaviour
     private void ColorTile(Color newColor)
     {
         spriteRenderer.color = newColor;
+    }
+
+    public void RefreshTile()
+    {
+        // Debug.Log("Pla at (" + GridPosition.X + ", " + GridPosition.Y + ") is destroy");
+        IsEmpty = true;
+        WalkAble = true;
+        if (pla != null)
+        {
+            Destroy(pla);
+            pla = null;
+        }
+        myPla = null;
     }
 }

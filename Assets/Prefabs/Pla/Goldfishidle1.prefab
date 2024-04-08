@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileType: Bubble
+  damage: 1
   attackCooldown: 1
   projectileSpeed: 5
 --- !u!61 &2606873630906593916

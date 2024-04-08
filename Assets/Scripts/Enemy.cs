@@ -4,34 +4,52 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private string type;
+    
     [SerializeField]
     private float speed;
 
     private Stack<Node> path;
+
+    [SerializeField]
+    private Stat health;
+
     public Point GridPositon { get; set; }
 
     private Vector3 destination;
 
     public bool IsActive { get; set; }
 
+    private void Awake()
+    {
+        health.Initialize();
+    }
+
     private void Update()
     {
         Move();
     }
 
-    public void Spawn()
+    public void Spawn(int health, string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
     {
-        transform.position = LevelManager.Instance.GreenPortal.transform.position;
+        transform.position = spawnpoint ?? LevelManager.Instance.GreenPortal.transform.position;
+
+        this.health.MaxVal = health;
+        this.health.CurrentVal = this.health.MaxVal;
+        this.type = type;
 
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
-
-        SetPath(LevelManager.Instance.Path);
+        if (type == "AirShip") SetPath(LevelManager.Instance.DefaultPath);
+        else if (initialPath == null) SetPath(LevelManager.Instance.Path);
+        else SetPath(initialPath);
     }
 
     public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
     {
         IsActive = false;
-        
+
+        if (remove) DestroyEffect();
+
         float progress = 0;
 
         while (progress <=1)
@@ -43,12 +61,12 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
 
-        transform.localScale = to;
+        transform.localScale = to; 
+        
         IsActive = true;
-        if (remove)
-        {
-            Release();
-        }
+
+        if (remove) Release();
+
     }
 
     private void Move()
@@ -89,12 +107,41 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void DestroyEffect()
+    {
+        if (health.CurrentVal == 0)
+        {
+            switch (type)
+            {
+                case "Jeep":
+                    GameManager.Instance.JeepDestroy(transform.position, path);
+                    break;
+                case "Tank":
+                    GameManager.Instance.TankDestroy(GridPositon);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void Release()
     {
-        IsActive = false;
-        //GridPosition = LevelManager.Instance.GreenSpawn;
+        IsActive = false;        
         GameManager.Instance.Pool.ReleaseObject(gameObject);
         GameManager.Instance.RemoveEnemy(this);
     }
 
+    public void TakeDamage(int damage)
+    {
+        if (IsActive)
+        {
+            health.CurrentVal -= damage;
+            //Debug.Log(health.CurrentVal);
+        }
+        if (health.CurrentVal <= 0)
+        {
+            StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
+        }
+    }
 }

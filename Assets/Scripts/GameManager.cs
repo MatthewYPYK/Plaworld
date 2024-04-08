@@ -15,6 +15,8 @@ public class GameManager : Singleton<GameManager>
 
     private int wave = 0;
 
+    private int health = 10;
+
     private int lives;
 
     private bool gameOver = false;
@@ -31,6 +33,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject gameOverMenu;
 
+    // TODO : this is a list of active enemies
     private List<Enemy> activeEnemies = new List<Enemy>();
 
     public ObjectPool Pool { get; set; }
@@ -83,8 +86,8 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
 
-        Lives = 1000;
-        Currency = 150;
+        Lives = 10;
+        Currency = 15000;
 
     }
 
@@ -96,10 +99,11 @@ public class GameManager : Singleton<GameManager>
 
     public void PickPla(PlaBtn plaBtn)
     {
+        // TODO : if finish set new path activate place pla between wave
         if (Currency >= plaBtn.Price && !WaveActive)
         {
             this.ClickedBtn = plaBtn;
-            Debug.Log("PlaBtn: " + ClickedBtn);
+            //Debug.Log("PlaBtn: " + ClickedBtn);
             Hover.Instance.Activate(plaBtn.Sprite);
         }
     }
@@ -109,9 +113,9 @@ public class GameManager : Singleton<GameManager>
         if (Currency >= ClickedBtn.Price)
         {
             Currency = Currency - ClickedBtn.Price;
-            Debug.Log("Currency: " + Currency);
+            //Debug.Log("Currency: " + Currency);
             Hover.Instance.Deactivate();
-            Debug.Log("PlaBtn deac: " + ClickedBtn);
+            //Debug.Log("PlaBtn deac: " + ClickedBtn);
         }
     }
 
@@ -237,8 +241,7 @@ public class GameManager : Singleton<GameManager>
             }
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
-            enemy.Spawn();
-
+            enemy.Spawn(health,type);
             activeEnemies.Add(enemy);
             //Debug.Log(waveValue);
 
@@ -255,12 +258,15 @@ public class GameManager : Singleton<GameManager>
         if (!WaveActive && !gameOver)
         {
             waveBtn.SetActive(true);
+            Debug.Log("currency is added");
+            currency += wave * 10;
+            UIUpdater.Instance.UpdateCurrency(GameManager.Instance.Currency);
         }
     }
 
     public void SelectPla(PlaRange plaTower)
     {
-        Debug.Log("GameManager: SelectPla: " + plaTower);
+        //Debug.Log("GameManager: SelectPla: " + plaTower);
         // if (selectedPla != null)
         // {
         //     selectedPla.Select();
@@ -288,4 +294,36 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void JeepDestroy(Vector3 position, Stack<Node> initialPath)
+    {
+        int total_number = 2;
+        for (int i = 0; i < total_number; i++)
+        {
+            Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
+            enemy.Spawn(health, "Soldier", position, new(new Stack<Node>(initialPath)));
+            activeEnemies.Add(enemy);
+        }
+    }
+
+    public void TankDestroy(Point currentPos)
+    {
+        List<Point> possibleFish = new ();
+        // Debug.Log("shoot some fish");
+        for (int dx = -1; dx <= 1; dx++)
+        {
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                Point neighbourPos = new(currentPos.X - dx, currentPos.Y - dy);
+                if (LevelManager.Instance.InBounds(neighbourPos) && !LevelManager.Instance.Tiles[neighbourPos].WalkAble)
+                {
+                    possibleFish.Add(neighbourPos);
+                }
+            }
+        }
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+        }
+    }
 }

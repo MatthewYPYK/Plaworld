@@ -17,7 +17,7 @@ public class AStar
         }
     }
 
-    public static Stack<Node> GetPath(Point start, Point goal)
+    public static Stack<Node> GetPath(Point start, Point goal, Point? target = null)
     {
         if (nodes == null)
         {
@@ -40,7 +40,11 @@ public class AStar
                 for (int y = -1; y <= 1; y++)
                 {
                     Point neighbourPos = new(currentNode.GridPosition.X - x, currentNode.GridPosition.Y - y);
-                    if (LevelManager.Instance.InBounds(neighbourPos) && LevelManager.Instance.Tiles[neighbourPos].WalkAble && neighbourPos != currentNode.GridPosition)
+                    if (neighbourPos == target) 
+                    {
+                        continue;
+                    }
+                    else if (LevelManager.Instance.InBounds(neighbourPos) && LevelManager.Instance.Tiles[neighbourPos].WalkAble && neighbourPos != currentNode.GridPosition)
                     {
                         int gCost = 0;
                         if (Math.Abs(x - y) == 1)
@@ -49,7 +53,8 @@ public class AStar
                         }
                         else
                         {
-                            if (!ConnectedDiagonally(currentNode, nodes[neighbourPos])){
+                            if (!ConnectedDiagonally(currentNode, nodes[neighbourPos], target))
+                            {
                                 continue;
                             }
                             gCost = 14;
@@ -96,12 +101,20 @@ public class AStar
         return finalPath;
     }
 
-    private static bool ConnectedDiagonally(Node currentNode, Node neighbor)
+    public static bool CanPlacePla(Point start, Point goal, Point target)
+    {
+        Stack<Node> path = GetPath(start,goal,target);
+        return path.Count > 0;
+    }
+
+    private static bool ConnectedDiagonally(Node currentNode, Node neighbor, Point? target = null)
     {
         Point direction = neighbor.GridPosition - currentNode.GridPosition;
 
         Point first = new(currentNode.GridPosition.X + direction.X, currentNode.GridPosition.Y);
         Point second = new(currentNode.GridPosition.X, currentNode.GridPosition.Y + direction.Y);
-        return !(LevelManager.Instance.InBounds(first) && !LevelManager.Instance.Tiles[first].WalkAble) && !(LevelManager.Instance.InBounds(second) && !LevelManager.Instance.Tiles[second].WalkAble);
+        bool targetIsFirst = first == target;
+        bool targetIsSecond = second == target;
+        return !(LevelManager.Instance.InBounds(first) && (!LevelManager.Instance.Tiles[first].WalkAble || targetIsFirst)) && !(LevelManager.Instance.InBounds(second) && (!LevelManager.Instance.Tiles[second].WalkAble || targetIsSecond));
     }
 }
