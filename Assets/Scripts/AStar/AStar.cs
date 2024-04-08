@@ -103,30 +103,8 @@ public class AStar
 
     public static bool CanPlacePla(Point start, Point goal, Point target)
     {
-        bool CanPlacePla = false;
         Stack<Node> path = GetPath(start,goal,target);
-        Debug.Log("-- start --");
-        // Debug.Log("start point : " + "(" + start.X + ", " + start.Y + ")");
-        // while (path.Count > 0)
-        // {
-        //     Node node = path.Pop();
-        //     Point point = node.GridPosition;
-        //     if (point == target)
-        //     {
-        //         CanPlacePla = false;
-        //         break;
-        //     }
-        //     Debug.Log("(" + point.X + ", " + point.Y + ")");
-        // }
-        // Debug.Log("end point : " + "(" + goal.X + ", " + goal.Y + ")");
-        if (path.Count > 0) CanPlacePla = true;
-        Debug.Log("-- end --");
-        if (CanPlacePla) { Debug.Log("can place pla"); }
-        else { Debug.Log("can not place pla"); 
-        //alert something or sound
-        }
-
-        return CanPlacePla;
+        return path.Count > 0;
     }
 
     private static bool ConnectedDiagonally(Node currentNode, Node neighbor, Point? target = null)

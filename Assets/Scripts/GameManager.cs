@@ -87,7 +87,7 @@ public class GameManager : Singleton<GameManager>
     {
 
         Lives = 10;
-        Currency = 150;
+        Currency = 15000;
 
     }
 
@@ -143,8 +143,8 @@ public class GameManager : Singleton<GameManager>
 
         for (int i = 0; i < wave; i++)
         {
-            int enemyIndex = Random.Range(2, 3);
-
+            // int enemyIndex = Random.Range(0, 4);
+            int enemyIndex = 2;
             string type = string.Empty;
 
             switch (enemyIndex)
@@ -165,12 +165,6 @@ public class GameManager : Singleton<GameManager>
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
             enemy.Spawn(health,type);
-
-            if (wave % 3 == 0) // monster max health increase every 3 wave
-            {
-                health += 3;
-            }
-
             activeEnemies.Add(enemy);
 
             yield return new WaitForSeconds(2.5f);
@@ -229,6 +223,28 @@ public class GameManager : Singleton<GameManager>
             Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
             enemy.Spawn(health, "Soldier", position, new(initialPath));
             activeEnemies.Add(enemy);
+        }
+    }
+
+    public void TankDestroy(Point currentPos)
+    {
+        List<Point> possibleFish = new ();
+        // Debug.Log("shoot some fish");
+        for (int dx = -1; dx <= 1; dx++)
+        {
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                Point neighbourPos = new(currentPos.X - dx, currentPos.Y - dy);
+                if (LevelManager.Instance.InBounds(neighbourPos) && !LevelManager.Instance.Tiles[neighbourPos].WalkAble)
+                {
+                    possibleFish.Add(neighbourPos);
+                }
+            }
+        }
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
         }
     }
 }

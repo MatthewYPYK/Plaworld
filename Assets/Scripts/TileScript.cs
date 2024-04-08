@@ -10,6 +10,8 @@ public class TileScript : MonoBehaviour
 
     public bool IsEmpty { get; private set; }
 
+    private GameObject pla = null;
+
     private PlaRange myPla;
 
     private Color32 fullColor = new Color32(255, 118, 118, 255);
@@ -98,7 +100,7 @@ public class TileScript : MonoBehaviour
     private void PlacePla()
     {
 
-        GameObject pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
+        pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
         pla.transform.SetParent(transform);
@@ -120,5 +122,18 @@ public class TileScript : MonoBehaviour
     private void ColorTile(Color newColor)
     {
         spriteRenderer.color = newColor;
+    }
+
+    public void RefreshTile()
+    {
+        // Debug.Log("Pla at (" + GridPosition.X + ", " + GridPosition.Y + ") is destroy");
+        IsEmpty = true;
+        WalkAble = true;
+        if (pla != null)
+        {
+            Destroy(pla);
+            pla = null;
+        }
+        myPla = null;
     }
 }

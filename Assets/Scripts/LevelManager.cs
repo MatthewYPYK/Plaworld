@@ -43,6 +43,16 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
+    private Stack<Node> defaultPath;
+
+    public Stack<Node> DefaultPath
+    {
+        get
+        {
+            return new(new Stack<Node>(defaultPath));
+        }
+    }
+
     public Dictionary<Point, TileScript> Tiles { get; set; }
 
     public float TileSize
@@ -57,6 +67,7 @@ public class LevelManager : Singleton<LevelManager>
     void Start()
     {
         createLevel();
+        defaultPath = AStar.GetPath(greenSpawn, coral);
     }
 
     // Update is called once per frame
@@ -158,5 +169,4 @@ public class LevelManager : Singleton<LevelManager>
             return boundingBox;
         }
     }
-
 }

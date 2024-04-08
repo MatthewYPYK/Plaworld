@@ -39,15 +39,17 @@ public class Enemy : MonoBehaviour
         this.type = type;
 
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
-
-        if (initialPath == null) SetPath(LevelManager.Instance.Path);
+        if (type == "AirShip") SetPath(LevelManager.Instance.DefaultPath);
+        else if (initialPath == null) SetPath(LevelManager.Instance.Path);
         else SetPath(initialPath);
     }
 
     public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
     {
         IsActive = false;
-        
+
+        if (remove) DestroyEffect();
+
         float progress = 0;
 
         while (progress <=1)
@@ -59,12 +61,12 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
 
-        transform.localScale = to;
+        transform.localScale = to; 
+        
         IsActive = true;
-        if (remove)
-        {
-            Release();
-        }
+
+        if (remove) Release();
+
     }
 
     private void Move()
@@ -105,19 +107,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void DestroyEffect()
+    {
+        if (health.CurrentVal == 0)
+        {
+            switch (type)
+            {
+                case "Jeep":
+                    GameManager.Instance.JeepDestroy(transform.position, path);
+                    break;
+                case "Tank":
+                    GameManager.Instance.TankDestroy(GridPositon);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void Release()
     {
-        IsActive = false;
-        //GridPosition = LevelManager.Instance.GreenSpawn;
+        IsActive = false;        
         GameManager.Instance.Pool.ReleaseObject(gameObject);
         GameManager.Instance.RemoveEnemy(this);
-        if (type == "Jeep")
-        {
-            // Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
-            // enemy.Spawn(health,"Soldier");
-            // activeEnemies.Add(enemy);
-            GameManager.Instance.JeepDestroy(transform.position, path);
-        }
     }
 
     public void TakeDamage(int damage)
