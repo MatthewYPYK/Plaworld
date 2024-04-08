@@ -221,7 +221,7 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < total_number; i++)
         {
             Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
-            enemy.Spawn(health, "Soldier", position, new(initialPath));
+            enemy.Spawn(health, "Soldier", position, new(new Stack<Node>(initialPath)));
             activeEnemies.Add(enemy);
         }
     }
