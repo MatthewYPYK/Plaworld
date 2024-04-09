@@ -10,6 +10,8 @@ public class TileScript : MonoBehaviour
 
     public bool IsEmpty { get; private set; }
 
+    private GameObject pla = null;
+
     private PlaRange myPlaRange;
 
     private Color32 fullColor = new Color32(255, 118, 118, 255);
@@ -57,19 +59,25 @@ public class TileScript : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             // Debug.Log("TileScript: OnMouseOver: GameManager.Instance.ClickedBtn: " + GameManager.Instance.ClickedBtn);
+            // Debug.Log("Mouse over tile: " + "(" + GridPosition.X + ", " + GridPosition.Y + ")");
             if (GameManager.Instance.ClickedBtn != null)
             {
-                if (IsEmpty)
+                bool IsBlocked = !LevelManager.Instance.CanPlacePla(GridPosition);
+                if (IsBlocked){
+                    ColorTile(fullColor);
+                }
+                else if (IsEmpty)
                 {
                     ColorTile(emptyColor);
                 }
-                if (!IsEmpty)
+                if (!IsEmpty || IsBlocked)
                 {
                     ColorTile(fullColor);
                 }
                 else if (Input.GetMouseButtonDown(0))
                 {
                     PlacePla();
+                    // TODO : set new path for enemy
                 }
             }
             else if (GameManager.Instance.ClickedBtn == null
@@ -94,7 +102,7 @@ public class TileScript : MonoBehaviour
 
 
         PlaBtn plaBtn = GameManager.Instance.ClickedBtn;
-        GameObject pla = (GameObject)Instantiate(plaBtn.PlaPrefab, transform.position, Quaternion.identity);
+        pla = (GameObject)Instantiate(plaBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
 
@@ -121,5 +129,19 @@ public class TileScript : MonoBehaviour
     private void ColorTile(Color newColor)
     {
         spriteRenderer.color = newColor;
+    }
+
+    public void RefreshTile()
+    {
+        // Debug.Log("Pla at (" + GridPosition.X + ", " + GridPosition.Y + ") is destroy");
+        IsEmpty = true;
+        WalkAble = true;
+        if (pla != null)
+        {
+            //StartCoroutine(myPla.Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
+            Destroy(pla);
+            pla = null;
+        }
+        myPlaRange = null;
     }
 }

@@ -16,8 +16,6 @@ public class GameManager : Singleton<GameManager>
 
     private int wave = 0;
 
-    private int health = 10;
-
     private int lives;
 
     private bool gameOver = false;
@@ -34,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject gameOverMenu;
 
+    // TODO : this is a list of active enemies
     private List<Enemy> activeEnemies = new List<Enemy>();
 
     public ObjectPool Pool { get; set; }
@@ -97,6 +96,8 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         HandleEscape();
+        if (Input.GetKeyDown(KeyCode.Equals) && !gameOver) Time.timeScale += 1;
+        if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale>0) Time.timeScale -= 1;
     }
 
     public void PickPla(PlaBtn plaBtn)
@@ -143,10 +144,87 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator SpawnWave()
     {
         LevelManager.Instance.GeneratePath();
+        int waveValue = 0;
+        int enemyIndex = 0;
 
-        for (int i = 0; i < wave; i++)
+        while (waveValue < wave)
         {
-            int enemyIndex = Random.Range(0, 4);
+            if (wave < 3){
+                enemyIndex = 0;
+                waveValue++;
+            } else if (wave < 5){
+                enemyIndex = Random.Range(0, 2);
+                switch (enemyIndex)
+                {
+                case 0:
+                    waveValue++;
+                    break;
+                case 1:
+                    waveValue += 3;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 3;
+                    waveValue++;
+                    }
+                    break;
+                }
+            } else if (wave < 7){
+                enemyIndex = Random.Range(0, 3);
+                switch (enemyIndex)
+                {
+                case 0:
+                    waveValue++;
+                    break;
+                case 1:
+                    waveValue += 3;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 3;
+                    waveValue++;
+                    }
+                    break;
+                case 2:
+                    waveValue += 5;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 5;
+                    waveValue++;
+                    }
+                    break;
+                }
+            } else {
+                enemyIndex = Random.Range(0, 4);
+                switch (enemyIndex)
+                {
+                case 0:
+                    waveValue++;
+                    break;
+                case 1:
+                    waveValue += 3;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 3;
+                    waveValue++;
+                    }
+                    break;
+                case 2:
+                    waveValue += 5;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 5;
+                    waveValue++;
+                    }
+                    break;
+                case 3:
+                    waveValue += 5;
+                    if (waveValue > wave){
+                    enemyIndex = 0;
+                    waveValue -= 5;
+                    waveValue++;
+                    }
+                    break;
+                }
+            }
 
             string type = string.Empty;
 
@@ -156,10 +234,10 @@ public class GameManager : Singleton<GameManager>
                     type = "Soldier";
                     break;
                 case 1:
-                    type = "Tank";
+                    type = "Jeep";
                     break;
                 case 2:
-                    type = "Jeep";
+                    type = "Tank";
                     break;
                 case 3:
                     type = "AirShip";
@@ -167,17 +245,13 @@ public class GameManager : Singleton<GameManager>
             }
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
-            enemy.Spawn(health);
-
-            if (wave % 3 == 0) // monster max health increase every 3 wave
-            {
-                health += 3;
-            }
-
+            enemy.Spawn(type);
             activeEnemies.Add(enemy);
+            //Debug.Log(waveValue);
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(1f);
         }
+        
 
     }
 
@@ -189,7 +263,7 @@ public class GameManager : Singleton<GameManager>
         {
             waveBtn.SetActive(true);
             Debug.Log("currency is added");
-            balance += wave * 10;
+            balance += wave * 10 + 40;
             UIUpdater.Instance.UpdateBalance(GameManager.Instance.Balance);
         }
     }
@@ -213,6 +287,7 @@ public class GameManager : Singleton<GameManager>
         {
             gameOver = true;
             gameOverMenu.SetActive(true);
+            Time.timeScale = 0;
         }
 
     }
@@ -224,4 +299,44 @@ public class GameManager : Singleton<GameManager>
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void Quit()
+    {
+        Time.timeScale = 1;
+
+        SceneManager.LoadScene(0);
+    }
+
+    public void JeepDestroy(Vector3 position, Stack<Node> initialPath)
+    {
+        int total_number = 2;
+        for (int i = 0; i < total_number; i++)
+        {
+            Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
+            enemy.Spawn("Soldier", position, new(new Stack<Node>(initialPath)));
+            activeEnemies.Add(enemy);
+        }
+    }
+
+    public void TankSkill(Point currentPos)
+    {
+        List<Point> possibleFish = new ();
+        // Debug.Log("shoot some fish");
+        for (int dx = -1; dx <= 1; dx++)
+        {
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                Point neighbourPos = new(currentPos.X - dx, currentPos.Y - dy);
+                if (LevelManager.Instance.InBounds(neighbourPos) && !LevelManager.Instance.Tiles[neighbourPos].WalkAble)
+                {
+                    possibleFish.Add(neighbourPos);
+                }
+            }
+        }
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            LevelManager.Instance.GeneratePath();
+        }
+    }
 }
