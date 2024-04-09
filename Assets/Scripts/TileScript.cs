@@ -131,6 +131,7 @@ public class TileScript : MonoBehaviour
         WalkAble = true;
         if (pla != null)
         {
+            //StartCoroutine(myPla.Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
             Destroy(pla);
             pla = null;
         }

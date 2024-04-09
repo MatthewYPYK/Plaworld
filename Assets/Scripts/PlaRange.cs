@@ -11,6 +11,8 @@ public class PlaRange : MonoBehaviour
 
     private Enemy target;
 
+    public bool IsActive { get; set; }
+
     public Enemy Target
     {
         get
@@ -123,4 +125,30 @@ public class PlaRange : MonoBehaviour
             target = null;
         }
     }
+
+    public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
+    {
+        IsActive = false;
+
+        //if (remove) DestroyEffect();
+
+        float progress = 0;
+
+        while (progress <=1)
+        {
+            transform.localScale = Vector3.Lerp(from,to,progress);
+
+            progress += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.localScale = to; 
+        
+        IsActive = true;
+
+        //if (remove) Release();
+
+    }
+
 }
