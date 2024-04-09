@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private string type;
+    
     [SerializeField]
     private float speed;
 
@@ -18,6 +21,10 @@ public class Enemy : MonoBehaviour
 
     public bool IsActive { get; set; }
 
+    private float tankCounter = 0.0f;
+
+    private float maxTankCounter = 10.0f;
+
     private void Awake()
     {
         health.Initialize();
@@ -26,24 +33,44 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         Move();
+        if (IsActive)
+        {
+            switch (type)
+            {
+                case "Tank":
+                    tankCounter += Time.deltaTime;
+                    if (tankCounter >= maxTankCounter)
+                    {
+                        tankCounter = 0.0f;
+                        GameManager.Instance.TankSkill(GridPositon);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
-    public void Spawn(int health)
+    public void Spawn(int health, string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
     {
-        transform.position = LevelManager.Instance.GreenPortal.transform.position;
+        transform.position = spawnpoint ?? LevelManager.Instance.GreenPortal.transform.position;
 
         this.health.MaxVal = health;
         this.health.CurrentVal = this.health.MaxVal;
+        this.type = type;
 
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
-
-        SetPath(LevelManager.Instance.Path);
+        if (type == "AirShip") SetPath(LevelManager.Instance.DefaultPath);
+        else if (initialPath == null) SetPath(LevelManager.Instance.Path);
+        else SetPath(initialPath);
     }
 
     public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
     {
         IsActive = false;
-        
+
+        if (remove) DestroyEffect();
+
         float progress = 0;
 
         while (progress <=1)
@@ -55,12 +82,12 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
 
-        transform.localScale = to;
+        transform.localScale = to; 
+        
         IsActive = true;
-        if (remove)
-        {
-            Release();
-        }
+
+        if (remove) Release();
+
     }
 
     private void Move()
@@ -101,10 +128,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void DestroyEffect()
+    {
+        if (health.CurrentVal == 0)
+        {
+            switch (type)
+            {
+                case "Jeep":
+                    GameManager.Instance.JeepDestroy(transform.position, path);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void Release()
     {
         IsActive = false;
-        //GridPosition = LevelManager.Instance.GreenSpawn;
+        tankCounter = 0.0f;
         GameManager.Instance.Pool.ReleaseObject(gameObject);
         GameManager.Instance.RemoveEnemy(this);
     }
