@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaManager : MonoBehaviour
+public class PlaManager : Singleton<PlaManager>
 {
+    [SerializeField]
+    private GameObject plaPanel;
 
-    public List<PlaBtn> plaBtnsList = new List<PlaBtn>();
+    private List<PlaBtn> plaBtnsList = new List<PlaBtn>();
 
     void Start()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in plaPanel.transform)
         {
             // Debug.Log(child.name);
             PlaBtn plaBtn = child.GetComponent<PlaBtn>();
@@ -21,6 +23,8 @@ public class PlaManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            TogglePlaPanel();
         for (int i = 0; i < plaBtnsList.Count; i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
@@ -30,5 +34,10 @@ public class PlaManager : MonoBehaviour
                 break;
             }
         }
+    }
+    
+    void TogglePlaPanel()
+    {
+        plaPanel.gameObject.SetActive(!plaPanel.gameObject.activeSelf);
     }
 }
