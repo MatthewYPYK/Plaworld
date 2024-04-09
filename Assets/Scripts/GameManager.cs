@@ -16,8 +16,6 @@ public class GameManager : Singleton<GameManager>
 
     private int wave = 0;
 
-    private int health = 10;
-
     private int lives;
 
     private bool gameOver = false;
@@ -245,7 +243,7 @@ public class GameManager : Singleton<GameManager>
             }
 
             Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
-            enemy.Spawn(health,type);
+            enemy.Spawn(type);
             activeEnemies.Add(enemy);
             //Debug.Log(waveValue);
 
@@ -312,7 +310,7 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < total_number; i++)
         {
             Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
-            enemy.Spawn(health, "Soldier", position, new(new Stack<Node>(initialPath)));
+            enemy.Spawn("Soldier", position, new(new Stack<Node>(initialPath)));
             activeEnemies.Add(enemy);
         }
     }

@@ -51,11 +51,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Spawn(int health, string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
+    public void Spawn(string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
     {
         transform.position = spawnpoint ?? LevelManager.Instance.GreenPortal.transform.position;
 
-        this.health.MaxVal = health;
         this.health.CurrentVal = this.health.MaxVal;
         this.type = type;
 
