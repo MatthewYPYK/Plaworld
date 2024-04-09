@@ -7,10 +7,10 @@ public class Shark : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField]
-    private float speed;
+    protected float speed;
 
     [SerializeField]
-    private int damage;
+    protected int damage;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class Shark : MonoBehaviour
         transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
