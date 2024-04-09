@@ -129,7 +129,7 @@ public class Enemy : MonoBehaviour
 
     private void DestroyEffect()
     {
-        if (health.CurrentVal == 0)
+        if (health.CurrentVal <= 0)
         {
             switch (type)
             {
@@ -156,10 +156,10 @@ public class Enemy : MonoBehaviour
         {
             health.CurrentVal -= damage;
             //Debug.Log(health.CurrentVal);
-        }
-        if (health.CurrentVal <= 0)
-        {
-            StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
+            if (health.CurrentVal <= 0)
+            {
+                StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
+            }
         }
     }
 }
