@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private float tankCounter = 0.0f;
 
-    private float maxTankCounter = 10.0f;
+    private float maxTankCounter = 8.0f;
 
     private void Awake()
     {
