@@ -142,6 +142,6 @@ public class TileScript : MonoBehaviour
             Destroy(pla);
             pla = null;
         }
-        myPla = null;
+        myPlaRange = null;
     }
 }
