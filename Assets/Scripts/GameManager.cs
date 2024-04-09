@@ -96,6 +96,8 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         HandleEscape();
+        if (Input.GetKeyDown(KeyCode.Equals) && !gameOver) Time.timeScale += 1;
+        if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale>0) Time.timeScale -= 1;
     }
 
     public void PickPla(PlaBtn plaBtn)
