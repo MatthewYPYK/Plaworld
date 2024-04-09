@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,10 @@ public class Enemy : MonoBehaviour
 
     public bool IsActive { get; set; }
 
+    private float tankCounter = 0.0f;
+
+    private float maxTankCounter = 10.0f;
+
     private void Awake()
     {
         health.Initialize();
@@ -28,6 +33,22 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         Move();
+        if (IsActive)
+        {
+            switch (type)
+            {
+                case "Tank":
+                    tankCounter += Time.deltaTime;
+                    if (tankCounter >= maxTankCounter)
+                    {
+                        tankCounter = 0.0f;
+                        GameManager.Instance.TankSkill(GridPositon);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public void Spawn(int health, string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
@@ -116,9 +137,6 @@ public class Enemy : MonoBehaviour
                 case "Jeep":
                     GameManager.Instance.JeepDestroy(transform.position, path);
                     break;
-                case "Tank":
-                    GameManager.Instance.TankDestroy(GridPositon);
-                    break;
                 default:
                     break;
             }
@@ -127,7 +145,8 @@ public class Enemy : MonoBehaviour
 
     private void Release()
     {
-        IsActive = false;        
+        IsActive = false;
+        tankCounter = 0.0f;
         GameManager.Instance.Pool.ReleaseObject(gameObject);
         GameManager.Instance.RemoveEnemy(this);
     }

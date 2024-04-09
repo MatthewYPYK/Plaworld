@@ -305,7 +305,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void TankDestroy(Point currentPos)
+    public void TankSkill(Point currentPos)
     {
         List<Point> possibleFish = new ();
         // Debug.Log("shoot some fish");
@@ -324,6 +324,7 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            LevelManager.Instance.GeneratePath();
         }
     }
 }
