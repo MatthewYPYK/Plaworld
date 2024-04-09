@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         Move();
+        if (Input.GetKeyDown(KeyCode.Equals)) Time.timeScale += 1;
+        if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale>0) Time.timeScale -= 1;
     }
 
     public void Spawn(int health)
