@@ -6,7 +6,6 @@ public class PlaManager : MonoBehaviour
 {
 
     public List<PlaBtn> plaBtnsList = new List<PlaBtn>();
-    private GameManager gameManager;
 
     void Start()
     {
@@ -18,11 +17,6 @@ public class PlaManager : MonoBehaviour
                 plaBtnsList.Add(plaBtn);
         }
 
-        GameObject gameManagerObject = GameObject.Find("GameManager");
-        if (gameManagerObject != null)
-            gameManager = gameManagerObject.GetComponent<GameManager>();
-        else 
-            Debug.LogError("Cannot find 'GameManager' script");
     }
 
     void Update()
@@ -32,9 +26,7 @@ public class PlaManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
                 if (i < plaBtnsList.Count)
-                    gameManager?.PickPla(plaBtnsList[i]);
-                else
-                    Debug.LogError("Index out of range. No PlaBtn corresponds to the key pressed.");
+                    GameManager.Instance.PickPla(plaBtnsList[i]);
                 break;
             }
         }
