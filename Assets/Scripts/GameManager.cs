@@ -261,7 +261,7 @@ public class GameManager : Singleton<GameManager>
         {
             waveBtn.SetActive(true);
             Debug.Log("currency is added");
-            balance += wave * 10;
+            balance += wave * 10 + 40;
             UIUpdater.Instance.UpdateBalance(GameManager.Instance.Balance);
         }
     }

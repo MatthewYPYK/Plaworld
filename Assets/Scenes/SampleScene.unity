@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
-  balance: 600
+  balance: 200
   waveBtn: {fileID: 721804326}
   gameOverMenu: {fileID: 613358074}
 --- !u!224 &431957890
