@@ -10,7 +10,7 @@ public class TileScript : MonoBehaviour
 
     public bool IsEmpty { get; private set; }
 
-    private PlaRange myPla;
+    private PlaRange myPlaRange;
 
     private Color32 fullColor = new Color32(255, 118, 118, 255);
 
@@ -76,9 +76,9 @@ public class TileScript : MonoBehaviour
             && Input.GetMouseButtonDown(0))
             {
                 //Debug.Log("TileScript: OnMouseOver: myPla: " + myPla);
-                if (myPla != null)
+                if (myPlaRange != null)
                 {
-                    GameManager.Instance.SelectPla(myPla);
+                    GameManager.Instance.SelectPla(myPlaRange);
                 }
             }
         }
@@ -92,23 +92,30 @@ public class TileScript : MonoBehaviour
     private void PlacePla()
     {
 
-        GameObject pla = (GameObject)Instantiate(GameManager.Instance.ClickedBtn.PlaPrefab, transform.position, Quaternion.identity);
+
+        PlaBtn plaBtn = GameManager.Instance.ClickedBtn;
+        GameObject pla = (GameObject)Instantiate(plaBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
-        pla.transform.SetParent(transform);
 
-        // set myPla to PlaTower script
-        myPla = pla.transform.GetChild(0).GetComponent<PlaRange>();
+        // if component is not a shark
+        if (plaBtn.HasRange)
+        {
+            myPlaRange = (PlaRange)pla.transform.GetChild(0).GetComponent<PlaRange>();
+        }
+        if (plaBtn.IsPermanent)
+        {
+            pla.transform.SetParent(transform);
+
+            IsEmpty = false;
+            WalkAble = false;
+            ColorTile(Color.white);
+        }
+        GameManager.Instance.BuyPla();
 
         //Debug.Log("TileScript: PlacePla: pla: " + pla);
         //Debug.Log("TileScript: PlacePla: myPla: " + myPla);
-        IsEmpty = false;
 
-        ColorTile(Color.white);
-
-        GameManager.Instance.BuyPla();
-
-        WalkAble = false;
     }
 
     private void ColorTile(Color newColor)

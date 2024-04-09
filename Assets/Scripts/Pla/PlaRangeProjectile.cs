@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlaRange : MonoBehaviour
+public class PlaRangeProjectile : PlaRange
 {
     [SerializeField]
     private string projectileType;
-
-    // private SpriteRenderer spriteRenderer;
-
     private Enemy target;
 
     public Enemy Target
@@ -34,7 +32,7 @@ public class PlaRange : MonoBehaviour
 
     [SerializeField]
     private float projectileSpeed;
-    private bool onStartEnableRange;
+
 
     public float ProjectileSpeed
     {
@@ -45,41 +43,9 @@ public class PlaRange : MonoBehaviour
     }
 
     public int Damage { get => damage; set => damage = value; }
+    // // Update is called once per frame
 
-    void Start()
-    {
-        //Debug.Log("Initial Projectile speed: " + projectileSpeed);
-        setRangeEnable(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Attack();
-    }
-
-    public void Select()
-    {
-        //Debug.Log("Tower selected");
-        // spriteRenderer.enabled = !spriteRenderer.enabled;
-        setRangeEnable(!onStartEnableRange);
-    }
-
-    public void setRangeEnable(bool enable)
-    {
-        //Debug.Log("Tower selected");
-        // spriteRenderer.enabled = !spriteRenderer.enabled;
-        foreach (Transform child in transform)
-        {
-            SpriteRenderer childSpriteRenderer = child.GetComponent<SpriteRenderer>();
-            if (childSpriteRenderer != null)
-            {
-                childSpriteRenderer.enabled = enable;
-            }
-        }
-    }
-
-    private void Attack()
+    public override void Attack()
     {
         if (!canAttack)
         {
@@ -115,7 +81,7 @@ public class PlaRange : MonoBehaviour
         projectile.Initialize(this);
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public override void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("Enter");
         if (other.tag == "Enemy")
@@ -125,11 +91,12 @@ public class PlaRange : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public override void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Enemy")
         {
             target = null;
         }
     }
+
 }

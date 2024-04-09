@@ -17,6 +17,11 @@ public class PlaBtn : MonoBehaviour
     [SerializeField]
     private int price;
 
+    [SerializeField]
+    private bool hasRange;
+
+    [SerializeField]
+    private bool isPermanent;
     public GameObject buttonText;
     TextMeshProUGUI textMesh_buttonText;
 
@@ -58,7 +63,20 @@ public class PlaBtn : MonoBehaviour
             price = value;
         }
     }
-
+    public bool HasRange
+    {
+        get
+        {
+            return hasRange;
+        }
+    }
+    public bool IsPermanent
+    {
+        get
+        {
+            return isPermanent;
+        }
+    }
     void Start()
     {
         textMesh_buttonText = buttonText.GetComponent<TextMeshProUGUI>();
