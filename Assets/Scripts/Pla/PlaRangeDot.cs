@@ -17,8 +17,14 @@ public class PlaRangeDot : PlaRange
     [SerializeField]
     private float attackCooldown;
 
+    private Animator myAnimator;
+
     public int Damage { get => damage; set => damage = value; }
 
+    void Awake ()
+    {
+        myAnimator = transform.parent.GetComponent<Animator>();
+    }
 
     public override void Attack()
     {
@@ -51,7 +57,11 @@ public class PlaRangeDot : PlaRange
             enemies.Add(other.GetComponent<Enemy>());
         }
 
+    }
 
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        myAnimator.SetTrigger("Attack");
     }
 
     public override void OnTriggerExit2D(Collider2D other)
