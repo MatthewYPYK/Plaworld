@@ -15,6 +15,9 @@ public class UIUpdater : Singleton<UIUpdater>
     public GameObject Waves;
     public TextMeshProUGUI textMesh_waves;
 
+    public GameObject sellPla;
+    public TextMeshProUGUI textMesh_SellPla;
+
     private GameManager gameManager;
     public void UpdateBalance(int value)
     {
@@ -30,6 +33,17 @@ public class UIUpdater : Singleton<UIUpdater>
     {
         textMesh_waves.text = "Wave : " + value.ToString();
     }
+    public void UpdateWaves(bool sellMode)
+    {
+        if (sellMode)
+        {
+            textMesh_SellPla.text = "Sell Mode: ON";
+        }
+        else
+        {
+            textMesh_SellPla.text = "Sell Button";
+        }
+    }
 
     void Awake()
     {
@@ -43,6 +57,8 @@ public class UIUpdater : Singleton<UIUpdater>
         //Debug.Log("AWAKE UIUpdater: " + textMesh_lives.text);
 
         textMesh_waves = Waves.GetComponent<TextMeshProUGUI>();
+
+        textMesh_SellPla = sellPla.GetComponent<TextMeshProUGUI>();
         //Debug.Log("AWAKE UIUpdater: " + textMesh_waves.text);
     }
 

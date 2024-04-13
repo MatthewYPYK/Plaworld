@@ -19,12 +19,7 @@ public class GameManager : Singleton<GameManager>
     private int lives;
 
     private bool gameOver = false;
-
-    // [SerializeField]
-    // private Text livesTxt;
-
-    // [SerializeField]
-    // private Text waveText;
+    private bool sellMode = false;
 
     [SerializeField]
     private GameObject waveBtn;
@@ -97,7 +92,7 @@ public class GameManager : Singleton<GameManager>
     {
         HandleEscape();
         if (Input.GetKeyDown(KeyCode.Equals) && !gameOver) Time.timeScale += 1;
-        if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale>0) Time.timeScale -= 1;
+        if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale > 0) Time.timeScale -= 1;
     }
 
     public void PickPla(PlaBtn plaBtn)
@@ -121,6 +116,12 @@ public class GameManager : Singleton<GameManager>
             Hover.Instance.Deactivate();
             //Debug.Log("PlaBtn deac: " + ClickedBtn);
         }
+    }
+
+    public void SellButtonClick()
+    {
+        sellMode = !sellMode;
+        UIUpdater.Instance.UpdateWaves(sellMode);
     }
 
     private void HandleEscape()
@@ -149,80 +150,93 @@ public class GameManager : Singleton<GameManager>
 
         while (waveValue < wave)
         {
-            if (wave < 3){
+            if (wave < 3)
+            {
                 enemyIndex = 0;
                 waveValue++;
-            } else if (wave < 5){
+            }
+            else if (wave < 5)
+            {
                 enemyIndex = Random.Range(0, 2);
                 switch (enemyIndex)
                 {
-                case 0:
-                    waveValue++;
-                    break;
-                case 1:
-                    waveValue += 3;
-                    if (waveValue > wave){
-                    enemyIndex = 0;
-                    waveValue -= 3;
-                    waveValue++;
-                    }
-                    break;
+                    case 0:
+                        waveValue++;
+                        break;
+                    case 1:
+                        waveValue += 3;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 3;
+                            waveValue++;
+                        }
+                        break;
                 }
-            } else if (wave < 7){
+            }
+            else if (wave < 7)
+            {
                 enemyIndex = Random.Range(0, 3);
                 switch (enemyIndex)
                 {
-                case 0:
-                    waveValue++;
-                    break;
-                case 1:
-                    waveValue += 3;
-                    if (waveValue > wave){
-                    enemyIndex = 0;
-                    waveValue -= 3;
-                    waveValue++;
-                    }
-                    break;
-                case 2:
-                    waveValue += 5;
-                    if (waveValue > wave){
-                    enemyIndex = 0;
-                    waveValue -= 5;
-                    waveValue++;
-                    }
-                    break;
+                    case 0:
+                        waveValue++;
+                        break;
+                    case 1:
+                        waveValue += 3;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 3;
+                            waveValue++;
+                        }
+                        break;
+                    case 2:
+                        waveValue += 5;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 5;
+                            waveValue++;
+                        }
+                        break;
                 }
-            } else {
+            }
+            else
+            {
                 enemyIndex = Random.Range(0, 4);
                 switch (enemyIndex)
                 {
-                case 0:
-                    waveValue++;
-                    break;
-                case 1:
-                    waveValue += 3;
-                    if (waveValue > wave){
-                    enemyIndex = 0;
-                    waveValue -= 3;
-                    waveValue++;
-                    }
-                    break;
-                case 2:
-                    waveValue += 5;
-                    if (waveValue > wave){
-                    enemyIndex = 0;
-                    waveValue -= 5;
-                    waveValue++;
-                    }
-                    break;
-                case 3:
-                    waveValue += 5;
-                    if (waveValue > wave){
-                    enemyIndex = 0;
-                    waveValue -= 5;
-                    waveValue++;
-                    }
-                    break;
+                    case 0:
+                        waveValue++;
+                        break;
+                    case 1:
+                        waveValue += 3;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 3;
+                            waveValue++;
+                        }
+                        break;
+                    case 2:
+                        waveValue += 5;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 5;
+                            waveValue++;
+                        }
+                        break;
+                    case 3:
+                        waveValue += 5;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 5;
+                            waveValue++;
+                        }
+                        break;
                 }
             }
 
@@ -251,7 +265,7 @@ public class GameManager : Singleton<GameManager>
 
             yield return new WaitForSeconds(1f);
         }
-        
+
 
     }
 
@@ -319,7 +333,7 @@ public class GameManager : Singleton<GameManager>
 
     public void TankSkill(Point currentPos)
     {
-        List<Point> possibleFish = new ();
+        List<Point> possibleFish = new();
         // Debug.Log("shoot some fish");
         for (int dx = -1; dx <= 1; dx++)
         {
