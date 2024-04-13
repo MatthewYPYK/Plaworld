@@ -567,6 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
   balance: 250
+  sellMultiplier: 0.6
   waveBtn: {fileID: 721804326}
   gameOverMenu: {fileID: 613358074}
 --- !u!224 &431957890

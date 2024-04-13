@@ -33,7 +33,7 @@ public class UIUpdater : Singleton<UIUpdater>
     {
         textMesh_waves.text = "Wave : " + value.ToString();
     }
-    public void UpdateWaves(bool sellMode)
+    public void UpdateSellMode(bool sellMode)
     {
         if (sellMode)
         {

@@ -20,6 +20,24 @@ public class GameManager : Singleton<GameManager>
 
     private bool gameOver = false;
     private bool sellMode = false;
+    public bool SellMode
+    {
+        get
+        {
+            return sellMode;
+        }
+    }
+    [SerializeField]
+
+    private float sellMultiplier;
+
+    public float SellMultiplier
+    {
+        get
+        {
+            return sellMultiplier;
+        }
+    }
 
     [SerializeField]
     private GameObject waveBtn;
@@ -107,21 +125,27 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void BuyPla()
+    public int BuyPla()
     {
+        int price = ClickedBtn.Price;
         if (Balance >= ClickedBtn.Price)
         {
             Balance = Balance - ClickedBtn.Price;
             //Debug.Log("Currency: " + Currency);
             Hover.Instance.Deactivate();
             //Debug.Log("PlaBtn deac: " + ClickedBtn);
+            return price;
         }
+        return -1;
     }
 
     public void SellButtonClick()
     {
         sellMode = !sellMode;
-        UIUpdater.Instance.UpdateWaves(sellMode);
+        UIUpdater.Instance.UpdateSellMode(sellMode);
+
+        selectedPla = null;
+        Hover.Instance.Deactivate();
     }
 
     private void HandleEscape()
