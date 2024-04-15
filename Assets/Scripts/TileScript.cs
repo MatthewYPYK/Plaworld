@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class TileScript : MonoBehaviour
     public bool IsEmpty { get; private set; }
 
     private GameObject pla = null;
+    private int plaPrice = 0;
 
     private PlaRange myPlaRange;
 
@@ -63,7 +65,8 @@ public class TileScript : MonoBehaviour
             if (GameManager.Instance.ClickedBtn != null)
             {
                 bool IsBlocked = !LevelManager.Instance.CanPlacePla(GridPosition);
-                if (IsBlocked){
+                if (IsBlocked)
+                {
                     ColorTile(fullColor);
                 }
                 else if (IsEmpty)
@@ -87,6 +90,12 @@ public class TileScript : MonoBehaviour
                 if (myPlaRange != null)
                 {
                     GameManager.Instance.SelectPla(myPlaRange);
+                }
+                if (GameManager.Instance.SellMode)
+                {
+                    RefreshTile();
+                    GameManager.Instance.Balance += (int)Math.Floor(plaPrice * GameManager.Instance.SellMultiplier);
+                    GameManager.Instance.SellButtonClick();
                 }
             }
         }
@@ -119,7 +128,8 @@ public class TileScript : MonoBehaviour
             WalkAble = false;
             ColorTile(Color.white);
         }
-        GameManager.Instance.BuyPla();
+        int newPrice = GameManager.Instance.BuyPla();
+        plaPrice = newPrice == -1 ? plaPrice : newPrice;
 
         //Debug.Log("TileScript: PlacePla: pla: " + pla);
         //Debug.Log("TileScript: PlacePla: myPla: " + myPla);
