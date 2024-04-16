@@ -18,7 +18,7 @@ public class WaveManager : Singleton<WaveManager>
     public void StartWave(int waveNumber)
     {
         if (IsWaveDefined(waveNumber))
-            StartCoroutine(WaveDict[waveNumber].SpawnSequence());
+            WaveDict[waveNumber].StartWave();
         else
             Debug.LogError("Wave " + waveNumber + " is not defined.");
     }

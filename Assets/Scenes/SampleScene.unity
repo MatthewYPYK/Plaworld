@@ -476,6 +476,8 @@ Transform:
   - {fileID: 691419681}
   - {fileID: 1459986530}
   - {fileID: 860400310}
+  - {fileID: 1603899408}
+  - {fileID: 498112020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &238154062
@@ -502,6 +504,10 @@ MonoBehaviour:
       Value: {fileID: 1459986531}
     - Key: 10
       Value: {fileID: 860400311}
+    - Key: 19
+      Value: {fileID: 1603899407}
+    - Key: 20
+      Value: {fileID: 498112019}
 --- !u!1 &288588519
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +637,7 @@ MonoBehaviour:
   sellMultiplier: 0.6
   waveBtn: {fileID: 721804326}
   gameOverMenu: {fileID: 613358074}
+  WaveReward: 0
 --- !u!224 &431957890
 RectTransform:
   m_ObjectHideFlags: 0
@@ -857,6 +864,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450067980}
   m_CullTransparentMesh: 1
+--- !u!1 &498112018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498112020}
+  - component: {fileID: 498112019}
+  m_Layer: 0
+  m_Name: Wave20
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &498112019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498112018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaveReward: 1000
+  timeBetweenSpawn: 0.5
+  waveData:
+  - key: AirShip
+    value: 1
+  - key: Tank
+    value: 1
+  - key: wait
+    value: 2
+  - key: Soldier
+    value: 5
+  - key: wait
+    value: 2
+  - key: Jeep
+    value: 5
+  - key: AirShip
+    value: 2
+--- !u!4 &498112020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498112018}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 238154061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c916f32a7a6f722429aba7b16de3643f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaveReward: 100
 --- !u!1 &721804326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,6 +1889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea56136e0ec532a49a10c2c897c2ef0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaveReward: 100
 --- !u!1 &892588233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,6 +2118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaveReward: 50
   timeBetweenSpawn: 0.5
   waveData:
   - key: Soldier
@@ -2999,6 +3070,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91288eec423d96c43bdb76aec874b1f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaveReward: 100
+--- !u!1 &1603899406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1603899408}
+  - component: {fileID: 1603899407}
+  m_Layer: 0
+  m_Name: Wave19
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1603899407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603899406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaveReward: 1000
+  timeBetweenSpawn: 0.2
+  waveData:
+  - key: Soldier
+    value: 50
+--- !u!4 &1603899408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603899406}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 238154061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1616160144 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
@@ -3315,6 +3436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaveReward: 50
   timeBetweenSpawn: 0.5
   waveData:
   - key: Soldier
