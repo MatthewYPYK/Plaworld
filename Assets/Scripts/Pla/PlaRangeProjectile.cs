@@ -17,7 +17,8 @@ public class PlaRangeProjectile : PlaRange
         }
     }
 
-    private Queue<Enemy> enemy = new Queue<Enemy>();
+    // private Queue<Enemy> enemy = new Queue<Enemy>();
+    private Deque<Enemy> enemy = new Deque<Enemy>();
 
     private bool canAttack = true;
 
@@ -59,7 +60,7 @@ public class PlaRangeProjectile : PlaRange
         }
         if (target == null && enemy.Count > 0)
         {
-            target = enemy.Dequeue();
+            target = enemy.RemoveFront();
         }
         if (target != null && target.IsActive)
         {
@@ -87,7 +88,7 @@ public class PlaRangeProjectile : PlaRange
         if (other.tag == "Enemy")
         {
             //Debug.Log("Enter the enemy");
-            enemy.Enqueue(other.GetComponent<Enemy>());
+            enemy.AddRear(other.GetComponent<Enemy>());
         }
     }
 
@@ -95,6 +96,7 @@ public class PlaRangeProjectile : PlaRange
     {
         if (other.tag == "Enemy")
         {
+            enemy.Remove(other.GetComponent<Enemy>());
             target = null;
         }
     }
