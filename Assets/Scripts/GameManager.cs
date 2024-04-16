@@ -160,15 +160,26 @@ public class GameManager : Singleton<GameManager>
     {
         wave++;
         // waveText.text = string.Format("Wave : ",wave);
-        StartCoroutine(SpawnWave());
+        
+        LevelManager.Instance.GeneratePath();
+        if(WaveManager.Instance.IsWaveDefined(wave))
+            WaveManager.Instance.StartWave(wave);
+        else
+            StartCoroutine(SpawnWave());
         UIUpdater.Instance.UpdateWaves(wave);
 
         waveBtn.SetActive(false);
     }
 
+    public Enemy SpawnEnemy(string type){
+        Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
+        enemy.Spawn(type);
+        activeEnemies.Add(enemy);
+        return enemy;
+    }
+
     private IEnumerator SpawnWave()
     {
-        LevelManager.Instance.GeneratePath();
         int waveValue = 0;
         int enemyIndex = 0;
 
@@ -282,10 +293,7 @@ public class GameManager : Singleton<GameManager>
                     break;
             }
 
-            Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
-            enemy.Spawn(type);
-            activeEnemies.Add(enemy);
-            //Debug.Log(waveValue);
+            SpawnEnemy(type);
 
             yield return new WaitForSeconds(1f);
         }
