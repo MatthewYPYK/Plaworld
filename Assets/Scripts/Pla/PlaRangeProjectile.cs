@@ -60,7 +60,7 @@ public class PlaRangeProjectile : PlaRange
         }
         if (target == null && enemy.Count > 0)
         {
-            target = enemy.RemoveFront();
+            target = enemy.PeekFront();
         }
         if (target != null && target.IsActive)
         {
