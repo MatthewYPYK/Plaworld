@@ -9,6 +9,7 @@ public class PlaRangeProjectile : PlaRange
     private string projectileType;
     private Enemy target;
 
+
     public Enemy Target
     {
         get
@@ -30,7 +31,10 @@ public class PlaRangeProjectile : PlaRange
     [SerializeField]
     private float attackCooldown;
 
-
+    [SerializeField]
+    private float projectileSpawnOffsetX;
+    [SerializeField]
+    private float projectileSpawnOffsetY;
     [SerializeField]
     private float projectileSpeed;
 
@@ -77,7 +81,7 @@ public class PlaRangeProjectile : PlaRange
     {
         Projectile projectile = GameManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
 
-        projectile.transform.position = transform.position;
+        projectile.transform.position = transform.position + new Vector3(projectileSpawnOffsetX, projectileSpawnOffsetY, 0);
         //Debug.Log("Projectile speed PArent: " + projectileSpeed);
         projectile.Initialize(this);
     }

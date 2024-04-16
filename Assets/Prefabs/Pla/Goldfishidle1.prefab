@@ -335,6 +335,8 @@ MonoBehaviour:
   projectileType: Bubble
   damage: 20
   attackCooldown: 1
+  projectileSpawnOffsetX: 0
+  projectileSpawnOffsetY: -1.1
   projectileSpeed: 5
 --- !u!61 &2606873630906593916
 BoxCollider2D:
