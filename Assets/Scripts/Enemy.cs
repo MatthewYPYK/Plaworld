@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour
     private Stat health;
 
     public Point GridPositon { get; set; }
+    
+    public bool FixPath { get; protected set; }
 
     private Vector3 destination;
 
@@ -64,7 +66,10 @@ public class Enemy : MonoBehaviour
     public void UpdatePath(){
         var currentPos = transform.position;
         var gridPos = LevelManager.Instance.WorldPosToGridPos(currentPos);
-        if (type == "AirShip") SetPath(LevelManager.Instance.DefaultPath);
+        if (type == "AirShip"){
+            SetPath(LevelManager.Instance.DefaultPath);
+            FixPath = true;
+        }
         else SetPath(AStar.GetPath(gridPos, LevelManager.Instance.Coral));
     }
 
@@ -111,6 +116,8 @@ public class Enemy : MonoBehaviour
 
     private void SetPath(Stack<Node> newPath)
     {
+        if (FixPath) return;
+        
         if (newPath != null && newPath.Count > 0)
         {
             this.path = newPath;
