@@ -388,4 +388,9 @@ public class GameManager : Singleton<GameManager>
             LevelManager.Instance.GeneratePath();
         }
     }
+    public void UpdateEnemiesPath(){
+        foreach(var enemy in activeEnemies){
+            enemy.UpdatePath();
+        }
+    }
 }

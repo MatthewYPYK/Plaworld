@@ -15,6 +15,7 @@ public class LevelManager : Singleton<LevelManager>
     public CameraMovement cameraMovement;
 
     private Point greenSpawn, coral;
+    public Point Coral { get => coral; }
 
     [SerializeField]
     private GameObject greenPortalPrefab;
@@ -28,6 +29,8 @@ public class LevelManager : Singleton<LevelManager>
     private Transform map;
 
     private Point mapSize;
+
+    private Vector3 worldStart;
 
     private Stack<Node> path;
 
@@ -75,7 +78,11 @@ public class LevelManager : Singleton<LevelManager>
     {
 
     }
-
+    public Point WorldPosToGridPos(Vector3 worldPos){
+        var x = (worldPos.x - worldStart.x) / TileSize;
+        var y = (worldStart.y - worldPos.y) / TileSize;
+        return new Point((int)x, (int)y);
+    }
     private void createLevel()
     {
         Tiles = new Dictionary<Point, TileScript>();
@@ -85,7 +92,7 @@ public class LevelManager : Singleton<LevelManager>
 
         mapSize = new Point(mapData[0].ToCharArray().Length, mapData.Length);
 
-        Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
+        worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
 
         for (int y = 0; y < mapData.Length; y++)
@@ -141,6 +148,7 @@ public class LevelManager : Singleton<LevelManager>
     public void GeneratePath()
     {
         path = AStar.GetPath(greenSpawn, coral);
+        GameManager.Instance.UpdateEnemiesPath();
     }
 
     public bool CanPlacePla(Point target)

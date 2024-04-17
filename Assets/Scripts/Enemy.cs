@@ -59,8 +59,14 @@ public class Enemy : MonoBehaviour
         this.type = type;
 
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
+        UpdatePath();
+    }
+    public void UpdatePath(Stack<Node>? initialPath=null){
+        var currentPos = transform.position;
+        var gridPos = LevelManager.Instance.WorldPosToGridPos(currentPos);
+        // Debug.Log($"{gridPos.X} {gridPos.Y}");
         if (type == "AirShip") SetPath(LevelManager.Instance.DefaultPath);
-        else if (initialPath == null) SetPath(LevelManager.Instance.Path);
+        else if (initialPath == null) SetPath(AStar.GetPath(gridPos, LevelManager.Instance.Coral));
         else SetPath(initialPath);
     }
 
@@ -107,7 +113,7 @@ public class Enemy : MonoBehaviour
 
     private void SetPath(Stack<Node> newPath)
     {
-        if (newPath != null)
+        if (newPath != null && newPath.Count > 0)
         {
             this.path = newPath;
 

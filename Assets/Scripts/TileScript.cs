@@ -7,7 +7,15 @@ using UnityEngine.EventSystems;
 public class TileScript : MonoBehaviour
 {
     public Point GridPosition { get; private set; }
-    public bool WalkAble { get; set; }
+    private bool walkAble;
+    public bool WalkAble { 
+        get => walkAble;
+        set {
+            this.walkAble = value;
+            UpdatePath();
+        } 
+    }
+    protected void UpdatePath() => LevelManager.Instance.GeneratePath();
 
     public bool IsEmpty { get; private set; }
 
@@ -49,7 +57,7 @@ public class TileScript : MonoBehaviour
     public void Setup(Point gridPos, Vector3 worldPos, Transform parent)
     {
         IsEmpty = true;
-        WalkAble = true;
+        walkAble = true;
         this.GridPosition = gridPos;
         transform.position = worldPos;
         transform.SetParent(parent);
