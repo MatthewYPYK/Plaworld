@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     private int balance;
 
     private int wave = 0;
+    public int Wave => wave; // wave getter
 
     private int lives;
 
@@ -49,6 +50,8 @@ public class GameManager : Singleton<GameManager>
     private List<Enemy> activeEnemies = new List<Enemy>();
 
     public ObjectPool Pool { get; set; }
+
+    public int WaveReward;
 
     public bool WaveActive
     {
@@ -159,7 +162,7 @@ public class GameManager : Singleton<GameManager>
     public void StartWave()
     {
         wave++;
-        // waveText.text = string.Format("Wave : ",wave);
+        WaveReward = wave * 5; // default WaveReward
         
         LevelManager.Instance.GeneratePath();
         if(WaveManager.Instance.IsWaveDefined(wave))
@@ -309,7 +312,7 @@ public class GameManager : Singleton<GameManager>
         {
             waveBtn.SetActive(true);
             Debug.Log("currency is added");
-            balance += wave * 5;
+            balance += WaveReward;
             UIUpdater.Instance.UpdateBalance(GameManager.Instance.Balance);
         }
     }
