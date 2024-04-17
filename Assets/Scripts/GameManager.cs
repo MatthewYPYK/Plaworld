@@ -164,7 +164,6 @@ public class GameManager : Singleton<GameManager>
         wave++;
         WaveReward = wave * 5; // default WaveReward
         
-        LevelManager.Instance.GeneratePath();
         if(WaveManager.Instance.IsWaveDefined(wave))
             WaveManager.Instance.StartWave(wave);
         else
@@ -361,7 +360,7 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < total_number; i++)
         {
             Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
-            enemy.Spawn("Soldier", position, new(new Stack<Node>(initialPath)));
+            enemy.Spawn("Soldier", position);
             activeEnemies.Add(enemy);
         }
     }
@@ -385,7 +384,6 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
-            LevelManager.Instance.GeneratePath();
         }
     }
     public void UpdateEnemiesPath(){

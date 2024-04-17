@@ -15,7 +15,7 @@ public class TileScript : MonoBehaviour
             UpdatePath();
         } 
     }
-    protected void UpdatePath() => LevelManager.Instance.GeneratePath();
+    protected void UpdatePath() => GameManager.Instance.UpdateEnemiesPath();
 
     public bool IsEmpty { get; private set; }
 

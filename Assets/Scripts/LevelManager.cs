@@ -32,20 +32,6 @@ public class LevelManager : Singleton<LevelManager>
 
     private Vector3 worldStart;
 
-    private Stack<Node> path;
-
-    public Stack<Node> Path
-    {
-        get
-        {
-            if (path == null)
-            {
-                GeneratePath();
-            }
-            return new(new Stack<Node>(path));
-        }
-    }
-
     private Stack<Node> defaultPath;
 
     public Stack<Node> DefaultPath
@@ -143,12 +129,6 @@ public class LevelManager : Singleton<LevelManager>
     public bool InBounds(Point a)
     {
         return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
-    }
-
-    public void GeneratePath()
-    {
-        path = AStar.GetPath(greenSpawn, coral);
-        GameManager.Instance.UpdateEnemiesPath();
     }
 
     public bool CanPlacePla(Point target)

@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Spawn(string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
+    public void Spawn(string type, Vector3? spawnpoint=null)
     {
         transform.position = spawnpoint ?? LevelManager.Instance.GreenPortal.transform.position;
 
@@ -61,13 +61,11 @@ public class Enemy : MonoBehaviour
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
         UpdatePath();
     }
-    public void UpdatePath(Stack<Node>? initialPath=null){
+    public void UpdatePath(){
         var currentPos = transform.position;
         var gridPos = LevelManager.Instance.WorldPosToGridPos(currentPos);
-        // Debug.Log($"{gridPos.X} {gridPos.Y}");
         if (type == "AirShip") SetPath(LevelManager.Instance.DefaultPath);
-        else if (initialPath == null) SetPath(AStar.GetPath(gridPos, LevelManager.Instance.Coral));
-        else SetPath(initialPath);
+        else SetPath(AStar.GetPath(gridPos, LevelManager.Instance.Coral));
     }
 
     public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
