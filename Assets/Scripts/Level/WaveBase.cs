@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class WaveBase : MonoBehaviour
 {
-    protected Func<string,Enemy> SpawnEnemy = GameManager.Instance.SpawnEnemy;
-
-    // Start the wave
-    // public virtual void StartWave()
-    // {
-    //     StartCoroutine(SpawnSequence());
-    // }
+    protected Func<string,Enemy> SpawnEnemy;
+    [SerializeField]
+    protected int WaveReward = -1;
+    public virtual void Awake(){
+        // Start(){
+        SpawnEnemy = GameManager.Instance.SpawnEnemy;
+    }
+    public virtual void StartWave()
+    {
+        if (WaveReward < 0) WaveReward = GameManager.Instance.Wave * 5;
+        GameManager.Instance.WaveReward = WaveReward;
+        StartCoroutine(SpawnSequence());
+    }
     public virtual IEnumerator SpawnSequence()
     {
         yield return new WaitForSeconds(1f);
