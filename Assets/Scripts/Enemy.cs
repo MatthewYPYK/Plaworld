@@ -21,9 +21,10 @@ public class Enemy : MonoBehaviour
 
     public bool IsActive { get; set; }
 
-    private float tankCounter = 0.0f;
+    private float counter = 0.0f;
 
-    private float maxTankCounter = 8.0f;
+    private float maxCounter = 8.0f;
+
 
     private void Awake()
     {
@@ -35,18 +36,21 @@ public class Enemy : MonoBehaviour
         Move();
         if (IsActive)
         {
-            switch (type)
+            counter += Time.deltaTime;
+            if (counter >= maxCounter)
             {
-                case "Tank":
-                    tankCounter += Time.deltaTime;
-                    if (tankCounter >= maxTankCounter)
-                    {
-                        tankCounter = 0.0f;
+                counter = 0.0f;
+                switch (type)
+                {
+                    case "Tank":
                         GameManager.Instance.TankSkill(GridPositon);
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+                    case "Wizard":
+                        GameManager.Instance.WizardSkill(GridPositon);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -57,7 +61,17 @@ public class Enemy : MonoBehaviour
 
         this.health.CurrentVal = this.health.MaxVal;
         this.type = type;
-
+        switch (type)
+        {
+            case "Tank":
+                maxCounter = 8.0f;
+                break;
+            case "Wizard":
+                maxCounter = 5.0f;
+                break;
+            default:
+                break;
+        }
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
         if (type == "AirShip") SetPath(LevelManager.Instance.DefaultPath);
         else if (initialPath == null) SetPath(LevelManager.Instance.Path);
@@ -145,7 +159,7 @@ public class Enemy : MonoBehaviour
     private void Release()
     {
         IsActive = false;
-        tankCounter = 0.0f;
+        counter = 0.0f;
         GameManager.Instance.Pool.ReleaseObject(gameObject);
         GameManager.Instance.RemoveEnemy(this);
     }
