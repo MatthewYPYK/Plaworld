@@ -98,6 +98,7 @@ public class TileScript : MonoBehaviour
                     GameManager.Instance.Balance += (int)Math.Floor(plaPrice * GameManager.Instance.SellMultiplier);
                     GameManager.Instance.SellButtonClick();
                     RefreshTile();
+                    LevelManager.Instance.GeneratePath();
                 }
             }
         }

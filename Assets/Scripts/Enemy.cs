@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Stat health;
 
-    public Point GridPositon { get; set; }
+    public Point GridPosition { get; set; }
 
     private Vector3 destination;
 
@@ -43,10 +43,10 @@ public class Enemy : MonoBehaviour
                 switch (type)
                 {
                     case "Tank":
-                        GameManager.Instance.TankSkill(GridPositon);
+                        GameManager.Instance.TankSkill(GridPosition);
                         break;
                     case "Wizard":
-                        GameManager.Instance.WizardSkill(GridPositon);
+                        GameManager.Instance.WizardSkill(GridPosition);
                         break;
                     default:
                         break;
@@ -73,9 +73,13 @@ public class Enemy : MonoBehaviour
                 break;
         }
         StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
+        GridPosition = LevelManager.Instance.GreenSpawn;
         if (type == "AirShip") SetPath(LevelManager.Instance.DefaultPath);
         else if (initialPath == null) SetPath(LevelManager.Instance.Path);
-        else SetPath(initialPath);
+        else {
+            GridPosition = initialPath.Pop().GridPosition;
+            SetPath(initialPath);
+        }
     }
 
     public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
@@ -112,8 +116,17 @@ public class Enemy : MonoBehaviour
             {
                 if (path != null && path.Count > 0)
                 {
-                    GridPositon = path.Peek().GridPosition;
-                    destination = path.Pop().WorldPosition;
+                    Debug.Log("(" + GridPosition.X + ", " + GridPosition.Y + ") -> (" + path.Peek().GridPosition.X + ", " + path.Peek().GridPosition.Y + ")");
+                    if (AStar.TravelAble(GridPosition, path.Peek().GridPosition) || this.type == "AirShip")
+                    {
+                        GridPosition = path.Peek().GridPosition;
+                        destination = path.Pop().WorldPosition;
+                    }
+                    else
+                    {
+                        Debug.Log("Find new path");
+                        RefreshPath();
+                    }
                 }
             }
         }
@@ -124,9 +137,37 @@ public class Enemy : MonoBehaviour
         if (newPath != null)
         {
             this.path = newPath;
+            Debug.Log("setPath");
+            Debug.Log(GridPosition.X + ", " + GridPosition.Y);
+            if (AStar.TravelAble(GridPosition, path.Peek().GridPosition) || this.type == "AirShip") 
+            {
+                GridPosition = path.Peek().GridPosition;
+                destination = path.Pop().WorldPosition;
+            }
+            else
+            {
+                Debug.Log("Find new path");
+                RefreshPath();
+            }
+        }
+    }
 
-            GridPositon = path.Peek().GridPosition;
-            destination = path.Pop().WorldPosition;
+    private void RefreshPath()
+    {
+        Point start = GridPosition;
+        while (path.Count != 1)
+        {
+            path.Pop();
+        }
+        Stack<Node> newPath = AStar.GetPath(start, path.Peek().GridPosition);
+        // Debug.Log(newPath.Count);
+        if (newPath.Count != 0)
+        {
+            SetPath(newPath);
+        }
+        else
+        {
+            Debug.Log("Handle Surrounded Enemy");
         }
     }
 
@@ -148,6 +189,7 @@ public class Enemy : MonoBehaviour
             switch (type)
             {
                 case "Jeep":
+                    path.Push(AStar.GetNode(GridPosition));
                     GameManager.Instance.JeepDestroy(transform.position, path);
                     break;
                 default:
