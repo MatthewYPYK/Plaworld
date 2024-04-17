@@ -1,17 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlaRange : MonoBehaviour
+public class PlaRangeProjectile : PlaRange
 {
     [SerializeField]
     private string projectileType;
-
-    // private SpriteRenderer spriteRenderer;
-
     private Enemy target;
 
-    public bool IsActive { get; set; }
 
     public Enemy Target
     {
@@ -21,7 +18,8 @@ public class PlaRange : MonoBehaviour
         }
     }
 
-    private Queue<Enemy> enemy = new Queue<Enemy>();
+    // private Queue<Enemy> enemy = new Queue<Enemy>();
+    private Deque<Enemy> enemy = new Deque<Enemy>();
 
     private bool canAttack = true;
 
@@ -33,9 +31,13 @@ public class PlaRange : MonoBehaviour
     [SerializeField]
     private float attackCooldown;
 
-
+    [SerializeField]
+    private float projectileSpawnOffsetX;
+    [SerializeField]
+    private float projectileSpawnOffsetY;
     [SerializeField]
     private float projectileSpeed;
+
 
     public float ProjectileSpeed
     {
@@ -46,33 +48,9 @@ public class PlaRange : MonoBehaviour
     }
 
     public int Damage { get => damage; set => damage = value; }
+    // // Update is called once per frame
 
-    void Start()
-    {
-        //Debug.Log("Initial Projectile speed: " + projectileSpeed);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Attack();
-    }
-
-    public void Select()
-    {
-        //Debug.Log("Tower selected");
-        // spriteRenderer.enabled = !spriteRenderer.enabled;
-        foreach (Transform child in transform)
-        {
-            SpriteRenderer childSpriteRenderer = child.GetComponent<SpriteRenderer>();
-            if (childSpriteRenderer != null)
-            {
-                childSpriteRenderer.enabled = !childSpriteRenderer.enabled;
-            }
-        }
-    }
-
-    private void Attack()
+    public override void Attack()
     {
         if (!canAttack)
         {
@@ -86,7 +64,7 @@ public class PlaRange : MonoBehaviour
         }
         if (target == null && enemy.Count > 0)
         {
-            target = enemy.Dequeue();
+            target = enemy.PeekFront();
         }
         if (target != null && target.IsActive)
         {
@@ -103,52 +81,28 @@ public class PlaRange : MonoBehaviour
     {
         Projectile projectile = GameManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
 
-        projectile.transform.position = transform.position;
+        projectile.transform.position = transform.position + new Vector3(projectileSpawnOffsetX, projectileSpawnOffsetY, 0);
         //Debug.Log("Projectile speed PArent: " + projectileSpeed);
         projectile.Initialize(this);
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    public override void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("Enter");
         if (other.tag == "Enemy")
         {
             //Debug.Log("Enter the enemy");
-            enemy.Enqueue(other.GetComponent<Enemy>());
+            enemy.AddRear(other.GetComponent<Enemy>());
         }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public override void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Enemy")
         {
+            enemy.Remove(other.GetComponent<Enemy>());
             target = null;
         }
-    }
-
-    public IEnumerator Scale(Vector3 from, Vector3 to, bool remove)
-    {
-        IsActive = false;
-
-        //if (remove) DestroyEffect();
-
-        float progress = 0;
-
-        while (progress <=1)
-        {
-            transform.localScale = Vector3.Lerp(from,to,progress);
-
-            progress += Time.deltaTime;
-
-            yield return null;
-        }
-
-        transform.localScale = to; 
-        
-        IsActive = true;
-
-        //if (remove) Release();
-
     }
 
 }

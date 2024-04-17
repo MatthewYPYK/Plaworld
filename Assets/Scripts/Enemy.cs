@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
 
     private float tankCounter = 0.0f;
 
-    private float maxTankCounter = 10.0f;
+    private float maxTankCounter = 8.0f;
 
     private void Awake()
     {
@@ -51,11 +51,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Spawn(int health, string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
+    public void Spawn(string type, Vector3? spawnpoint=null, Stack<Node>? initialPath=null)
     {
         transform.position = spawnpoint ?? LevelManager.Instance.GreenPortal.transform.position;
 
-        this.health.MaxVal = health;
         this.health.CurrentVal = this.health.MaxVal;
         this.type = type;
 
@@ -130,7 +129,7 @@ public class Enemy : MonoBehaviour
 
     private void DestroyEffect()
     {
-        if (health.CurrentVal == 0)
+        if (health.CurrentVal <= 0)
         {
             switch (type)
             {
@@ -157,10 +156,10 @@ public class Enemy : MonoBehaviour
         {
             health.CurrentVal -= damage;
             //Debug.Log(health.CurrentVal);
-        }
-        if (health.CurrentVal <= 0)
-        {
-            StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
+            if (health.CurrentVal <= 0)
+            {
+                StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
+            }
         }
     }
 }

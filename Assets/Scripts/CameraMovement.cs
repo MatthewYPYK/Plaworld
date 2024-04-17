@@ -13,7 +13,7 @@ public class CameraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class CameraMovement : MonoBehaviour
     {
         SetCam(boundingBox);
         return;
-        GetInput();
+        // GetInput();
     }
 
     private void GetInput()
@@ -55,7 +55,7 @@ public class CameraMovement : MonoBehaviour
         camera.orthographicSize = (boundAspect > screenAspect) ? (boundingBox.size.x / screenAspect) / 2 : boundingBox.size.y / 2;
         camera.orthographicSize += padding;
         camera.transform.position = new Vector3(boundingBox.center.x, boundingBox.center.y, camera.transform.position.z);
-    
+
     }
     public void SetLimits(Vector3 maxTile)
     {

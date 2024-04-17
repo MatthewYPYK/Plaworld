@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312573444242194747}
-  - component: {fileID: 2900464727769025996}
+  - component: {fileID: 7491859961777327125}
   - component: {fileID: 2606873630906593916}
   - component: {fileID: 8692778027862092899}
   - component: {fileID: 7655981057402084573}
@@ -320,7 +320,7 @@ Transform:
   - {fileID: 1438072307783469434}
   m_Father: {fileID: 3642717820072912236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2900464727769025996
+--- !u!114 &7491859961777327125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -329,12 +329,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6297414394787690438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ef032e3e4bfee4fb153899d002a433, type: 3}
+  m_Script: {fileID: 11500000, guid: a19ec8ec5208a354a89c0cdf46cfd5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectileType: Bubble
-  damage: 1
+  damage: 20
   attackCooldown: 1
+  projectileSpawnOffsetX: 0
+  projectileSpawnOffsetY: -1.1
   projectileSpeed: 5
 --- !u!61 &2606873630906593916
 BoxCollider2D:
