@@ -23,7 +23,11 @@ public class Enemy : MonoBehaviour
 
     private float tankCounter = 0.0f;
 
-    private float maxTankCounter = 8.0f;
+    private float maxTankCounter = 6.0f;
+
+    private float soldierCounter = 0.0f;
+
+    private float maxSoldierCounter = 8.0f;
 
     private void Awake()
     {
@@ -43,6 +47,14 @@ public class Enemy : MonoBehaviour
                     {
                         tankCounter = 0.0f;
                         GameManager.Instance.TankSkill(GridPositon);
+                    }
+                    break;
+                case "Soldier":
+                    soldierCounter += Time.deltaTime;
+                    if (soldierCounter >= maxSoldierCounter)
+                    {
+                        soldierCounter = 0.0f;
+                        GameManager.Instance.SoldierSkill(GridPositon);
                     }
                     break;
                 default:
@@ -146,6 +158,7 @@ public class Enemy : MonoBehaviour
     {
         IsActive = false;
         tankCounter = 0.0f;
+        soldierCounter = 0.0f;
         GameManager.Instance.Pool.ReleaseObject(gameObject);
         GameManager.Instance.RemoveEnemy(this);
     }

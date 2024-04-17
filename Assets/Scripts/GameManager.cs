@@ -144,11 +144,14 @@ public class GameManager : Singleton<GameManager>
 
     public void SellButtonClick()
     {
-        sellMode = !sellMode;
-        UIUpdater.Instance.UpdateSellMode(sellMode);
+        if (!WaveActive){
+            sellMode = !sellMode;
+            UIUpdater.Instance.UpdateSellMode(sellMode);
 
-        selectedPla = null;
-        Hover.Instance.Deactivate();
+            selectedPla = null;
+            Hover.Instance.Deactivate();
+        }
+        
     }
 
     private void HandleEscape()
@@ -367,6 +370,29 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void TankSkill(Point currentPos)
+    {
+        List<Point> possibleFish = new();
+        // Debug.Log("shoot some fish");
+        for (int dx = -1; dx <= 1; dx++)
+        {
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                Point neighbourPos = new(currentPos.X - dx, currentPos.Y - dy);
+                if (LevelManager.Instance.InBounds(neighbourPos) && !LevelManager.Instance.Tiles[neighbourPos].WalkAble)
+                {
+                    possibleFish.Add(neighbourPos);
+                }
+            }
+        }
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            LevelManager.Instance.GeneratePath();
+        }
+    }
+
+    public void SoldierSkill(Point currentPos)
     {
         List<Point> possibleFish = new();
         // Debug.Log("shoot some fish");
