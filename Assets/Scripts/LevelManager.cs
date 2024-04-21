@@ -85,7 +85,7 @@ public class LevelManager : Singleton<LevelManager>
 
         mapSize = new Point(mapData[0].ToCharArray().Length, mapData.Length);
 
-        Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
+        Vector3 worldStart = new Vector3(0,0,0);
 
 
         for (int y = 0; y < mapData.Length; y++)
