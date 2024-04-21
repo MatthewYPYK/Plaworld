@@ -18,6 +18,8 @@ public class UIUpdater : Singleton<UIUpdater>
     public GameObject sellPla;
     public TextMeshProUGUI textMesh_SellPla;
 
+    public GameObject plaInfoFrame;
+
     private GameManager gameManager;
     public void UpdateBalance(int value)
     {
@@ -45,6 +47,13 @@ public class UIUpdater : Singleton<UIUpdater>
         }
     }
 
+    public void UpdatePlaInfoFrame(bool displayInfo)
+    {
+        Debug.Log("UpdatePlaInfoFrame: " + displayInfo);
+        plaInfoFrame.SetActive(displayInfo);
+    }
+
+
     void Awake()
     {
 
@@ -62,6 +71,10 @@ public class UIUpdater : Singleton<UIUpdater>
         //Debug.Log("AWAKE UIUpdater: " + textMesh_waves.text);
     }
 
+    void Start()
+    {
+        UpdatePlaInfoFrame(false);
+    }
     // Update is called once per frame
     void Update()
     {
