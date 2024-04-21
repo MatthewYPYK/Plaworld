@@ -116,6 +116,12 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale > 0) Time.timeScale -= 1;
     }
 
+    public void SetTimeScale(int newTimeScale){
+        if (newTimeScale > 100) newTimeScale = 100;
+        if (newTimeScale < 0) newTimeScale = 0;
+        Time.timeScale = newTimeScale;
+    }
+
     public void PickPla(PlaBtn plaBtn)
     {
         if (Balance >= plaBtn.Price)
