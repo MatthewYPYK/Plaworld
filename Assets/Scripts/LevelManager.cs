@@ -30,7 +30,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private Point mapSize;
 
-    private Vector3 worldStart;
+    private Vector3 worldStart = new Vector3(0,0,0);
 
     private Stack<Node> defaultPath;
 
@@ -77,9 +77,6 @@ public class LevelManager : Singleton<LevelManager>
         char[] rowData = null;
 
         mapSize = new Point(mapData[0].ToCharArray().Length, mapData.Length);
-
-        worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
-
 
         for (int y = 0; y < mapData.Length; y++)
         {
