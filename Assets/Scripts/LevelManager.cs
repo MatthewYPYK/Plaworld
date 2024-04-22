@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    [SerializeField] private TextAsset bindData;// = Resources.Load("Level") as TextAsset;
+
     [SerializeField]
     private GameObject[] tilePrefabs;
 
@@ -14,7 +16,15 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     public CameraMovement cameraMovement;
 
-    private Point greenSpawn, coral;
+    [SerializeField] private Point greenSpawn, coral;
+    
+    public Point GreenSpawn { 
+        get => greenSpawn;
+        set{
+            greenSpawn = value;
+            GreenPortal.transform.position = Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition;
+        }
+     }
     public Point Coral { get => coral; }
 
     [SerializeField]
@@ -101,25 +111,17 @@ public class LevelManager : Singleton<LevelManager>
         newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map);
     }
 
-
-
     private string[] ReadLevelText()
     {
-        TextAsset bindData = Resources.Load("Level") as TextAsset;
-
         string data = bindData.text.Replace(Environment.NewLine, string.Empty);
-
         return data.Split('-');
     }
 
     private void SpawnPortals()
     {
-        greenSpawn = new Point(1, 3);
         GameObject tmp = (GameObject)Instantiate(greenPortalPrefab, Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
         GreenPortal = tmp.GetComponent<Portal>();
         GreenPortal.name = "GreenPortal";
-
-        coral = new Point(10, 1);
         Instantiate(coralPrefab, Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
     }
 
@@ -133,14 +135,6 @@ public class LevelManager : Singleton<LevelManager>
         return AStar.CanPlacePla(greenSpawn, coral, target);
     }
 
-    public Point GreenSpawn
-    {
-        get
-        {
-            return greenSpawn;
-        }
-    }
-    
     public Bounds BoundingBox{
         get{
             Vector3 bottomRight = Tiles[new Point(mapSize.X - 1, mapSize.Y - 1)].transform.position;
