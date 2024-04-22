@@ -671,6 +671,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
   balance: 250
+  storyScript: {fileID: 0}
+  lives: 10
   sellMultiplier: 0.6
   waveBtn: {fileID: 721804326}
   gameOverMenu: {fileID: 613358074}
@@ -1857,7 +1859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f7a7d17bba78842a807120b2b5b988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bindData: {fileID: 4900000, guid: 6eb5ad404c8ae7c4796e253086519e61, type: 3}
+  mapData: {fileID: 4900000, guid: 6eb5ad404c8ae7c4796e253086519e61, type: 3}
   tilePrefabs:
   - {fileID: 4148433066773952399, guid: 735d816451b71de4192155b090144bbe, type: 3}
   - {fileID: 4148433066773952399, guid: 649aca88651714a4c87c7bae52921f5a, type: 3}
@@ -1866,9 +1868,16 @@ MonoBehaviour:
   - {fileID: 4148433066773952399, guid: 45c305f329020624d9ffee2fc4f912ee, type: 3}
   _TileSize: 0
   cameraMovement: {fileID: 519420033}
+  greenSpawn:
+    X: 0
+    Y: 4
+  coral:
+    X: 15
+    Y: 4
   greenPortalPrefab: {fileID: 6384036394462969762, guid: 7914755e2762195498aa36d1a282273a, type: 3}
   coralPrefab: {fileID: 3257858210248692174, guid: acd2085b7277e344688fb284c739be93, type: 3}
   map: {fileID: 1097227803}
+  invisibleTile: {fileID: 4148433066773952399, guid: b26545badc0a74e47aa63e56712fb85b, type: 3}
 --- !u!4 &734975524
 Transform:
   m_ObjectHideFlags: 0
@@ -2988,7 +2997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15, y: 0}
   m_AnchorMax: {x: 0.4, y: 1}
-  m_AnchoredPosition: {x: -6, y: 0}
+  m_AnchoredPosition: {x: -6.0000305, y: 0}
   m_SizeDelta: {x: -12, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1196919428

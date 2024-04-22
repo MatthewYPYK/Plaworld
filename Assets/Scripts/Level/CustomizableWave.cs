@@ -26,6 +26,9 @@ public class CustomizableWave : WaveBase
                 case "wait":
                     yield return new WaitForSeconds(pair.value);
                     break;
+                case "story":
+                    GameManager.Instance.UpdateStory((int)pair.value);
+                    break;
                 default:
                     for (int i = 0; i < pair.value; i++){
                         SpawnEnemy(pair.key);

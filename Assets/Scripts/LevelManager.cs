@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] private TextAsset bindData;// = Resources.Load("Level") as TextAsset;
+    [SerializeField] private TextAsset mapData;
 
     [SerializeField]
     private GameObject[] tilePrefabs;
@@ -66,6 +66,7 @@ public class LevelManager : Singleton<LevelManager>
     void Start()
     {
         createLevel();
+        AStar.CreateNodes();
         defaultPath = AStar.GetPath(greenSpawn, coral);
     }
 
@@ -102,18 +103,27 @@ public class LevelManager : Singleton<LevelManager>
 
         SpawnPortals();
     }
-
+    [SerializeField] private GameObject invisibleTile;
     private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)
     {
-        int tileIndex = int.Parse(tileType);
-        TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
+        TileScript newTile;
+        if (tileType == "n"){
 
-        newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map);
+            newTile = Instantiate(invisibleTile).GetComponent<TileScript>();
+            newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map, true);
+        
+        } else {
+            int tileIndex = int.Parse(tileType);
+            newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
+            newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map, false);
+        }
+        
     }
 
     private string[] ReadLevelText()
     {
-        string data = bindData.text.Replace(Environment.NewLine, string.Empty);
+        string data = mapData.text.Replace(Environment.NewLine, string.Empty);
+
         return data.Split('-');
     }
 

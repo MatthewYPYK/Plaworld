@@ -13,11 +13,11 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private int balance;
-
+    [SerializeField] private StoryBase storyScript;
     private int wave = 0;
     public int Wave => wave; // wave getter
 
-    private int lives;
+    [SerializeField] private int lives = 10;
 
     private bool gameOver = false;
     private bool sellMode = false;
@@ -85,15 +85,19 @@ public class GameManager : Singleton<GameManager>
         {
             this.lives = value;
 
+            UIUpdater.Instance.UpdateLives(lives);
+
             if (lives <= 0)
             {
                 this.lives = 0;
                 GameOver();
             }
-
-            // livesTxt.text = lives.ToString();
-
         }
+    }
+    
+    public bool IsDialogueActive(){
+        if (storyScript is null) return false;
+        return storyScript.IsDialogueActive();
     }
 
     private void Awake()
@@ -103,9 +107,9 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-
-        Lives = 10;
-
+        Balance = balance;
+        Lives = lives;
+        SetTimeScale(1);
     }
 
     // Update is called once per frame
@@ -119,6 +123,7 @@ public class GameManager : Singleton<GameManager>
     public void SetTimeScale(int newTimeScale){
         if (newTimeScale > 100) newTimeScale = 100;
         if (newTimeScale < 0) newTimeScale = 0;
+        if (IsDialogueActive()) newTimeScale = 0;
         Time.timeScale = newTimeScale;
     }
 
@@ -397,4 +402,5 @@ public class GameManager : Singleton<GameManager>
             enemy.UpdatePath();
         }
     }
+    public void UpdateStory(int step) => storyScript.CallAction(step);
 }

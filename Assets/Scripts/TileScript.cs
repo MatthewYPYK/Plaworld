@@ -54,7 +54,7 @@ public class TileScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Setup(Point gridPos, Vector3 worldPos, Transform parent)
+    public void Setup(Point gridPos, Vector3 worldPos, Transform parent, bool isInvisible = false)
     {
         IsEmpty = true;
         walkAble = true;
@@ -62,6 +62,10 @@ public class TileScript : MonoBehaviour
         transform.position = worldPos;
         transform.SetParent(parent);
         LevelManager.Instance.Tiles.Add(gridPos, this);
+        if ( isInvisible ) {
+            IsEmpty = false;
+            walkAble = false;
+        }
     }
 
     private void OnMouseOver()
@@ -144,7 +148,7 @@ public class TileScript : MonoBehaviour
 
     }
 
-    private void ColorTile(Color newColor)
+    public void ColorTile(Color newColor)
     {
         spriteRenderer.color = newColor;
     }

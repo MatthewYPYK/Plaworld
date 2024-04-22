@@ -134,7 +134,6 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
 
             GameManager.Instance.Lives--;
-            UIUpdater.Instance.UpdateLives(GameManager.Instance.Lives);
         }
     }
 
