@@ -199,7 +199,7 @@ public class GameManager : Singleton<GameManager>
         int waveValue = 0;
         int enemyIndex = 0;
 
-        while (waveValue < wave)
+        while (waveValue < wave*2)
         {
             if (wave < 3)
             {
@@ -253,7 +253,7 @@ public class GameManager : Singleton<GameManager>
                         break;
                 }
             }
-            else
+            else if (wave < 9)
             {
                 enemyIndex = Random.Range(0, 4);
                 switch (enemyIndex)
@@ -289,6 +289,103 @@ public class GameManager : Singleton<GameManager>
                         }
                         break;
                 }
+            } else if (wave < 15){
+                enemyIndex = Random.Range(0, 5);
+                switch (enemyIndex)
+                {
+                    case 0:
+                        waveValue++;
+                        break;
+                    case 1:
+                        waveValue += 3;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 3;
+                            waveValue++;
+                        }
+                        break;
+                    case 2:
+                        waveValue += 5;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 5;
+                            waveValue++;
+                        }
+                        break;
+                    case 3:
+                        waveValue += 5;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 5;
+                            waveValue++;
+                        }
+                        break;
+                    case 4:
+                        waveValue += 3;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 3;
+                            waveValue++;
+                        }
+                        break;
+                }
+            } else {
+                enemyIndex = Random.Range(0, 6);
+                switch (enemyIndex)
+                {
+                    case 0:
+                        waveValue++;
+                        break;
+                    case 1:
+                        waveValue += 3;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 3;
+                            waveValue++;
+                        }
+                        break;
+                    case 2:
+                        waveValue += 5;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 5;
+                            waveValue++;
+                        }
+                        break;
+                    case 3:
+                        waveValue += 5;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 5;
+                            waveValue++;
+                        }
+                        break;
+                    case 4:
+                        waveValue += 3;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 3;
+                            waveValue++;
+                        }
+                        break;
+                    case 5:
+                        waveValue += 15;
+                        if (waveValue > wave)
+                        {
+                            enemyIndex = 0;
+                            waveValue -= 15;
+                            waveValue++;
+                        }
+                        break;
+                }
             }
 
             string type = string.Empty;
@@ -306,6 +403,12 @@ public class GameManager : Singleton<GameManager>
                     break;
                 case 3:
                     type = "AirShip";
+                    break;
+                case 4:
+                    type = "Wizard";
+                    break;
+                case 5:
+                    type = "Cat";
                     break;
             }
 
@@ -434,19 +537,8 @@ public class GameManager : Singleton<GameManager>
     
     public void SoldierSkill(Point currentPos)
     {
-        List<Point> possibleFish = new();
         // Debug.Log("shoot some fish");
-        for (int dx = -1; dx <= 1; dx++)
-        {
-            for (int dy = -1; dy <= 1; dy++)
-            {
-                Point neighbourPos = new(currentPos.X - dx, currentPos.Y - dy);
-                if (LevelManager.Instance.InBounds(neighbourPos) && !LevelManager.Instance.Tiles[neighbourPos].WalkAble)
-                {
-                    possibleFish.Add(neighbourPos);
-                }
-            }
-        }
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
         if (possibleFish.Count != 0)
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
