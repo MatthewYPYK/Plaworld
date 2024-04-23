@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8619594112312232803}
   - component: {fileID: 9134949959376853937}
-  - component: {fileID: -3797385150575531163}
+  - component: {fileID: 203272056277087466}
   - component: {fileID: 8321283012952299709}
   m_Layer: 0
   m_Name: Bubble
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3797385150575531163
+--- !u!114 &203272056277087466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,9 +95,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1047260143022203445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1f8dfec4ecf65b43baaff3914a4d28f, type: 3}
+  m_Script: {fileID: 11500000, guid: d0d6639bfd3bcdb40b0232b062305db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missRate: 0.4
 --- !u!61 &8321283012952299709
 BoxCollider2D:
   m_ObjectHideFlags: 0

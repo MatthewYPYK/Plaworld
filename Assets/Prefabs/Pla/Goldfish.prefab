@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5509826910763519877}
   - component: {fileID: 7415589793299896422}
   m_Layer: 2
-  m_Name: Goldfishidle1
+  m_Name: Goldfish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
