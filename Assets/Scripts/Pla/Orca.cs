@@ -13,6 +13,7 @@ public class Orca : Shark
             if (target.gameObject == other.gameObject)
             {
                 target.TakeDamage(damage);
+                AudioManager.instance.Play("Eat");
             }
         }
     }

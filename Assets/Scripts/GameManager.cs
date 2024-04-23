@@ -540,6 +540,7 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            AudioManager.instance.Play("Bomb");
         }
     }
 
@@ -550,6 +551,7 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].TransformStone();
+            AudioManager.instance.Play("Magic");
         }
     }
 
@@ -560,6 +562,7 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            AudioManager.instance.Play("Eat");
         }
     }
 
@@ -571,6 +574,7 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            AudioManager.instance.Play("Shoot");
         }
     }
     public void UpdateEnemiesPath()
@@ -590,6 +594,8 @@ public class GameManager : Singleton<GameManager>
         {
             //int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[i]].RefreshTile();
+            AudioManager.instance.Play("Bomb");
+
         }
 
     }
