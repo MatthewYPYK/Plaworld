@@ -930,7 +930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
   balance: 500
-  storyScript: {fileID: 0}
+  storyScript: {fileID: 1076877760}
   lives: 10
   sellMultiplier: 0.6
   waveBtn: {fileID: 721804326}
@@ -2394,7 +2394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f7a7d17bba78842a807120b2b5b988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapData: {fileID: 4900000, guid: 6eb5ad404c8ae7c4796e253086519e61, type: 3}
+  mapData: {fileID: 4900000, guid: 013f8e202b4583f438254030e3cfca93, type: 3}
   tilePrefabs:
   - {fileID: 4148433066773952399, guid: 735d816451b71de4192155b090144bbe, type: 3}
   - {fileID: 4148433066773952399, guid: 649aca88651714a4c87c7bae52921f5a, type: 3}
@@ -2405,10 +2405,10 @@ MonoBehaviour:
   cameraMovement: {fileID: 519420033}
   greenSpawn:
     X: 0
-    Y: 4
+    Y: 8
   coral:
-    X: 15
-    Y: 4
+    X: 30
+    Y: 8
   greenPortalPrefab: {fileID: 6384036394462969762, guid: 7914755e2762195498aa36d1a282273a, type: 3}
   coralPrefab: {fileID: 3257858210248692174, guid: acd2085b7277e344688fb284c739be93, type: 3}
   map: {fileID: 1097227803}
@@ -2442,7 +2442,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 761229464}
-  - component: {fileID: 761229465}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -2463,8 +2462,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1787392666}
-  - {fileID: 1010892183}
   - {fileID: 2066192066}
+  - {fileID: 1010892183}
   - {fileID: 1815423901}
   m_Father: {fileID: 633654286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2473,20 +2472,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &761229465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761229463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8f3ac1f1e0eff440b40b722ca6b1d0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 761229463}
-  dialogueText: {fileID: 2037141742}
 --- !u!1 &778829079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2950,7 +2935,7 @@ GameObject:
   - component: {fileID: 1010892185}
   - component: {fileID: 1010892184}
   m_Layer: 5
-  m_Name: TextBackground
+  m_Name: DialogueBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3147,6 +3132,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066488871}
   m_CullTransparentMesh: 1
+--- !u!1 &1076877759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1076877761}
+  - component: {fileID: 1076877760}
+  m_Layer: 0
+  m_Name: Story
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1076877760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076877759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32801941a545ad64e9c8d2c75278ef2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueBox: {fileID: 761229463}
+  backGroundImage: {fileID: 1787392667}
+  nameText: {fileID: 1243846546}
+  dialogueText: {fileID: 2037141742}
+  characterImage: {fileID: 1815423902}
+  nextSceneId: 0
+--- !u!4 &1076877761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076877759}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7899538, y: 2.1218762, z: 688.64136}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1089396282
 GameObject:
   m_ObjectHideFlags: 0
@@ -3788,7 +3823,7 @@ GameObject:
   - component: {fileID: 1243846547}
   - component: {fileID: 1243846546}
   m_Layer: 5
-  m_Name: DialogueText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6982,14 +7017,15 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
+  - {fileID: 431957890}
   - {fileID: 734975524}
+  - {fileID: 519420032}
   - {fileID: 633654286}
   - {fileID: 1097227803}
   - {fileID: 1292329756}
   - {fileID: 1095447382}
-  - {fileID: 431957890}
   - {fileID: 892588235}
   - {fileID: 238154061}
   - {fileID: 1729998989}
   - {fileID: 2144388715}
+  - {fileID: 1076877761}

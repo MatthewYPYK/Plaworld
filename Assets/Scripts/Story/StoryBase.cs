@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class StoryBase : MonoBehaviour
@@ -11,7 +12,7 @@ public class StoryBase : MonoBehaviour
     [SerializeField] protected Image characterImage;
     protected bool dialogueStatus = false;
     public bool IsDialogueActive() => dialogueStatus;
-
+    [SerializeField] private int nextSceneId = 0;
     protected int step;
 
     void Start() {
@@ -51,6 +52,9 @@ public class StoryBase : MonoBehaviour
             GameManager.Instance.SetTimeScale(1);
         }
     }
-        
+
+    protected void LoadNextScene()   {
+        SceneManager.LoadScene(nextSceneId);
+    }
 
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Level1Story : StoryBase
 {
@@ -12,6 +11,7 @@ public class Level1Story : StoryBase
         if (step == 0) {
             dialogueText.text = "Help! Some oil company just hired an army to attack us!\n\nListen to me now! I'll tell you everything you need to know!\nClick anywhere on this screen to continue.";
             startButton.SetActive(false);
+            SetDialogueActive(true);
         }
         else if (step == 1) {
             dialogueText.text = "I'll guide you step by step. Start by placing a goldfish in the highlighted tile. \nClick on the goldfish on the right panel, then click again inside the highlighted tile to place it.";
@@ -31,9 +31,10 @@ public class Level1Story : StoryBase
             SetDialogueActive(true);
         }
         else if (step == 6) {
-            dialogueText.text = "But what's done is done. \nNow, place 2 more goldfish in the highlighted area.";
+            dialogueText.text = "But what's done is done. \nNow, place 3 more goldfish in the highlighted area.";
             LevelManager.Instance.Tiles[new Point(1, 0)].ColorTile(greenColor);
             LevelManager.Instance.Tiles[new Point(1, 2)].ColorTile(greenColor);
+            LevelManager.Instance.Tiles[new Point(3, 3)].ColorTile(greenColor);
             sellButton.SetActive(true);
         }
         else if (step == 7) SetDialogueActive(false);
@@ -62,7 +63,7 @@ public class Level1Story : StoryBase
             SetDialogueActive(true);
         }
         else if (step == 15) {
-            SceneManager.LoadScene(0);
+            LoadNextScene();
         }
         else SetDialogueActive(false);
         step += 1;
@@ -75,7 +76,7 @@ public class Level1Story : StoryBase
             return GameManager.Instance.Wave == 1 && !GameManager.Instance.WaveActive;
         }
         if (step == 8){
-            Point[] points = { new Point(1, 0), new Point(1, 1), new Point(1, 2) };
+            Point[] points = { new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(3, 3) };
             foreach ( var point in points){
                 if (LevelManager.Instance.Tiles[point].IsEmpty) return false;
             }

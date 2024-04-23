@@ -181,7 +181,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void HandleTogglePause() {
+    public void HandleTogglePause() 
+    {
         this.paused = !this.paused;
 
         Time.timeScale = paused ? 0 : 1;
