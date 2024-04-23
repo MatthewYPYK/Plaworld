@@ -40,4 +40,8 @@ public class PlaManager : Singleton<PlaManager>
     {
         plaPanel.gameObject.SetActive(!plaPanel.gameObject.activeSelf);
     }
+
+    public PlaBtn getStoneBtn(){
+        return plaBtnsList[3];
+    }
 }
