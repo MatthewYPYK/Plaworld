@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  attackCooldown: 0.1
+  attackCooldown: 0.75
 --- !u!61 &8474591811729242721
 BoxCollider2D:
   m_ObjectHideFlags: 0
