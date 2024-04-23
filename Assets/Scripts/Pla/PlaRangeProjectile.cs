@@ -9,6 +9,7 @@ public class PlaRangeProjectile : PlaRange
     private string projectileType;
     private Enemy target;
 
+    private Animator myAnimator;
 
     public Enemy Target
     {
@@ -38,7 +39,6 @@ public class PlaRangeProjectile : PlaRange
     [SerializeField]
     private float projectileSpeed;
 
-
     public float ProjectileSpeed
     {
         get
@@ -49,6 +49,11 @@ public class PlaRangeProjectile : PlaRange
 
     public int Damage { get => damage; set => damage = value; }
     // // Update is called once per frame
+
+    void Awake ()
+    {
+        myAnimator = transform.parent.GetComponent<Animator>();
+    }
 
     public override void Attack()
     {
@@ -70,6 +75,7 @@ public class PlaRangeProjectile : PlaRange
         {
             if (canAttack)
             {
+                myAnimator.SetTrigger("Attack");
                 Shoot();
 
                 canAttack = false;
