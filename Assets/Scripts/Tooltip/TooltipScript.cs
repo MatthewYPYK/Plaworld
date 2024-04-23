@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TooltipScript : MonoBehaviour
 {
     [SerializeField]
     private Camera uiCamera;
-    private Text tooltipText;
+    private TextMeshProUGUI tooltipText;
     private RectTransform backgroundRectTransform;
 
     private void Awake()
     {
-        backgroundRectTransform = transform.Find("background").GetComponent<RectTransform>();
-        tooltipText = transform.Find("text").GetComponent<Text>();
+        backgroundRectTransform = transform.Find("Background").GetComponent<RectTransform>();
+        tooltipText = transform.Find("TooltipText").GetComponent<TextMeshProUGUI>();
 
         // ShowTooltip("hello there");
     }
@@ -26,6 +27,7 @@ public class TooltipScript : MonoBehaviour
     }
     public void ShowTooltip(string tooltipString)
     {
+        Update();
         gameObject.SetActive(true); 
 
         tooltipText.text = tooltipString;
@@ -33,7 +35,6 @@ public class TooltipScript : MonoBehaviour
         Vector2 backgroundSize = new Vector2(tooltipText.preferredWidth + textPaddingSize * 2f, tooltipText.preferredHeight + textPaddingSize * 2f);
         backgroundRectTransform.sizeDelta = backgroundSize;
 
-        Update();
     }
 
     public void HideTooltip()
