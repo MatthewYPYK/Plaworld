@@ -53,6 +53,11 @@ public class StoryBase : MonoBehaviour
         }
     }
 
+    protected void SetDialogueText(string text){
+        dialogueText.text = text;
+        SetDialogueActive(true);
+    }
+
     protected void LoadNextScene()   {
         SceneManager.LoadScene(nextSceneId);
     }
