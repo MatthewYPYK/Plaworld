@@ -20,6 +20,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int lives = 10;
 
     private bool gameOver = false;
+
+    private bool paused = false;
     private bool sellMode = false;
     public bool SellMode
     {
@@ -45,6 +47,9 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private GameObject gameOverMenu;
+
+    [SerializeField]
+    private GameObject pausedMenu;
 
     // TODO : this is a list of active enemies
     private List<Enemy> activeEnemies = new List<Enemy>();
@@ -169,8 +174,18 @@ public class GameManager : Singleton<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (ClickedBtn == null && !gameOver) {
+                HandleTogglePause();
+            }
             Hover.Instance.Deactivate();
         }
+    }
+
+    public void HandleTogglePause() {
+        this.paused = !this.paused;
+
+        Time.timeScale = paused ? 0 : 1;
+        pausedMenu.SetActive(paused);
     }
 
     public void StartWave()
