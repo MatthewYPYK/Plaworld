@@ -97,6 +97,7 @@ public class PlaBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (isHovering && plaInfo != null)
         {
+            Debug.Log("Hovering");
             hoverTime -= Time.deltaTime;
             if (hoverTime <= 0)
             {
