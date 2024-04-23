@@ -191,7 +191,7 @@ public class GameManager : Singleton<GameManager>
     public void StartWave()
     {
         wave++;
-        WaveReward = wave * 5; // default WaveReward
+        WaveReward = wave * 10; // default WaveReward
         
         if(WaveManager.Instance.IsWaveDefined(wave))
             WaveManager.Instance.StartWave(wave);
@@ -231,12 +231,12 @@ public class GameManager : Singleton<GameManager>
                         break;
                     case 1:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                 }
             }
@@ -250,21 +250,21 @@ public class GameManager : Singleton<GameManager>
                         break;
                     case 1:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                     case 2:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                 }
             }
@@ -278,30 +278,30 @@ public class GameManager : Singleton<GameManager>
                         break;
                     case 1:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                     case 2:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                     case 3:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                 }
             } else if (wave < 15){
@@ -313,39 +313,39 @@ public class GameManager : Singleton<GameManager>
                         break;
                     case 1:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                     case 2:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                     case 3:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                     case 4:
-                        waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // waveValue += 3;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                 }
             } else {
@@ -357,39 +357,39 @@ public class GameManager : Singleton<GameManager>
                         break;
                     case 1:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                     case 2:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                     case 3:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                     case 4:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                     case 5:
                         waveValue += 15;
