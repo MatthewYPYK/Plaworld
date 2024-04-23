@@ -549,6 +549,7 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            AudioManager.instance.Play("Eat");
         }
     }
     
