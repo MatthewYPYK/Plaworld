@@ -35,13 +35,21 @@ public class PlaManager : Singleton<PlaManager>
             }
         }
     }
-    
+
     void TogglePlaPanel()
     {
         plaPanel.gameObject.SetActive(!plaPanel.gameObject.activeSelf);
     }
 
-    public PlaBtn getStoneBtn(){
-        return plaBtnsList[3];
+    public PlaBtn getStoneBtn()
+    {
+        for (int i = 0; i < plaBtnsList.Count; i++)
+        {
+            if (plaBtnsList[i].name == "Stone")
+            {
+                return plaBtnsList[i];
+            }
+        }
+        return null;
     }
 }

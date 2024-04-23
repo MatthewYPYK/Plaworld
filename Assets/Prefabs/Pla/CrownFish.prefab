@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileType: Crown
-  damage: 20
-  attackCooldown: 2
+  damage: 15
+  attackCooldown: 1.5
   projectileSpawnOffsetX: 1
   projectileSpawnOffsetY: 0
   projectileSpeed: 5

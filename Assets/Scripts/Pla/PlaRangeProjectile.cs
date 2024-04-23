@@ -50,7 +50,7 @@ public class PlaRangeProjectile : PlaRange
     public int Damage { get => damage; set => damage = value; }
     // // Update is called once per frame
 
-    void Awake ()
+    void Awake()
     {
         myAnimator = transform.parent.GetComponent<Animator>();
     }
@@ -75,6 +75,7 @@ public class PlaRangeProjectile : PlaRange
         {
             if (canAttack)
             {
+
                 myAnimator.SetTrigger("Attack");
                 Shoot();
 

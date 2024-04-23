@@ -35,6 +35,7 @@ public class CrownProjectile : Projectile
                     coinsGained = Random.Range(coinsGainedMin, coinsGainedMax + 1);
                 }
                 GameManager.Instance.Balance += coinsGained;
+                GameManager.Instance.activeReward += coinsGained;
                 target.TakeDamage(parent.Damage);
                 GameManager.Instance.Pool.ReleaseObject(gameObject);
             }
