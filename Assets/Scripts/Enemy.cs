@@ -179,6 +179,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
 
             GameManager.Instance.Lives--;
+            AudioManager.instance.Play("Hit");
             if (type == "Cat")
             {
                 GameManager.Instance.Lives = 0;
