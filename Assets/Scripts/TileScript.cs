@@ -7,12 +7,21 @@ using UnityEngine.EventSystems;
 public class TileScript : MonoBehaviour
 {
     public Point GridPosition { get; private set; }
-    public bool WalkAble { get; set; }
+    private bool walkAble;
+    public bool WalkAble { 
+        get => walkAble;
+        set {
+            this.walkAble = value;
+            UpdatePath();
+        } 
+    }
+    protected void UpdatePath() => GameManager.Instance.UpdateEnemiesPath();
 
     public bool IsEmpty { get; private set; }
 
     private GameObject pla = null;
     private int plaPrice = 0;
+
     private PlaRange myPlaRange;
     private string plaType = null;
 
@@ -48,14 +57,18 @@ public class TileScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Setup(Point gridPos, Vector3 worldPos, Transform parent)
+    public void Setup(Point gridPos, Vector3 worldPos, Transform parent, bool isInvisible = false)
     {
         IsEmpty = true;
-        WalkAble = true;
+        walkAble = true;
         this.GridPosition = gridPos;
         transform.position = worldPos;
         transform.SetParent(parent);
         LevelManager.Instance.Tiles.Add(gridPos, this);
+        if ( isInvisible ) {
+            IsEmpty = false;
+            walkAble = false;
+        }
     }
 
     private void OnMouseOver()
@@ -82,7 +95,6 @@ public class TileScript : MonoBehaviour
                 else if (Input.GetMouseButtonDown(0))
                 {
                     PlacePla();
-                    // TODO : set new path for enemy
                 }
             }
             else if (GameManager.Instance.ClickedBtn == null
@@ -98,7 +110,6 @@ public class TileScript : MonoBehaviour
                     GameManager.Instance.Balance += (int)Math.Floor(plaPrice * GameManager.Instance.SellMultiplier);
                     GameManager.Instance.SellButtonClick();
                     RefreshTile();
-                    LevelManager.Instance.GeneratePath();
                 }
             }
         }
@@ -137,9 +148,10 @@ public class TileScript : MonoBehaviour
 
         //Debug.Log("TileScript: PlacePla: pla: " + pla);
         //Debug.Log("TileScript: PlacePla: myPla: " + myPla);
+
     }
 
-    private void ColorTile(Color newColor)
+    public void ColorTile(Color newColor)
     {
         spriteRenderer.color = newColor;
     }

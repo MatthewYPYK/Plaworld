@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    [SerializeField] private TextAsset mapData;
+
     [SerializeField]
     private GameObject[] tilePrefabs;
 
@@ -14,7 +16,16 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     public CameraMovement cameraMovement;
 
-    private Point greenSpawn, coral;
+    [SerializeField] private Point greenSpawn, coral;
+    
+    public Point GreenSpawn { 
+        get => greenSpawn;
+        set{
+            greenSpawn = value;
+            GreenPortal.transform.position = Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition;
+        }
+     }
+    public Point Coral { get => coral; }
 
     [SerializeField]
     private GameObject greenPortalPrefab;
@@ -29,19 +40,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private Point mapSize;
 
-    private Stack<Node> path;
-
-    public Stack<Node> Path
-    {
-        get
-        {
-            if (path == null)
-            {
-                GeneratePath();
-            }
-            return new(new Stack<Node>(path));
-        }
-    }
+    private Vector3 worldStart = new Vector3(0,0,0);
 
     private Stack<Node> defaultPath;
 
@@ -67,6 +66,7 @@ public class LevelManager : Singleton<LevelManager>
     void Start()
     {
         createLevel();
+        AStar.CreateNodes();
         defaultPath = AStar.GetPath(greenSpawn, coral);
     }
 
@@ -75,7 +75,11 @@ public class LevelManager : Singleton<LevelManager>
     {
 
     }
-
+    public Point WorldPosToGridPos(Vector3 worldPos){
+        var x = (worldPos.x - worldStart.x) / TileSize;
+        var y = (worldStart.y - worldPos.y) / TileSize;
+        return new Point((int)x, (int)y);
+    }
     private void createLevel()
     {
         Tiles = new Dictionary<Point, TileScript>();
@@ -84,9 +88,6 @@ public class LevelManager : Singleton<LevelManager>
         char[] rowData = null;
 
         mapSize = new Point(mapData[0].ToCharArray().Length, mapData.Length);
-
-        Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
-
 
         for (int y = 0; y < mapData.Length; y++)
         {
@@ -102,34 +103,35 @@ public class LevelManager : Singleton<LevelManager>
 
         SpawnPortals();
     }
-
+    [SerializeField] private GameObject invisibleTile;
     private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)
     {
-        int tileIndex = int.Parse(tileType);
-        TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
+        TileScript newTile;
+        if (tileType == "n"){
 
-        newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map);
+            newTile = Instantiate(invisibleTile).GetComponent<TileScript>();
+            newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map, true);
+        
+        } else {
+            int tileIndex = int.Parse(tileType);
+            newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
+            newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map, false);
+        }
+        
     }
-
-
 
     private string[] ReadLevelText()
     {
-        TextAsset bindData = Resources.Load("Level") as TextAsset;
-
-        string data = bindData.text.Replace(Environment.NewLine, string.Empty);
+        string data = mapData.text.Replace(Environment.NewLine, string.Empty);
 
         return data.Split('-');
     }
 
     private void SpawnPortals()
     {
-        greenSpawn = new Point(1, 3);
         GameObject tmp = (GameObject)Instantiate(greenPortalPrefab, Tiles[greenSpawn].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
         GreenPortal = tmp.GetComponent<Portal>();
         GreenPortal.name = "GreenPortal";
-
-        coral = new Point(10, 1);
         Instantiate(coralPrefab, Tiles[coral].GetComponent<TileScript>().WorldPosition, Quaternion.identity);
     }
 
@@ -138,24 +140,11 @@ public class LevelManager : Singleton<LevelManager>
         return a.X >= 0 && a.Y >= 0 && a.X < mapSize.X && a.Y < mapSize.Y;
     }
 
-    public void GeneratePath()
-    {
-        path = AStar.GetPath(greenSpawn, coral);
-    }
-
     public bool CanPlacePla(Point target)
     {
         return AStar.CanPlacePla(greenSpawn, coral, target);
     }
 
-    public Point GreenSpawn
-    {
-        get
-        {
-            return greenSpawn;
-        }
-    }
-    
     public Bounds BoundingBox{
         get{
             Vector3 bottomRight = Tiles[new Point(mapSize.X - 1, mapSize.Y - 1)].transform.position;

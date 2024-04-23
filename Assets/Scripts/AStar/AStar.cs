@@ -8,7 +8,7 @@ public class AStar
 {
     private static Dictionary<Point, Node> nodes;
 
-    private static void CreateNodes()
+    public static void CreateNodes()
     {
         nodes = new Dictionary<Point, Node>();
         foreach (TileScript tile in LevelManager.Instance.Tiles.Values)

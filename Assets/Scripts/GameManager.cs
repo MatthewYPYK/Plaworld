@@ -13,11 +13,11 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private int balance;
-
+    [SerializeField] private StoryBase storyScript;
     private int wave = 0;
     public int Wave => wave; // wave getter
 
-    private int lives;
+    [SerializeField] private int lives = 10;
 
     private bool gameOver = false;
     private bool sellMode = false;
@@ -85,15 +85,19 @@ public class GameManager : Singleton<GameManager>
         {
             this.lives = value;
 
+            UIUpdater.Instance.UpdateLives(lives);
+
             if (lives <= 0)
             {
                 this.lives = 0;
                 GameOver();
             }
-
-            // livesTxt.text = lives.ToString();
-
         }
+    }
+    
+    public bool IsDialogueActive(){
+        if (storyScript is null) return false;
+        return storyScript.IsDialogueActive();
     }
 
     private void Awake()
@@ -103,9 +107,9 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-
-        Lives = 10;
-
+        Balance = balance;
+        Lives = lives;
+        SetTimeScale(1);
     }
 
     // Update is called once per frame
@@ -114,6 +118,13 @@ public class GameManager : Singleton<GameManager>
         HandleEscape();
         if (Input.GetKeyDown(KeyCode.Equals) && !gameOver) Time.timeScale += 1;
         if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale > 0) Time.timeScale -= 1;
+    }
+
+    public void SetTimeScale(int newTimeScale){
+        if (newTimeScale > 100) newTimeScale = 100;
+        if (newTimeScale < 0) newTimeScale = 0;
+        if (IsDialogueActive()) newTimeScale = 0;
+        Time.timeScale = newTimeScale;
     }
 
     public void PickPla(PlaBtn plaBtn)
@@ -167,7 +178,6 @@ public class GameManager : Singleton<GameManager>
         wave++;
         WaveReward = wave * 5; // default WaveReward
         
-        LevelManager.Instance.GeneratePath();
         if(WaveManager.Instance.IsWaveDefined(wave))
             WaveManager.Instance.StartWave(wave);
         else
@@ -467,7 +477,7 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < total_number; i++)
         {
             Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
-            enemy.Spawn("Soldier", position, new(new Stack<Node>(initialPath)));
+            enemy.Spawn("Soldier", position);
             activeEnemies.Add(enemy);
         }
     }
@@ -502,7 +512,6 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
-            LevelManager.Instance.GeneratePath();
         }
     }
 
@@ -523,7 +532,6 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
-            LevelManager.Instance.GeneratePath();
         }
     }
     
@@ -546,9 +554,14 @@ public class GameManager : Singleton<GameManager>
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
-            LevelManager.Instance.GeneratePath();
         }
     }
+    public void UpdateEnemiesPath(){
+        foreach(var enemy in activeEnemies){
+            enemy.UpdatePath();
+        }
+    }
+    public void UpdateStory(int step) => storyScript.CallAction(step);
 
     public void SelfDetonate(Point currentPos){
         // Debug.Log("shoot some fish");
@@ -557,7 +570,6 @@ public class GameManager : Singleton<GameManager>
         {
             //int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[i]].RefreshTile();
-            LevelManager.Instance.GeneratePath();
         }
         
     }
