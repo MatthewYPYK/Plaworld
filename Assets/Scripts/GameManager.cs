@@ -413,6 +413,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void CatSkill(Point currentPos)
+    {
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].TeleportPla();
+        }
+    }
+    
     public void SoldierSkill(Point currentPos)
     {
         List<Point> possibleFish = new();

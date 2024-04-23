@@ -178,4 +178,10 @@ public class TileScript : MonoBehaviour
 
         plaPrice = stoneBtn.Price;
     }
+
+    public void TeleportPla()
+    {
+        // If wanted to implement
+        return;
+    }
 }

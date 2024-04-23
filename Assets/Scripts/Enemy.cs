@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Stat health;
 
+    public Point CurrentPostion { get; set; }
     public Point GridPosition { get; set; }
 
     private Vector3 destination;
@@ -51,6 +52,9 @@ public class Enemy : MonoBehaviour
                     case "Wizard":
                         GameManager.Instance.WizardSkill(GridPosition);
                         break;
+                    case "Cat":
+                        GameManager.Instance.CatSkill(GridPosition);
+                        break;
                     case "Soldier":
                         soldierCounter += Time.deltaTime;
                         if (soldierCounter >= maxSoldierCounter)
@@ -78,6 +82,9 @@ public class Enemy : MonoBehaviour
                 maxCounter = 8.0f;
                 break;
             case "Wizard":
+                maxCounter = 5.0f;
+                break;
+            case "Cat":
                 maxCounter = 5.0f;
                 break;
             default:
@@ -122,6 +129,13 @@ public class Enemy : MonoBehaviour
     {
         if (IsActive)
         {
+            // TODO : check if the wanted gridposition is still walkable
+            if (!AStar.TravelAble(CurrentPostion, GridPosition) && !(this.type == "AirShip"))
+            {
+                GridPosition = new(CurrentPostion.X, CurrentPostion.Y);
+                RefreshPath();
+                return;
+            }
             transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             if (transform.position == destination)
             {
@@ -130,6 +144,7 @@ public class Enemy : MonoBehaviour
                     Debug.Log("(" + GridPosition.X + ", " + GridPosition.Y + ") -> (" + path.Peek().GridPosition.X + ", " + path.Peek().GridPosition.Y + ")");
                     if (AStar.TravelAble(GridPosition, path.Peek().GridPosition) || this.type == "AirShip")
                     {
+                        CurrentPostion = new(GridPosition.X, GridPosition.Y);
                         GridPosition = path.Peek().GridPosition;
                         destination = path.Pop().WorldPosition;
                     }
@@ -152,6 +167,7 @@ public class Enemy : MonoBehaviour
             Debug.Log(GridPosition.X + ", " + GridPosition.Y);
             if (AStar.TravelAble(GridPosition, path.Peek().GridPosition) || this.type == "AirShip") 
             {
+                CurrentPostion = new(GridPosition.X, GridPosition.Y);
                 GridPosition = path.Peek().GridPosition;
                 destination = path.Pop().WorldPosition;
             }
