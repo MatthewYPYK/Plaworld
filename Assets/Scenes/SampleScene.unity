@@ -735,6 +735,13 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Cashier
+    clip: {fileID: 8300000, guid: 2737f93cbe4cb0d4db85d34868e6265b, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &281496208
 Transform:
   m_ObjectHideFlags: 0
