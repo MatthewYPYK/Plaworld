@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Stat health;
     public bool FixPath { get; protected set; }
+    private bool SurroundedFlag = false;
+    [SerializeField] private bool SelfDetonatable = true;
     public Point CurrentPostion { get; set; }
     public Point GridPosition { get; set; }
 
@@ -132,30 +134,17 @@ public class Enemy : MonoBehaviour
     {
         if (IsActive)
         {
-            // TODO : check if the wanted gridposition is still walkable
-            if (!AStar.TravelAble(CurrentPostion, GridPosition) && !(this.type == "AirShip"))
-            {
-                GridPosition = new(CurrentPostion.X, CurrentPostion.Y);
-                RefreshPath();
-                return;
-            }
             transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+            if (SurroundedFlag && !AStar.TravelAble(GridPosition, path.Peek().GridPosition)){
+                SelfDetonate(SelfDetonatable);
+            }
             if (transform.position == destination)
             {
                 if (path != null && path.Count > 0)
                 {
-                    Debug.Log("(" + GridPosition.X + ", " + GridPosition.Y + ") -> (" + path.Peek().GridPosition.X + ", " + path.Peek().GridPosition.Y + ")");
-                    if (AStar.TravelAble(GridPosition, path.Peek().GridPosition) || this.type == "AirShip")
-                    {
-                        CurrentPostion = new(GridPosition.X, GridPosition.Y);
-                        GridPosition = path.Peek().GridPosition;
-                        destination = path.Pop().WorldPosition;
-                    }
-                    else
-                    {
-                        Debug.Log("Find new path");
-                        RefreshPath();
-                    }
+                    CurrentPostion = new(GridPosition.X, GridPosition.Y);
+                    GridPosition = path.Peek().GridPosition;
+                    destination = path.Pop().WorldPosition;
                 }
             }
         }
@@ -164,47 +153,23 @@ public class Enemy : MonoBehaviour
     private void SetPath(Stack<Node> newPath)
     {
         if (FixPath) return;
-        
+
         if (newPath != null && newPath.Count > 0)
         {
             this.path = newPath;
-            Debug.Log("setPath");
-            Debug.Log(GridPosition.X + ", " + GridPosition.Y);
-            if (AStar.TravelAble(GridPosition, path.Peek().GridPosition) || this.type == "AirShip") 
-            {
-                CurrentPostion = new(GridPosition.X, GridPosition.Y);
-                GridPosition = path.Peek().GridPosition;
-                destination = path.Pop().WorldPosition;
-            }
-            else
-            {
-                Debug.Log("Find new path");
-                RefreshPath();
-            }
+            CurrentPostion = new(GridPosition.X, GridPosition.Y);
+            GridPosition = path.Peek().GridPosition;
+            destination = path.Pop().WorldPosition;
+            SurroundedFlag = false;
         }
+        else SurroundedFlag = true;
     }
 
-    private void RefreshPath()
-    {
-        Point start = GridPosition;
-        while (path.Count != 1)
-        {
-            path.Pop();
-        }
-        Stack<Node> newPath = AStar.GetPath(start, path.Peek().GridPosition);
-        // Debug.Log(newPath.Count);
-        if (newPath.Count != 0)
-        {
-            SetPath(newPath);
-        }
-        else
-        {
-            Debug.Log("Handle Surrounded Enemy");
-            GameManager.Instance.SelfDetonate(GridPosition);
-            StartCoroutine(Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
-        }
+    public void SelfDetonate(bool selfDestruct = true){
+        GameManager.Instance.SelfDetonate(GridPosition);
+        if (selfDestruct) StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
     }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Coral")

@@ -105,6 +105,7 @@ MonoBehaviour:
     bar: {fileID: 6325164883873177139}
     maxVal: 400
     currentVal: 0
+  SelfDetonatable: 0
 --- !u!61 &-8996539336647526217
 BoxCollider2D:
   m_ObjectHideFlags: 0
