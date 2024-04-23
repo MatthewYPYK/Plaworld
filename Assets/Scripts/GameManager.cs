@@ -419,7 +419,8 @@ public class GameManager : Singleton<GameManager>
         if (possibleFish.Count != 0)
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
-            LevelManager.Instance.Tiles[possibleFish[randomIndex]].TeleportPla();
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            LevelManager.Instance.GeneratePath();
         }
     }
     
