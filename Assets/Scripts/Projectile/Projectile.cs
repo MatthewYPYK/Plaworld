@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
 
     protected PlaRangeProjectile parent;
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
 
     }
