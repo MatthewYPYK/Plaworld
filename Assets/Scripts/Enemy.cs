@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
                         if (soldierCounter >= maxSoldierCounter)
                         {
                             soldierCounter = 0.0f;
-                            GameManager.Instance.SoldierSkill(GridPositon);
+                            GameManager.Instance.SoldierSkill(GridPosition);
                         }
                         break;
                     default:
@@ -179,6 +179,8 @@ public class Enemy : MonoBehaviour
         else
         {
             Debug.Log("Handle Surrounded Enemy");
+            GameManager.Instance.SelfDetonate(GridPosition);
+            StartCoroutine(Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
         }
     }
 

@@ -435,4 +435,16 @@ public class GameManager : Singleton<GameManager>
             LevelManager.Instance.GeneratePath();
         }
     }
+
+    public void SelfDetonate(Point currentPos){
+        // Debug.Log("shoot some fish");
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        for (int i = 0; i < possibleFish.Count; i++)
+        {
+            //int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[i]].RefreshTile();
+            LevelManager.Instance.GeneratePath();
+        }
+        
+    }
 }
