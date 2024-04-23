@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6046814775372227095}
   - component: {fileID: 6542794343402074189}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangeMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7114115407133713896}
   - component: {fileID: 337407594666979039}
   - component: {fileID: 4719010227573546734}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Swordfish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 4962078388231045537}
   - component: {fileID: 2306852542748708743}
   - component: {fileID: 8591199805012121508}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7298951387750330480}
   - component: {fileID: 5705370383987502477}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangeSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
