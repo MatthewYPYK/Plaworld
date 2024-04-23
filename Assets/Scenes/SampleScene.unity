@@ -1034,7 +1034,7 @@ PrefabInstance:
     - target: {fileID: 658226513915828222, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 248c2255f70a43b428bb3c45ea52ad8c, type: 3}
+      objectReference: {fileID: 21300000, guid: ab32cc572ba62e84b8f68b1538fa689d, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: price
       value: 75
@@ -1042,7 +1042,7 @@ PrefabInstance:
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 248c2255f70a43b428bb3c45ea52ad8c, type: 3}
+      objectReference: {fileID: 21300000, guid: ab32cc572ba62e84b8f68b1538fa689d, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: hasRange
       value: 1
