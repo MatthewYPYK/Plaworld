@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private string type;
-    
+
     [SerializeField]
     private float speed;
 
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Spawn(string type, Vector3? spawnpoint=null)
+    public void Spawn(string type, Vector3? spawnpoint = null)
     {
         transform.position = spawnpoint ?? LevelManager.Instance.GreenPortal.transform.position;
 
@@ -90,13 +90,15 @@ public class Enemy : MonoBehaviour
             default:
                 break;
         }
-        StartCoroutine(Scale(new Vector3(0.1f,0.1f),new Vector3(1,1), false));
+        StartCoroutine(Scale(new Vector3(0.1f, 0.1f), new Vector3(1, 1), false));
         UpdatePath();
     }
-    public void UpdatePath(){
+    public void UpdatePath()
+    {
         var currentPos = transform.position;
         var gridPos = LevelManager.Instance.WorldPosToGridPos(currentPos);
-        if (type == "AirShip"){
+        if (type == "AirShip")
+        {
             SetPath(LevelManager.Instance.DefaultPath);
             FixPath = true;
         }
@@ -111,17 +113,17 @@ public class Enemy : MonoBehaviour
 
         float progress = 0;
 
-        while (progress <=1)
+        while (progress <= 1)
         {
-            transform.localScale = Vector3.Lerp(from,to,progress);
+            transform.localScale = Vector3.Lerp(from, to, progress);
 
             progress += Time.deltaTime;
 
             yield return null;
         }
 
-        transform.localScale = to; 
-        
+        transform.localScale = to;
+
         IsActive = true;
 
         if (remove) Release();
@@ -133,7 +135,8 @@ public class Enemy : MonoBehaviour
         if (IsActive)
         {
             transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-            if (SurroundedFlag && !AStar.TravelAble(GridPosition, path.Peek().GridPosition)){
+            if (SurroundedFlag && !AStar.TravelAble(GridPosition, path.Peek().GridPosition))
+            {
                 SelfDetonate(SelfDetonatable);
             }
             if (transform.position == destination)
@@ -163,20 +166,21 @@ public class Enemy : MonoBehaviour
         else SurroundedFlag = true;
     }
 
-    public void SelfDetonate(bool selfDestruct = true){
+    public void SelfDetonate(bool selfDestruct = true)
+    {
         GameManager.Instance.SelfDetonate(GridPosition);
         if (selfDestruct) StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Coral")
         {
-            StartCoroutine(Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
+            StartCoroutine(Scale(new Vector3(1, 1), new Vector3(0.1f, 0.1f), true));
 
-            this.type = type;
             GameManager.Instance.Lives--;
-            if (type == "Cat"){
+            if (type == "Cat")
+            {
                 GameManager.Instance.Lives = 0;
             }
             UIUpdater.Instance.UpdateLives(GameManager.Instance.Lives);
