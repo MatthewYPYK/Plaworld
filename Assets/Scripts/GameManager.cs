@@ -155,11 +155,14 @@ public class GameManager : Singleton<GameManager>
 
     public void SellButtonClick()
     {
-        sellMode = !sellMode;
-        UIUpdater.Instance.UpdateSellMode(sellMode);
+        if (!WaveActive){
+            sellMode = !sellMode;
+            UIUpdater.Instance.UpdateSellMode(sellMode);
 
-        selectedPla = null;
-        Hover.Instance.Deactivate();
+            selectedPla = null;
+            Hover.Instance.Deactivate();
+        }
+        
     }
 
     private void HandleEscape()
@@ -376,7 +379,60 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private List<Point> getPossibleFish(Point currentPos, List<string> unselected)
+    {
+        List<Point> possibleFish = new();
+        for (int dx = -1; dx <= 1; dx++)
+        {
+            for (int dy = -1; dy <= 1; dy++)
+            {
+                Point neighbourPos = new(currentPos.X - dx, currentPos.Y - dy);
+                if (LevelManager.Instance.InBounds(neighbourPos))
+                {
+                    TileScript neighbourTile = LevelManager.Instance.Tiles[neighbourPos];
+                    if (!neighbourTile.WalkAble && !unselected.Contains(neighbourTile.PlaType))
+                    {
+                        possibleFish.Add(neighbourPos);
+                    }
+                }
+            }
+        }
+        return possibleFish;
+    }
+
     public void TankSkill(Point currentPos)
+    {
+
+        // Debug.Log("shoot some fish");
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+        }
+    }
+
+    public void WizardSkill(Point currentPos)
+    {
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string> { "Stone" });
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].TransformStone();
+        }
+    }
+
+    public void CatSkill(Point currentPos)
+    {
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+        }
+    }
+    
+    public void SoldierSkill(Point currentPos)
     {
         List<Point> possibleFish = new();
         // Debug.Log("shoot some fish");
@@ -403,4 +459,15 @@ public class GameManager : Singleton<GameManager>
         }
     }
     public void UpdateStory(int step) => storyScript.CallAction(step);
+
+    public void SelfDetonate(Point currentPos){
+        // Debug.Log("shoot some fish");
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        for (int i = 0; i < possibleFish.Count; i++)
+        {
+            //int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[i]].RefreshTile();
+        }
+        
+    }
 }

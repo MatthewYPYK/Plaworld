@@ -23,6 +23,9 @@ public class TileScript : MonoBehaviour
     private int plaPrice = 0;
 
     private PlaRange myPlaRange;
+    private string plaType = null;
+
+    public string PlaType { get => plaType; set => plaType = value; }
 
     private Color32 fullColor = new Color32(255, 118, 118, 255);
 
@@ -92,7 +95,6 @@ public class TileScript : MonoBehaviour
                 else if (Input.GetMouseButtonDown(0))
                 {
                     PlacePla();
-                    // TODO : set new path for enemy
                 }
             }
             else if (GameManager.Instance.ClickedBtn == null
@@ -105,9 +107,9 @@ public class TileScript : MonoBehaviour
                 }
                 if (GameManager.Instance.SellMode)
                 {
-                    RefreshTile();
                     GameManager.Instance.Balance += (int)Math.Floor(plaPrice * GameManager.Instance.SellMultiplier);
                     GameManager.Instance.SellButtonClick();
+                    RefreshTile();
                 }
             }
         }
@@ -123,6 +125,7 @@ public class TileScript : MonoBehaviour
 
 
         PlaBtn plaBtn = GameManager.Instance.ClickedBtn;
+        PlaType = plaBtn.TowerName;
         pla = (GameObject)Instantiate(plaBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
@@ -165,5 +168,32 @@ public class TileScript : MonoBehaviour
             pla = null;
         }
         myPlaRange = null;
+        PlaType = null;
+        plaPrice = 0;
+    }
+
+    public void TransformStone()
+    {
+        RefreshTile();
+        PlaBtn stoneBtn = PlaManager.Instance.getStoneBtn();
+        PlaType = stoneBtn.TowerName;
+        pla = (GameObject)Instantiate(stoneBtn.PlaPrefab, transform.position, Quaternion.identity);
+        pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
+
+        if (stoneBtn.IsPermanent)
+        {
+            pla.transform.SetParent(transform);
+            IsEmpty = false;
+            WalkAble = false;
+            ColorTile(Color.white);
+        }
+
+        plaPrice = stoneBtn.Price;
+    }
+
+    public void TeleportPla()
+    {
+        // If wanted to implement
+        return;
     }
 }

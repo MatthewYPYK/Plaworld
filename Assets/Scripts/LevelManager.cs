@@ -158,4 +158,7 @@ public class LevelManager : Singleton<LevelManager>
             return boundingBox;
         }
     }
+
+    public Point GreenSpawn1 { get => greenSpawn; set => greenSpawn = value; }
+
 }
