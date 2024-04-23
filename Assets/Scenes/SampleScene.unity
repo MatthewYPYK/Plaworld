@@ -904,6 +904,7 @@ MonoBehaviour:
   waveBtn: {fileID: 721804326}
   gameOverMenu: {fileID: 613358074}
   pausedMenu: {fileID: 1336418497}
+  activeReward: 0
   WaveReward: 0
 --- !u!224 &431957890
 RectTransform:
@@ -1034,7 +1035,7 @@ PrefabInstance:
     - target: {fileID: 658226513915828222, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ab32cc572ba62e84b8f68b1538fa689d, type: 3}
+      objectReference: {fileID: 21300000, guid: 248c2255f70a43b428bb3c45ea52ad8c, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: price
       value: 75
@@ -1501,13 +1502,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1980358557}
+  - {fileID: 283278471}
   - {fileID: 1389202544}
   - {fileID: 1379847593}
   - {fileID: 1616160144}
   - {fileID: 1118766984}
   - {fileID: 184174298}
   - {fileID: 739289556}
-  - {fileID: 283278471}
   m_Father: {fileID: 633654286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.85, y: 0}
@@ -1535,7 +1536,7 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 1
   m_StartAxis: 1
-  m_CellSize: {x: 70, y: 50}
+  m_CellSize: {x: 60, y: 35}
   m_Spacing: {x: 30, y: 30}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -2375,7 +2376,7 @@ MonoBehaviour:
     X: 0
     Y: 4
   coral:
-    X: 15
+    X: 14
     Y: 4
   greenPortalPrefab: {fileID: 6384036394462969762, guid: 7914755e2762195498aa36d1a282273a, type: 3}
   coralPrefab: {fileID: 3257858210248692174, guid: acd2085b7277e344688fb284c739be93, type: 3}
@@ -6180,7 +6181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 281.6, y: -265.2}
+  m_AnchoredPosition: {x: 454, y: -269}
   m_SizeDelta: {x: 127.75, y: 23.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988645828
