@@ -13,23 +13,22 @@ public class Level10Story : StoryBase
             GameManager.Instance.Balance = GameManager.Instance.Balance + 10000;
         }
         else if (step == 3) SetDialogueActive(false);
-        else if (step == 4) {
+        else if (step == 10) {
             dialogueText.text = "This is the end for today. Rest well.";
             SetDialogueActive(true);
         }
-        else if (step == 5) LoadNextScene();
+        else if (step == 11) LoadNextScene();
         else SetDialogueActive(false);
         step += 1;
     }
     protected override bool EventTriggered(){
-        if (step == 2){
-            return GameManager.Instance.Lives == 1;
+        if (GameManager.Instance.Lives == 1){
+            step = 2;
+            return true;
         }
-        if (step == 4){
-            if (GameManager.Instance.Wave == 20 && !GameManager.Instance.WaveActive){
-                step = 4;
-                return true;
-            }
+        if (GameManager.Instance.Wave == 20 && !GameManager.Instance.WaveActive){
+            step = 10;
+            return true;
         }
         return false;
     }

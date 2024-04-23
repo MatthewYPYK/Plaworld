@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
-  balance: 100
+  balance: 400
   storyScript: {fileID: 1779523257}
   lives: 10
   sellMultiplier: 0.6
