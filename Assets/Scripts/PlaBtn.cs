@@ -31,8 +31,8 @@ public class PlaBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private bool isHovering = false;
     private bool isPanelActive = false;
     private float hoverTime = 1.0f;
-    [SerializeField]
-    private GameObject plaInfo;
+    // [SerializeField]
+    // private GameObject infoPanel;
 
     public GameObject PlaPrefab
     {
@@ -90,12 +90,11 @@ public class PlaBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         textMesh_buttonText = buttonText.GetComponent<TextMeshProUGUI>();
         textMesh_buttonText.text = towerName + ":" + price.ToString();
-        plaInfo.SetActive(false);
 
     }
     void Update()
     {
-        if (isHovering && plaInfo != null)
+        if (isHovering)
         {
             Debug.Log("Hovering");
             hoverTime -= Time.deltaTime;
@@ -106,7 +105,7 @@ public class PlaBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     isPanelActive = true;
                     UIUpdater.Instance.UpdatePlaInfoFrame(true);
                 }
-                plaInfo.SetActive(true);
+                // infoPanel.SetActive(true);
             }
 
         }
@@ -114,7 +113,7 @@ public class PlaBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             isPanelActive = false;
             UIUpdater.Instance.UpdatePlaInfoFrame(false);
-            plaInfo.SetActive(false);
+            // infoPanel.SetActive(false);
             hoverTime = 1.0f;
         }
 
