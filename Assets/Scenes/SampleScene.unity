@@ -128,6 +128,65 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
   m_PrefabInstance: {fileID: 841037596}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &108335842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 108335844}
+  - component: {fileID: 108335843}
+  m_Layer: 0
+  m_Name: Wave09
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &108335843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108335842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaveReward: 50
+  timeBetweenSpawn: 0.5
+  waveData:
+  - key: AirShip
+    value: 1
+  - key: wait
+    value: 2
+  - key: Soldier
+    value: 5
+  - key: Wizard
+    value: 3
+  - key: Soldier
+    value: 3
+  - key: Soldier
+    value: 5
+--- !u!4 &108335844
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108335842}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 238154061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &134421472
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +547,7 @@ Transform:
   - {fileID: 1384281322}
   - {fileID: 1937401822}
   - {fileID: 1550821841}
+  - {fileID: 108335844}
   - {fileID: 498112020}
   - {fileID: 2057314536}
   m_Father: {fileID: 0}
@@ -514,6 +574,8 @@ MonoBehaviour:
       Value: {fileID: 1937401823}
     - Key: 7
       Value: {fileID: 1550821840}
+    - Key: 9
+      Value: {fileID: 108335843}
     - Key: 15
       Value: {fileID: 498112019}
     - Key: 20
@@ -835,7 +897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
-  balance: 250
+  balance: 500
   storyScript: {fileID: 0}
   lives: 10
   sellMultiplier: 0.6
@@ -1264,7 +1326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 1000
+  WaveReward: 100
   timeBetweenSpawn: 0.5
   waveData:
   - key: AirShip
