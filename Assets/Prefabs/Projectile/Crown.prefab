@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7434654329516944156}
   - component: {fileID: 629895018215744028}
   - component: {fileID: 630495733736507143}
+  - component: {fileID: 3730200029614054729}
   m_Layer: 0
   m_Name: Crown
   m_TagString: Untagged
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0425, y: 0.99625}
   m_EdgeRadius: 0
+--- !u!114 &3730200029614054729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6027852304936439674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eace9179af39a5e4180bfc03b89cd52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsGained: 5

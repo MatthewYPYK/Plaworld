@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1175902935451659611}
   - component: {fileID: 8105171895036440442}
   - component: {fileID: 2506076920939838232}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 448928078335098231}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.07, y: 1.07, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a19ec8ec5208a354a89c0cdf46cfd5ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileType: Bubble
+  projectileType: Crown
   damage: 20
   attackCooldown: 1
-  projectileSpawnOffsetX: 0
-  projectileSpawnOffsetY: -1.1
+  projectileSpawnOffsetX: 1
+  projectileSpawnOffsetY: 0
   projectileSpeed: 5
 --- !u!61 &1175902935451659611
 BoxCollider2D:
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 193446746195778876}
   - component: {fileID: 2183469720539272419}
   - component: {fileID: 1644151316769112242}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: v
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 6578830035339165380}
   - component: {fileID: 8207038208591041921}
   - component: {fileID: 2831243960940296914}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: h
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 4089577293420807444}
   - component: {fileID: 5051095880600138319}
   - component: {fileID: 4119146096845563609}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CrownFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
