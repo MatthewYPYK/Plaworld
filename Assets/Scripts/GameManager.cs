@@ -537,19 +537,8 @@ public class GameManager : Singleton<GameManager>
     
     public void SoldierSkill(Point currentPos)
     {
-        List<Point> possibleFish = new();
         // Debug.Log("shoot some fish");
-        for (int dx = -1; dx <= 1; dx++)
-        {
-            for (int dy = -1; dy <= 1; dy++)
-            {
-                Point neighbourPos = new(currentPos.X - dx, currentPos.Y - dy);
-                if (LevelManager.Instance.InBounds(neighbourPos) && !LevelManager.Instance.Tiles[neighbourPos].WalkAble)
-                {
-                    possibleFish.Add(neighbourPos);
-                }
-            }
-        }
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
         if (possibleFish.Count != 0)
         {
             int randomIndex = Random.Range(0, possibleFish.Count);

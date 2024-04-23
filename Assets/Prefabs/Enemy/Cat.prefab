@@ -103,7 +103,7 @@ MonoBehaviour:
   speed: 2
   health:
     bar: {fileID: 5161145765726239803}
-    maxVal: 10000
+    maxVal: 3000
     currentVal: 0
 --- !u!61 &-9135518097916635763
 BoxCollider2D:
