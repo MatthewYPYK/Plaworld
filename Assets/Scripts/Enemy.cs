@@ -76,16 +76,16 @@ public class Enemy : MonoBehaviour
         switch (type)
         {
             case "Tank":
-                maxCounter = 8.0f;
+                maxCounter = 10.0f;
                 break;
             case "Wizard":
-                maxCounter = 5.0f;
+                maxCounter = 8.0f;
                 break;
             case "Cat":
-                maxCounter = 5.0f;
+                maxCounter = 8.0f;
                 break;
             case "Soldier":
-                maxCounter = 12.0f;
+                maxCounter = 15.0f;
                 break;
             default:
                 break;
