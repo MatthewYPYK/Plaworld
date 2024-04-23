@@ -9,6 +9,7 @@ public class PlaRangeProjectile : PlaRange
     private string projectileType;
     private Enemy target;
 
+
     public Enemy Target
     {
         get
@@ -17,7 +18,8 @@ public class PlaRangeProjectile : PlaRange
         }
     }
 
-    private Queue<Enemy> enemy = new Queue<Enemy>();
+    // private Queue<Enemy> enemy = new Queue<Enemy>();
+    private Deque<Enemy> enemy = new Deque<Enemy>();
 
     private bool canAttack = true;
 
@@ -29,7 +31,10 @@ public class PlaRangeProjectile : PlaRange
     [SerializeField]
     private float attackCooldown;
 
-
+    [SerializeField]
+    private float projectileSpawnOffsetX;
+    [SerializeField]
+    private float projectileSpawnOffsetY;
     [SerializeField]
     private float projectileSpeed;
 
@@ -59,7 +64,7 @@ public class PlaRangeProjectile : PlaRange
         }
         if (target == null && enemy.Count > 0)
         {
-            target = enemy.Dequeue();
+            target = enemy.PeekFront();
         }
         if (target != null && target.IsActive)
         {
@@ -76,7 +81,7 @@ public class PlaRangeProjectile : PlaRange
     {
         Projectile projectile = GameManager.Instance.Pool.GetObject(projectileType).GetComponent<Projectile>();
 
-        projectile.transform.position = transform.position;
+        projectile.transform.position = transform.position + new Vector3(projectileSpawnOffsetX, projectileSpawnOffsetY, 0);
         //Debug.Log("Projectile speed PArent: " + projectileSpeed);
         projectile.Initialize(this);
     }
@@ -87,7 +92,7 @@ public class PlaRangeProjectile : PlaRange
         if (other.tag == "Enemy")
         {
             //Debug.Log("Enter the enemy");
-            enemy.Enqueue(other.GetComponent<Enemy>());
+            enemy.AddRear(other.GetComponent<Enemy>());
         }
     }
 
@@ -95,6 +100,7 @@ public class PlaRangeProjectile : PlaRange
     {
         if (other.tag == "Enemy")
         {
+            enemy.Remove(other.GetComponent<Enemy>());
             target = null;
         }
     }

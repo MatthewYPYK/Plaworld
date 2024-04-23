@@ -8,7 +8,7 @@ public class AStar
 {
     private static Dictionary<Point, Node> nodes;
 
-    private static void CreateNodes()
+    public static void CreateNodes()
     {
         nodes = new Dictionary<Point, Node>();
         foreach (TileScript tile in LevelManager.Instance.Tiles.Values)
@@ -116,5 +116,21 @@ public class AStar
         bool targetIsFirst = first == target;
         bool targetIsSecond = second == target;
         return !(LevelManager.Instance.InBounds(first) && (!LevelManager.Instance.Tiles[first].WalkAble || targetIsFirst)) && !(LevelManager.Instance.InBounds(second) && (!LevelManager.Instance.Tiles[second].WalkAble || targetIsSecond));
+    }
+
+    public static bool TravelAble(Point current, Point destination)
+    {
+        if (current.X == destination.X || current.Y == destination.Y)
+        {
+            return LevelManager.Instance.Tiles[destination].WalkAble;
+        } else
+        {
+            return ConnectedDiagonally(nodes[current],nodes[destination]);
+        }
+    }
+
+    public static Node GetNode(Point point)
+    {
+        return nodes[point];
     }
 }

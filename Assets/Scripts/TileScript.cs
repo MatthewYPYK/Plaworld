@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,25 @@ using UnityEngine.EventSystems;
 public class TileScript : MonoBehaviour
 {
     public Point GridPosition { get; private set; }
-    public bool WalkAble { get; set; }
+    private bool walkAble;
+    public bool WalkAble { 
+        get => walkAble;
+        set {
+            this.walkAble = value;
+            UpdatePath();
+        } 
+    }
+    protected void UpdatePath() => GameManager.Instance.UpdateEnemiesPath();
 
     public bool IsEmpty { get; private set; }
 
     private GameObject pla = null;
+    private int plaPrice = 0;
 
     private PlaRange myPlaRange;
+    private string plaType = null;
+
+    public string PlaType { get => plaType; set => plaType = value; }
 
     private Color32 fullColor = new Color32(255, 118, 118, 255);
 
@@ -44,14 +57,18 @@ public class TileScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Setup(Point gridPos, Vector3 worldPos, Transform parent)
+    public void Setup(Point gridPos, Vector3 worldPos, Transform parent, bool isInvisible = false)
     {
         IsEmpty = true;
-        WalkAble = true;
+        walkAble = true;
         this.GridPosition = gridPos;
         transform.position = worldPos;
         transform.SetParent(parent);
         LevelManager.Instance.Tiles.Add(gridPos, this);
+        if ( isInvisible ) {
+            IsEmpty = false;
+            walkAble = false;
+        }
     }
 
     private void OnMouseOver()
@@ -63,7 +80,8 @@ public class TileScript : MonoBehaviour
             if (GameManager.Instance.ClickedBtn != null)
             {
                 bool IsBlocked = !LevelManager.Instance.CanPlacePla(GridPosition);
-                if (IsBlocked){
+                if (IsBlocked)
+                {
                     ColorTile(fullColor);
                 }
                 else if (IsEmpty)
@@ -77,7 +95,6 @@ public class TileScript : MonoBehaviour
                 else if (Input.GetMouseButtonDown(0))
                 {
                     PlacePla();
-                    // TODO : set new path for enemy
                 }
             }
             else if (GameManager.Instance.ClickedBtn == null
@@ -87,6 +104,12 @@ public class TileScript : MonoBehaviour
                 if (myPlaRange != null)
                 {
                     GameManager.Instance.SelectPla(myPlaRange);
+                }
+                if (GameManager.Instance.SellMode)
+                {
+                    GameManager.Instance.Balance += (int)Math.Floor(plaPrice * GameManager.Instance.SellMultiplier);
+                    GameManager.Instance.SellButtonClick();
+                    RefreshTile();
                 }
             }
         }
@@ -102,6 +125,7 @@ public class TileScript : MonoBehaviour
 
 
         PlaBtn plaBtn = GameManager.Instance.ClickedBtn;
+        PlaType = plaBtn.TowerName;
         pla = (GameObject)Instantiate(plaBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
 
@@ -119,14 +143,15 @@ public class TileScript : MonoBehaviour
             WalkAble = false;
             ColorTile(Color.white);
         }
-        GameManager.Instance.BuyPla();
+        int newPrice = GameManager.Instance.BuyPla();
+        plaPrice = newPrice == -1 ? plaPrice : newPrice;
 
         //Debug.Log("TileScript: PlacePla: pla: " + pla);
         //Debug.Log("TileScript: PlacePla: myPla: " + myPla);
 
     }
 
-    private void ColorTile(Color newColor)
+    public void ColorTile(Color newColor)
     {
         spriteRenderer.color = newColor;
     }
@@ -143,5 +168,32 @@ public class TileScript : MonoBehaviour
             pla = null;
         }
         myPlaRange = null;
+        PlaType = null;
+        plaPrice = 0;
+    }
+
+    public void TransformStone()
+    {
+        RefreshTile();
+        PlaBtn stoneBtn = PlaManager.Instance.getStoneBtn();
+        PlaType = stoneBtn.TowerName;
+        pla = (GameObject)Instantiate(stoneBtn.PlaPrefab, transform.position, Quaternion.identity);
+        pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
+
+        if (stoneBtn.IsPermanent)
+        {
+            pla.transform.SetParent(transform);
+            IsEmpty = false;
+            WalkAble = false;
+            ColorTile(Color.white);
+        }
+
+        plaPrice = stoneBtn.Price;
+    }
+
+    public void TeleportPla()
+    {
+        // If wanted to implement
+        return;
     }
 }
