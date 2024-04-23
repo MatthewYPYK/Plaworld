@@ -449,6 +449,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
   m_PrefabInstance: {fileID: 184174297}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &236294746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+  m_PrefabInstance: {fileID: 1389202543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &238154060
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +615,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+--- !u!1 &283278470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+  m_PrefabInstance: {fileID: 441901216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &283278471 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+  m_PrefabInstance: {fileID: 441901216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &283278476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283278470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: ShowTooltip
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Still not a gold fish, but with a crown,<br>one might
+              considerthem a gold-fish.
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: HideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &288588519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1096,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 283278476}
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!1 &450067980
 GameObject:
@@ -1374,13 +1439,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1980358557}
-  - {fileID: 837434137}
   - {fileID: 1389202544}
   - {fileID: 1379847593}
   - {fileID: 1616160144}
   - {fileID: 1118766984}
   - {fileID: 184174298}
   - {fileID: 739289556}
+  - {fileID: 283278471}
   m_Father: {fileID: 633654286}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.85, y: 0}
@@ -1450,6 +1515,11 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &571163914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+  m_PrefabInstance: {fileID: 7230427952644638155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &592535732
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,6 +2126,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721804326}
   m_CullTransparentMesh: 1
+--- !u!1 &723654525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+  m_PrefabInstance: {fileID: 1118766983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &729767333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2187,7 +2262,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1949926919}
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!1 &734975522
 GameObject:
@@ -2757,6 +2835,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970006948}
   m_CullTransparentMesh: 1
+--- !u!1 &977791428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+  m_PrefabInstance: {fileID: 1379847592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1010892182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3165,7 +3248,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1906888136}
           m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
           m_MethodName: ShowTooltip
           m_Mode: 5
@@ -3174,14 +3257,15 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Swordfish tooltip
+            m_StringArgument: Despite being a swordfish, Marlin prefers<br>shooting
+              down enemies from a distance.
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1906888136}
           m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
           m_MethodName: HideTooltip
           m_Mode: 1
@@ -3190,7 +3274,8 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Goldfish tooltip
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1001 &1118766983
@@ -3328,13 +3413,63 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1118766989}
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!224 &1118766984 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
   m_PrefabInstance: {fileID: 1118766983}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1118766989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723654525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: ShowTooltip
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: A short-tempered fish who likes to<br>pump out venom,
+              continuously<br>damaging all enemies nearby.
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: HideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1132031224
 GameObject:
   m_ObjectHideFlags: 0
@@ -4054,13 +4189,63 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1379847598}
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!224 &1379847593 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
   m_PrefabInstance: {fileID: 1379847592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1379847598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977791428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: ShowTooltip
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: The cooler Daniel.<br>Swims in a straight line, crashing
+              into<br>any enemy in its path. (single use)
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: HideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1382627047
 GameObject:
   m_ObjectHideFlags: 0
@@ -4371,13 +4556,63 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1389202549}
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!224 &1389202544 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
   m_PrefabInstance: {fileID: 1389202543}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1389202549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236294746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: ShowTooltip
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: His name is Daniel.<br>Swims in a straight line, biting
+              onto<br>a single enemy. (single use)
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: HideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1550821839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4453,7 +4688,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1906888136}
           m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
           m_MethodName: ShowTooltip
           m_Mode: 5
@@ -4462,14 +4697,15 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Stone tooltip
+            m_StringArgument: John "The Stone" Dwayneson.<br>A very cost effective
+              obstacle.
             m_BoolArgument: 0
           m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1906888136}
           m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
           m_MethodName: HideTooltip
           m_Mode: 1
@@ -4478,7 +4714,8 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Goldfish tooltip
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &1691191094
@@ -5066,6 +5303,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1906888136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6219989697059202694, guid: 2a24acd7bd959ed4f89f00a4836b3879, type: 3}
+  m_PrefabInstance: {fileID: 1961621679}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd7dceadac774941af116f498a30589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1918029349
 GameObject:
   m_ObjectHideFlags: 0
@@ -5353,6 +5601,58 @@ MonoBehaviour:
     value: 2
   - key: Soldier
     value: 2
+--- !u!1 &1949926914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+  m_PrefabInstance: {fileID: 729767333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1949926919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949926914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: ShowTooltip
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: With the lightbulb on its head, the angler throws<br>fireballs
+              at enemies in quick succession.
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: HideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1961621679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5364,6 +5664,14 @@ PrefabInstance:
     - target: {fileID: 38553317828656750, guid: 2a24acd7bd959ed4f89f00a4836b3879, type: 3}
       propertyPath: m_Name
       value: Tooltip
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584196354898732335, guid: 2a24acd7bd959ed4f89f00a4836b3879, type: 3}
+      propertyPath: m_Name
+      value: TooltipText
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234535016435552026, guid: 2a24acd7bd959ed4f89f00a4836b3879, type: 3}
+      propertyPath: m_Name
+      value: Background
       objectReference: {fileID: 0}
     - target: {fileID: 5898131066498989374, guid: 2a24acd7bd959ed4f89f00a4836b3879, type: 3}
       propertyPath: m_Pivot.x
@@ -5723,6 +6031,53 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
   m_PrefabInstance: {fileID: 7230427952644638155}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1980358562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571163914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: ShowTooltip
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1906888136}
+          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
+          m_MethodName: HideTooltip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 'A basic fish. Not really good at<br>anything except
+              being cheap.<br>They''re not even a real goldfish. '
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1988645826
 GameObject:
   m_ObjectHideFlags: 0
@@ -6415,7 +6770,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: f8903892fdbb70044b25c9792c2fd20d, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: hasRange
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: plaSizeX
@@ -6520,7 +6875,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1980358562}
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
