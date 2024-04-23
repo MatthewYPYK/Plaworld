@@ -26,6 +26,9 @@ public class Enemy : MonoBehaviour
 
     private float maxCounter = 8.0f;
 
+    private float soldierCounter = 0.0f;
+
+    private float maxSoldierCounter = 8.0f;
 
     private void Awake()
     {
@@ -51,6 +54,14 @@ public class Enemy : MonoBehaviour
                         break;
                     case "Cat":
                         GameManager.Instance.CatSkill(GridPosition);
+                        break;
+                    case "Soldier":
+                        soldierCounter += Time.deltaTime;
+                        if (soldierCounter >= maxSoldierCounter)
+                        {
+                            soldierCounter = 0.0f;
+                            GameManager.Instance.SoldierSkill(GridPositon);
+                        }
                         break;
                     default:
                         break;
@@ -218,6 +229,7 @@ public class Enemy : MonoBehaviour
     {
         IsActive = false;
         counter = 0.0f;
+        soldierCounter = 0.0f;
         GameManager.Instance.Pool.ReleaseObject(gameObject);
         GameManager.Instance.RemoveEnemy(this);
     }
