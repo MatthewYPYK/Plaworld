@@ -318,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 436b7af9b4ecacb4aa248e2de757f31d, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: price
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: sprite
@@ -975,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 248c2255f70a43b428bb3c45ea52ad8c, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: price
-      value: 50
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: sprite
@@ -2144,6 +2144,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 1543ed42c8859cf40a7a97515a1b9a17, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: price
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1543ed42c8859cf40a7a97515a1b9a17, type: 3}
@@ -3292,7 +3296,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 685b9d51b986ba940b44195e1226b418, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: price
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: sprite
@@ -4080,7 +4084,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 74af7338187989942843d7417cbccef7, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: price
-      value: 25
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: sprite
@@ -4649,7 +4653,7 @@ MonoBehaviour:
     value: 2
   - key: wait
     value: 2
-  - key: Airship
+  - key: AirShip
     value: 1
 --- !u!4 &1550821841
 Transform:
@@ -6114,7 +6118,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 370.13, y: -264.02}
+  m_AnchoredPosition: {x: 281.6, y: -265.2}
   m_SizeDelta: {x: 127.75, y: 23.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988645828

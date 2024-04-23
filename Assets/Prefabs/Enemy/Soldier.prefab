@@ -104,8 +104,9 @@ MonoBehaviour:
   speed: 2
   health:
     bar: {fileID: 7345320864068835537}
-    maxVal: 100
+    maxVal: 80
     currentVal: 0
+  SelfDetonatable: 1
 --- !u!95 &5690715667352959624
 Animator:
   serializedVersion: 5

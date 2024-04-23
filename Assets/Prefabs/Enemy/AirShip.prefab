@@ -103,7 +103,7 @@ MonoBehaviour:
   speed: 1
   health:
     bar: {fileID: 6325164883873177139}
-    maxVal: 600
+    maxVal: 500
     currentVal: 0
   SelfDetonatable: 0
 --- !u!61 &-8996539336647526217
