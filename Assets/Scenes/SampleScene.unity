@@ -2908,19 +2908,19 @@ PrefabInstance:
     - target: {fileID: 658226513915828222, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d4a6e67400ba3da4fa820f2b8f2e9841, type: 3}
+      objectReference: {fileID: 21300000, guid: 74af7338187989942843d7417cbccef7, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: price
-      value: 150
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 628edd18643c4fa45a08c219b8167264, type: 3}
+      objectReference: {fileID: 21300000, guid: 74af7338187989942843d7417cbccef7, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: plaPrefab
       value: 
-      objectReference: {fileID: 2771065374892584987, guid: 823b6a6cebe4e48488afdd418cd54f96, type: 3}
+      objectReference: {fileID: 8984936158859190687, guid: fb4186883c13b384485de7ffb2c6972d, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: towerName
       value: Orca
