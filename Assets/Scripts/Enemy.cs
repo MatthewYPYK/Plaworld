@@ -206,7 +206,11 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
 
+            this.type = type;
             GameManager.Instance.Lives--;
+            if (type == "Cat"){
+                GameManager.Instance.Lives = 0;
+            }
             UIUpdater.Instance.UpdateLives(GameManager.Instance.Lives);
         }
     }
