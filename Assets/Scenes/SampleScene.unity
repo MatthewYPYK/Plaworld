@@ -516,6 +516,103 @@ MonoBehaviour:
       Value: {fileID: 1603899407}
     - Key: 20
       Value: {fileID: 498112019}
+--- !u!1001 &250397369
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 633654286}
+    m_Modifications:
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8481112708687578706, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+      propertyPath: m_Name
+      value: Paused
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
 --- !u!1 &288588519
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,6 +781,7 @@ MonoBehaviour:
   sellMultiplier: 0.6
   waveBtn: {fileID: 721804326}
   gameOverMenu: {fileID: 613358074}
+  pausedMenu: {fileID: 1336418497}
   WaveReward: 0
 --- !u!224 &431957890
 RectTransform:
@@ -1503,6 +1601,8 @@ RectTransform:
   - {fileID: 613358075}
   - {fileID: 1988645827}
   - {fileID: 761229464}
+  - {fileID: 1282360142}
+  - {fileID: 1336418498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2856,7 +2956,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1545805718}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
           m_MethodName: ShowTooltip
           m_Mode: 5
@@ -2872,7 +2972,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1545805718}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
           m_MethodName: HideTooltip
           m_Mode: 1
@@ -3019,10 +3119,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1859465119}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!224 &1118766984 stripped
 RectTransform:
@@ -3371,6 +3468,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243846544}
   m_CullTransparentMesh: 1
+--- !u!224 &1282360142 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5898131066498989374, guid: 2a24acd7bd959ed4f89f00a4836b3879, type: 3}
+  m_PrefabInstance: {fileID: 1961621679}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1292329753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3439,6 +3541,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1336418497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8481112708687578706, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+  m_PrefabInstance: {fileID: 250397369}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1336418498 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6452402484864647412, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
+  m_PrefabInstance: {fileID: 250397369}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1346730281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3733,61 +3845,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1379847598}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!224 &1379847593 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
   m_PrefabInstance: {fileID: 1379847592}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1379847598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850142218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1545805718}
-          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
-          m_MethodName: ShowTooltip
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Shark tooltip
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1545805718}
-          m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
-          m_MethodName: HideTooltip
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Goldfish tooltip
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1382627047
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,10 +4109,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1770627292}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!224 &1389202544 stripped
 RectTransform:
@@ -4171,7 +4232,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1545805718}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
           m_MethodName: ShowTooltip
           m_Mode: 5
@@ -4187,7 +4248,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1545805718}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: TooltipScript, Assembly-CSharp
           m_MethodName: HideTooltip
           m_Mode: 1
@@ -4363,9 +4424,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 4751.1997}
   m_LocalScale: {x: 1, y: 2, z: 0.80016}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1137763915}
-  m_Father: {fileID: 1604952713}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5853,7 +5913,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 773201046}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6078,10 +6138,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1980358562}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -6096,3 +6153,5 @@ SceneRoots:
   - {fileID: 431957890}
   - {fileID: 892588235}
   - {fileID: 238154061}
+  - {fileID: 1729998989}
+  - {fileID: 2144388715}
