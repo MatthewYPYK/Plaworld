@@ -714,6 +714,8 @@ MonoBehaviour:
   - {fileID: 6419608292955598060, guid: fb1a417e10adc9944b7479a4c01efd4e, type: 3}
   - {fileID: 464481206073287924, guid: 302d5e1f45a408a4a8b04da364ea01ec, type: 3}
   - {fileID: 1047260143022203445, guid: 2386ade7ea6ab4440a594663b2c8d823, type: 3}
+  - {fileID: 3082120916727110037, guid: 7e816c1bb792e9f49bf5d574a9f29bd8, type: 3}
+  - {fileID: 3082120916727110037, guid: 58b805366ef8df748a5e47fe22b39b12, type: 3}
 --- !u!23 &431957892
 MeshRenderer:
   m_ObjectHideFlags: 0
