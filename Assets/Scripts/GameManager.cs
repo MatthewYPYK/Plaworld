@@ -55,6 +55,7 @@ public class GameManager : Singleton<GameManager>
     private List<Enemy> activeEnemies = new List<Enemy>();
 
     public ObjectPool Pool { get; set; }
+    public int activeReward = 0;
 
     public int WaveReward;
 
@@ -99,8 +100,9 @@ public class GameManager : Singleton<GameManager>
             }
         }
     }
-    
-    public bool IsDialogueActive(){
+
+    public bool IsDialogueActive()
+    {
         if (storyScript is null) return false;
         return storyScript.IsDialogueActive();
     }
@@ -125,7 +127,8 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale > 0) Time.timeScale -= 1;
     }
 
-    public void SetTimeScale(int newTimeScale){
+    public void SetTimeScale(int newTimeScale)
+    {
         if (newTimeScale > 100) newTimeScale = 100;
         if (newTimeScale < 0) newTimeScale = 0;
         if (IsDialogueActive()) newTimeScale = 0;
@@ -160,21 +163,23 @@ public class GameManager : Singleton<GameManager>
 
     public void SellButtonClick()
     {
-        if (!WaveActive){
+        if (!WaveActive)
+        {
             sellMode = !sellMode;
             UIUpdater.Instance.UpdateSellMode(sellMode);
 
             selectedPla = null;
             Hover.Instance.Deactivate();
         }
-        
+
     }
 
     private void HandleEscape()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (ClickedBtn == null && !gameOver) {
+            if (ClickedBtn == null && !gameOver)
+            {
                 HandleTogglePause();
             }
             Hover.Instance.Deactivate();
@@ -193,8 +198,8 @@ public class GameManager : Singleton<GameManager>
     {
         wave++;
         WaveReward = wave * 10; // default WaveReward
-        
-        if(WaveManager.Instance.IsWaveDefined(wave))
+
+        if (WaveManager.Instance.IsWaveDefined(wave))
             WaveManager.Instance.StartWave(wave);
         else
             StartCoroutine(SpawnWave());
@@ -203,7 +208,8 @@ public class GameManager : Singleton<GameManager>
         waveBtn.SetActive(false);
     }
 
-    public Enemy SpawnEnemy(string type){
+    public Enemy SpawnEnemy(string type)
+    {
         Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
         enemy.Spawn(type);
         activeEnemies.Add(enemy);
@@ -215,7 +221,7 @@ public class GameManager : Singleton<GameManager>
         int waveValue = 0;
         int enemyIndex = 0;
 
-        while (waveValue < wave*2)
+        while (waveValue < wave * 2)
         {
             if (wave < 3)
             {
@@ -305,7 +311,9 @@ public class GameManager : Singleton<GameManager>
                         // }
                         break;
                 }
-            } else if (wave < 15){
+            }
+            else if (wave < 15)
+            {
                 enemyIndex = Random.Range(0, 5);
                 switch (enemyIndex)
                 {
@@ -349,7 +357,9 @@ public class GameManager : Singleton<GameManager>
                         // }
                         break;
                 }
-            } else {
+            }
+            else
+            {
                 enemyIndex = Random.Range(0, 6);
                 switch (enemyIndex)
                 {
@@ -443,7 +453,9 @@ public class GameManager : Singleton<GameManager>
         if (!WaveActive && !gameOver)
         {
             waveBtn.SetActive(true);
-            Debug.Log("currency is added");
+            Debug.Log("Passively added funds:" + WaveReward);
+            Debug.Log("Actively added funds: " + activeReward);
+            activeReward = 0;
             balance += WaveReward;
             UIUpdater.Instance.UpdateBalance(GameManager.Instance.Balance);
         }
@@ -550,7 +562,7 @@ public class GameManager : Singleton<GameManager>
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
         }
     }
-    
+
     public void SoldierSkill(Point currentPos)
     {
         // Debug.Log("shoot some fish");
@@ -561,14 +573,17 @@ public class GameManager : Singleton<GameManager>
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
         }
     }
-    public void UpdateEnemiesPath(){
-        foreach(var enemy in activeEnemies){
+    public void UpdateEnemiesPath()
+    {
+        foreach (var enemy in activeEnemies)
+        {
             enemy.UpdatePath();
         }
     }
     public void UpdateStory(int step) => storyScript.CallAction(step);
 
-    public void SelfDetonate(Point currentPos){
+    public void SelfDetonate(Point currentPos)
+    {
         // Debug.Log("shoot some fish");
         List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
         for (int i = 0; i < possibleFish.Count; i++)
@@ -576,6 +591,6 @@ public class GameManager : Singleton<GameManager>
             //int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[i]].RefreshTile();
         }
-        
+
     }
 }
