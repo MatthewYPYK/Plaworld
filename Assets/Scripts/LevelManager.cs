@@ -171,4 +171,5 @@ public class LevelManager : Singleton<LevelManager>
     }
 
     public Point GreenSpawn1 { get => greenSpawn; set => greenSpawn = value; }
+
 }

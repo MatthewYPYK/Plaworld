@@ -409,4 +409,14 @@ public class GameManager : Singleton<GameManager>
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].TransformStone();
         }
     }
+
+    public void CatSkill(Point currentPos)
+    {
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].TeleportPla();
+        }
+    }
 }
