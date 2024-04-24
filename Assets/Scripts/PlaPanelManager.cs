@@ -8,6 +8,7 @@ public class PlaManager : Singleton<PlaManager>
     private GameObject plaPanel;
 
     private List<PlaBtn> plaBtnsList = new List<PlaBtn>();
+    public int PlaBtnsCount => plaBtnsList.Count;
 
     void Start()
     {

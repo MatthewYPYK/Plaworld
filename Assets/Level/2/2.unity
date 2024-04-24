@@ -713,6 +713,7 @@ MonoBehaviour:
   waveBtn: {fileID: 721804326}
   gameOverMenu: {fileID: 613358074}
   pausedMenu: {fileID: 1336418497}
+  activeReward: 0
   WaveReward: 0
 --- !u!224 &431957890
 RectTransform:
@@ -2538,6 +2539,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970006948}
   m_CullTransparentMesh: 1
+--- !u!1 &998730444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 998730446}
+  - component: {fileID: 998730445}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &998730445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998730444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e339f377c8e161a45abff8cc4aa67c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 534058f7e97804d4e9391090a8177d31, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Magic
+    clip: {fileID: 8300000, guid: 093dacef35fafc545abf81dedca7d832, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bomb
+    clip: {fileID: 8300000, guid: 8a7d1e7dd7780c248aeb329f0f0e70a7, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Eat
+    clip: {fileID: 8300000, guid: c5505fe6059a73e41a122d9f0b6a10d9, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Cashier
+    clip: {fileID: 8300000, guid: 2737f93cbe4cb0d4db85d34868e6265b, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: a64cf39c06388404197e42010e4690bb, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &998730446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998730444}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.078235, y: -3.8441732, z: -9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1010892182
 GameObject:
   m_ObjectHideFlags: 0
@@ -4442,7 +4530,7 @@ MonoBehaviour:
   timeBetweenSpawn: 3
   waveData:
   - key: Tank
-    value: 3
+    value: 1
 --- !u!4 &1772539540
 Transform:
   m_ObjectHideFlags: 0
@@ -6119,3 +6207,4 @@ SceneRoots:
   - {fileID: 2144388715}
   - {fileID: 1107079230}
   - {fileID: 1779523258}
+  - {fileID: 998730446}

@@ -40,12 +40,12 @@ public class Level3Story : StoryBase
         }
         else if (step == 10) {
             dialogueText.fontSize = 36;
-            SetDialogueText("If they send a big monkey, should not we 'sasageyo'?");
+            SetDialogueText("If they send a big thingy, should not we 'sasageyo'?");
         }
         else if (step == 11) {
-            nameText.text = "Erwin";
-            dialogueText.fontSize = 36;
-            SetDialogueText("HEISHI YO IKARE! HEISHI YO SAKEBE! HEISHI YO TATAKAE! \nSHINZOU WO...");
+            nameText.text = "E*win";
+            dialogueText.fontSize = 64;
+            SetDialogueText("SHINZOU WO...");
         }
         else if (step == 12) {
             dialogueText.fontSize = 80;

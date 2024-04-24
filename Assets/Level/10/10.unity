@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 50
+  WaveReward: 1000
   timeBetweenSpawn: 0.5
   waveData:
   - key: AirShip
@@ -549,7 +549,6 @@ Transform:
   - {fileID: 1550821841}
   - {fileID: 108335844}
   - {fileID: 498112020}
-  - {fileID: 2057314536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &238154062
@@ -576,10 +575,8 @@ MonoBehaviour:
       Value: {fileID: 1550821840}
     - Key: 9
       Value: {fileID: 108335843}
-    - Key: 15
+    - Key: 10
       Value: {fileID: 498112019}
-    - Key: 20
-      Value: {fileID: 2057314535}
 --- !u!1001 &250397369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -936,6 +933,7 @@ MonoBehaviour:
   waveBtn: {fileID: 721804326}
   gameOverMenu: {fileID: 613358074}
   pausedMenu: {fileID: 1336418497}
+  activeReward: 0
   WaveReward: 0
 --- !u!224 &431957890
 RectTransform:
@@ -1340,7 +1338,7 @@ GameObject:
   - component: {fileID: 498112020}
   - component: {fileID: 498112019}
   m_Layer: 0
-  m_Name: Wave15
+  m_Name: Wave10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1373,8 +1371,8 @@ MonoBehaviour:
     value: 2
   - key: Jeep
     value: 5
-  - key: AirShip
-    value: 2
+  - key: Cat
+    value: 1
 --- !u!4 &498112020
 Transform:
   m_ObjectHideFlags: 0
@@ -3226,7 +3224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 50
+  WaveReward: 100
   timeBetweenSpawn: 0.5
   waveData:
   - key: Soldier
@@ -4018,6 +4016,93 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1294861177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1294861179}
+  - component: {fileID: 1294861178}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1294861178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294861177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e339f377c8e161a45abff8cc4aa67c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 534058f7e97804d4e9391090a8177d31, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Magic
+    clip: {fileID: 8300000, guid: 093dacef35fafc545abf81dedca7d832, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Bomb
+    clip: {fileID: 8300000, guid: 8a7d1e7dd7780c248aeb329f0f0e70a7, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Eat
+    clip: {fileID: 8300000, guid: c5505fe6059a73e41a122d9f0b6a10d9, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Cashier
+    clip: {fileID: 8300000, guid: 2737f93cbe4cb0d4db85d34868e6265b, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit
+    clip: {fileID: 8300000, guid: a64cf39c06388404197e42010e4690bb, type: 3}
+    mixer: {fileID: 0}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!4 &1294861179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294861177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.078235, y: -3.8441732, z: -9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1336418497 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8481112708687578706, guid: d4ad8e597fb9bda48a0d5b66a2d502df, type: 3}
@@ -4412,7 +4497,7 @@ RectTransform:
   m_Father: {fileID: 1132031225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.6, y: 1}
+  m_AnchorMax: {x: 0.55, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
@@ -4542,7 +4627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 50
+  WaveReward: 200
   timeBetweenSpawn: 0.5
   waveData:
   - key: Soldier
@@ -4775,7 +4860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 50
+  WaveReward: 200
   timeBetweenSpawn: 0.5
   waveData:
   - key: Soldier
@@ -4980,7 +5065,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1132031225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.6, y: 0}
+  m_AnchorMin: {x: 0.55, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -5725,15 +5810,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 50
+  WaveReward: 200
   timeBetweenSpawn: 0.5
   waveData:
-  - key: Tank
-    value: 1
-  - key: wait
-    value: 2
-  - key: Soldier
-    value: 2
+  - key: Wizard
+    value: 5
 --- !u!1 &1949926914 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
@@ -6480,69 +6561,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037141740}
   m_CullTransparentMesh: 1
---- !u!1 &2057314534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2057314536}
-  - component: {fileID: 2057314535}
-  m_Layer: 0
-  m_Name: Wave20
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2057314535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057314534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WaveReward: 1000
-  timeBetweenSpawn: 0.5
-  waveData:
-  - key: AirShip
-    value: 1
-  - key: Tank
-    value: 1
-  - key: wait
-    value: 2
-  - key: Soldier
-    value: 5
-  - key: wait
-    value: 2
-  - key: Jeep
-    value: 5
-  - key: AirShip
-    value: 2
-  - key: Cat
-    value: 1
---- !u!4 &2057314536
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057314534}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 238154061}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2066192065
 GameObject:
   m_ObjectHideFlags: 0
@@ -7029,3 +7047,4 @@ SceneRoots:
   - {fileID: 1729998989}
   - {fileID: 2144388715}
   - {fileID: 1076877761}
+  - {fileID: 1294861179}

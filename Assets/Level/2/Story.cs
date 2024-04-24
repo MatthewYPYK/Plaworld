@@ -5,16 +5,16 @@ public class Level2Story : StoryBase
 {
     protected override void UpdateDialogue(){
         if (step == 0) {
-            dialogueText.text = "Good morning! We have a new member, Puffer Fish. He will continuously attack his surroundings. Use him wisely!";
+            SetDialogueText("Good morning! We have a new member, Puffer Fish. He will continuously attack his surroundings. Use him wisely!");
         }
         else if (step == 1) SetDialogueActive(false);
         else if (step == 2) {
-            dialogueText.text = "You only have one life left! Take this money and try to survive until the end!";
+            SetDialogueText($"You only have {GameManager.Instance.Lives} life left! Take this money and try to survive until the end!");
             GameManager.Instance.Balance = GameManager.Instance.Balance + 10000;
         }
         else if (step == 3) SetDialogueActive(false);
         else if (step == 10) {
-            dialogueText.text = "This is the end for today. Rest well.";
+            SetDialogueText("This is the end for today. Rest well.");
             SetDialogueActive(true);
         }
         else if (step == 11) LoadNextScene();
@@ -22,9 +22,9 @@ public class Level2Story : StoryBase
         step += 1;
     }
     protected override bool EventTriggered(){
-        if (GameManager.Instance.Lives == 1){
-            step = 2;
-            return true;
+        if (step == 2){
+            if (GameManager.Instance.Lives <= 5)
+                return true;
         }
         if (GameManager.Instance.Wave == 5 && !GameManager.Instance.WaveActive){
             step = 10;
