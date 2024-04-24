@@ -2403,10 +2403,10 @@ MonoBehaviour:
   cameraMovement: {fileID: 519420033}
   greenSpawn:
     X: 0
-    Y: 8
+    Y: 4
   coral:
-    X: 30
-    Y: 8
+    X: 20
+    Y: 4
   greenPortalPrefab: {fileID: 6384036394462969762, guid: 7914755e2762195498aa36d1a282273a, type: 3}
   coralPrefab: {fileID: 3257858210248692174, guid: acd2085b7277e344688fb284c739be93, type: 3}
   map: {fileID: 1097227803}

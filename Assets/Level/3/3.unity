@@ -567,6 +567,55 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &426068339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426068341}
+  - component: {fileID: 426068340}
+  m_Layer: 0
+  m_Name: Wave0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &426068340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426068339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaveReward: 100000
+  timeBetweenSpawn: 4
+  waveData:
+  - key: Soldier
+    value: 10
+--- !u!4 &426068341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426068339}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1359972648}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &431957888
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
-  balance: 100000
+  balance: 1000
   storyScript: {fileID: 0}
   lives: 80
   sellMultiplier: 0
@@ -2742,10 +2791,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveReward: 100000
-  timeBetweenSpawn: 0.1
+  timeBetweenSpawn: 0.05
   waveData:
-  - key: Jeep
-    value: 50
+  - key: Soldier
+    value: 300
 --- !u!4 &1142472550
 Transform:
   m_ObjectHideFlags: 0
@@ -3315,12 +3364,14 @@ MonoBehaviour:
     - Key: 1
       Value: {fileID: 1639801537}
     - Key: 2
-      Value: {fileID: 1142472549}
+      Value: {fileID: 426068340}
     - Key: 3
-      Value: {fileID: 1769168342}
+      Value: {fileID: 1142472549}
     - Key: 4
-      Value: {fileID: 876007845}
+      Value: {fileID: 1769168342}
     - Key: 5
+      Value: {fileID: 876007845}
+    - Key: 6
       Value: {fileID: 2133546339}
 --- !u!4 &1359972648
 Transform:
@@ -3336,6 +3387,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1639801538}
+  - {fileID: 426068341}
   - {fileID: 1142472550}
   - {fileID: 1769168343}
   - {fileID: 876007846}
@@ -3956,11 +4008,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 100000
-  timeBetweenSpawn: 0.05
+  WaveReward: 500
+  timeBetweenSpawn: 1
   waveData:
   - key: Soldier
-    value: 300
+    value: 10
 --- !u!4 &1639801538
 Transform:
   m_ObjectHideFlags: 0
