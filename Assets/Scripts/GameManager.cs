@@ -197,7 +197,7 @@ public class GameManager : Singleton<GameManager>
     public void StartWave()
     {
         wave++;
-        WaveReward = wave * 10; // default WaveReward
+        WaveReward = 50 + wave * 5; // default WaveReward
 
         if (WaveManager.Instance.IsWaveDefined(wave))
             WaveManager.Instance.StartWave(wave);

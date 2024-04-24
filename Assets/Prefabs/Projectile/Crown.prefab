@@ -46,11 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eace9179af39a5e4180bfc03b89cd52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missRate: 0.1
+  missRate: 0
   critRate: 0
   critMultiplier: 0
-  coinsGainedMin: 1
-  coinsGainedMax: 9
+  coinsGainedMin: 2
+  coinsGainedMax: 12
 --- !u!212 &629895018215744028
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -143,6 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f8dfec4ecf65b43baaff3914a4d28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missRate: 0.2
+  missRate: 0
   critRate: 0.25
   critMultiplier: 2
