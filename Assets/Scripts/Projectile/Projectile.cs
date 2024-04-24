@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
+    [SerializeField]
+    protected float missRate;
+    [SerializeField]
+    protected float critRate;
+    [SerializeField]
+    protected float critMultiplier;
     protected Enemy target;
 
     protected PlaRangeProjectile parent;
@@ -52,10 +59,23 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            float randomValue = UnityEngine.Random.Range(0.0f, 1.0f);
             if (target.gameObject == other.gameObject)
             {
-                target.TakeDamage(parent.Damage);
-                GameManager.Instance.Pool.ReleaseObject(gameObject);
+                if (randomValue > 1 - critRate)
+                {
+                    target.TakeDamage(Convert.ToInt32(Math.Round(parent.Damage * critMultiplier)));
+                    GameManager.Instance.Pool.ReleaseObject(gameObject);
+                }
+                else if (randomValue > missRate)
+                {
+                    target.TakeDamage(Convert.ToInt32(parent.Damage));
+                    GameManager.Instance.Pool.ReleaseObject(gameObject);
+                }
+                else
+                {
+                    GameManager.Instance.Pool.ReleaseObject(gameObject);
+                }
             }
         }
     }

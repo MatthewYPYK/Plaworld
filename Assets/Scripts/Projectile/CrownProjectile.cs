@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,18 +27,33 @@ public class CrownProjectile : Projectile
         {
             if (target.gameObject == other.gameObject)
             {
-                if (coinsGainedMin == coinsGainedMax)
-                {
-                    coinsGained = coinsGainedMin;
+                float randomValue = UnityEngine.Random.Range(0.0f, 1.0f);
+                if (randomValue < missRate){
+                    GameManager.Instance.Pool.ReleaseObject(gameObject);
                 }
-                else
-                {
-                    coinsGained = Random.Range(coinsGainedMin, coinsGainedMax + 1);
+                else{
+                    if (coinsGainedMin == coinsGainedMax)
+                    {
+                        coinsGained = coinsGainedMin;
+                    }
+                    else
+                    {
+                        coinsGained = UnityEngine.Random.Range(coinsGainedMin, coinsGainedMax + 1);
+                    }
+                    GameManager.Instance.Balance += coinsGained;
+                    GameManager.Instance.activeReward += coinsGained;
+                    if (randomValue > 1 - critRate)
+                    {
+                        target.TakeDamage(Convert.ToInt32(Math.Round(parent.Damage * critMultiplier)));
+                    }
+                    else
+                    {
+                        target.TakeDamage(parent.Damage);
+                    }
+                    target.TakeDamage(parent.Damage);
+                    GameManager.Instance.Pool.ReleaseObject(gameObject);
                 }
-                GameManager.Instance.Balance += coinsGained;
-                GameManager.Instance.activeReward += coinsGained;
-                target.TakeDamage(parent.Damage);
-                GameManager.Instance.Pool.ReleaseObject(gameObject);
+
             }
         }
     }
