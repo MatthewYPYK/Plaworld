@@ -24,7 +24,7 @@ public class Level10Story : StoryBase
     protected override bool EventTriggered(){
         if (step == 2){
             if (GameManager.Instance.Lives <= 5)
-                return true;
+                return GameManager.Instance.Lives !=0;
         }
         if (GameManager.Instance.Wave == 10 && !GameManager.Instance.WaveActive){
             step = 10;

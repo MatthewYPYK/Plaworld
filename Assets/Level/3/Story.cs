@@ -4,7 +4,10 @@ using UnityEngine.SceneManagement;
 public class Level3Story : StoryBase
 {
     protected override void UpdateDialogue(){
-        if (step == 0) SetDialogueText("We are sharks! \nWe are orcas! \nWe only charge forward!!!!!!!!");
+        if (step == 0) {
+            dialogueText.fontSize = 30;
+            SetDialogueText("We are sharks! \nWe are orcas! \nWe only charge forward!!!!!!!!");
+        }
         else if (step == 1) {
             SetDialogueActive(false);
             GameManager.Instance.SetTimeScale(2);

@@ -3228,7 +3228,7 @@ MonoBehaviour:
   timeBetweenSpawn: 0.5
   waveData:
   - key: Soldier
-    value: 3
+    value: 5
 --- !u!1 &1095447379
 GameObject:
   m_ObjectHideFlags: 0
