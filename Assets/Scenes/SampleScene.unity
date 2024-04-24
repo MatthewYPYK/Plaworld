@@ -1157,7 +1157,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 248c2255f70a43b428bb3c45ea52ad8c, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: price
-      value: 75
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: sprite
