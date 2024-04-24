@@ -49,8 +49,8 @@ MonoBehaviour:
   missRate: 0
   critRate: 0
   critMultiplier: 0
-  coinsGainedMin: 2
-  coinsGainedMax: 12
+  coinsGainedMin: 0
+  coinsGainedMax: 10
 --- !u!212 &629895018215744028
 SpriteRenderer:
   m_ObjectHideFlags: 0
