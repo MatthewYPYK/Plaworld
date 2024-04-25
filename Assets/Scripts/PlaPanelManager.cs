@@ -8,6 +8,7 @@ public class PlaManager : Singleton<PlaManager>
     private GameObject plaPanel;
 
     private List<PlaBtn> plaBtnsList = new List<PlaBtn>();
+    public int PlaBtnsCount => plaBtnsList.Count;
 
     void Start()
     {
@@ -35,9 +36,21 @@ public class PlaManager : Singleton<PlaManager>
             }
         }
     }
-    
+
     void TogglePlaPanel()
     {
         plaPanel.gameObject.SetActive(!plaPanel.gameObject.activeSelf);
+    }
+
+    public PlaBtn getStoneBtn()
+    {
+        for (int i = 0; i < plaBtnsList.Count; i++)
+        {
+            if (plaBtnsList[i].name == "Stone")
+            {
+                return plaBtnsList[i];
+            }
+        }
+        return null;
     }
 }

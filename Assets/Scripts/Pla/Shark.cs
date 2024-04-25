@@ -39,6 +39,8 @@ public class Shark : MonoBehaviour
             {
                 target.TakeDamage(damage);
                 GameManager.Instance.Pool.ReleaseObject(gameObject);
+                AudioManager.instance.Play("Eat");
+
             }
         }
     }

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [SerializeField][Range(0,1)]
+    private float upPad = 0, rightPad = 0, downPad = 0, leftPad = 0, padding = 0;
     [SerializeField]
     private float cameraSpeed = 0;
     private float xMax;
     private float yMin;
     private Bounds boundingBox;
-    private float padding = 1.0f; // Padding around the bounding box
     // Start is called before the first frame update
     void Start()
     {
@@ -51,10 +52,13 @@ public class CameraMovement : MonoBehaviour
         boundingBox = _boundingBox;
         Camera camera = Camera.main;
         float screenAspect = Screen.width / (float)Screen.height;
-        float boundAspect = boundingBox.size.x / boundingBox.size.y;
-        camera.orthographicSize = (boundAspect > screenAspect) ? (boundingBox.size.x / screenAspect) / 2 : boundingBox.size.y / 2;
-        camera.orthographicSize += padding;
-        camera.transform.position = new Vector3(boundingBox.center.x, boundingBox.center.y, camera.transform.position.z);
+        float w = boundingBox.size.x / (1 - (rightPad + leftPad + 2*padding));
+        float h = boundingBox.size.y / (1 - (upPad + downPad + 2*padding));
+        float x = boundingBox.center.x / (1 - (rightPad - leftPad));
+        float y = boundingBox.center.y / (1 - (downPad - upPad));
+        float boundAspect = w / h;
+        camera.orthographicSize = (boundAspect > screenAspect) ? (w / screenAspect) / 2 : h / 2;
+        camera.transform.position = new Vector3(x, y, camera.transform.position.z);
 
     }
     public void SetLimits(Vector3 maxTile)

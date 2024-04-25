@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4862787718525876500}
   - component: {fileID: 9083132404858575870}
-  - component: {fileID: 1481081738842314018}
+  - component: {fileID: 8474591811729242721}
   m_Layer: 2
   m_Name: Range
   m_TagString: Untagged
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2285c0c40288a1c45a799a95f87d4b83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  attackCooldown: 0.1
+  damage: 10
+  attackCooldown: 0.75
 --- !u!61 &8474591811729242721
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -274,7 +274,7 @@ Animator:
   m_GameObject: {fileID: 7135499711133857656}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 17b4466a0d7318043859d77ea16b619e, type: 2}
+  m_Controller: {fileID: 9100000, guid: d6b0489a0cbef0e488bf8aafcb51de1b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

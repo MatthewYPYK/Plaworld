@@ -13,13 +13,15 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private int balance;
-
+    [SerializeField] private StoryBase storyScript;
     private int wave = 0;
     public int Wave => wave; // wave getter
 
-    private int lives;
+    [SerializeField] private int lives = 10;
 
     private bool gameOver = false;
+
+    private bool paused = false;
     private bool sellMode = false;
     public bool SellMode
     {
@@ -46,10 +48,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject gameOverMenu;
 
+    [SerializeField]
+    private GameObject pausedMenu;
+
     // TODO : this is a list of active enemies
     private List<Enemy> activeEnemies = new List<Enemy>();
 
     public ObjectPool Pool { get; set; }
+    public int activeReward = 0;
 
     public int WaveReward;
 
@@ -85,15 +91,20 @@ public class GameManager : Singleton<GameManager>
         {
             this.lives = value;
 
+            UIUpdater.Instance.UpdateLives(lives);
+
             if (lives <= 0)
             {
                 this.lives = 0;
                 GameOver();
             }
-
-            // livesTxt.text = lives.ToString();
-
         }
+    }
+
+    public bool IsDialogueActive()
+    {
+        if (storyScript is null) return false;
+        return storyScript.IsDialogueActive();
     }
 
     private void Awake()
@@ -103,9 +114,9 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-
-        Lives = 10;
-
+        Balance = balance;
+        Lives = lives;
+        SetTimeScale(1);
     }
 
     // Update is called once per frame
@@ -114,6 +125,14 @@ public class GameManager : Singleton<GameManager>
         HandleEscape();
         if (Input.GetKeyDown(KeyCode.Equals) && !gameOver) Time.timeScale += 1;
         if (Input.GetKeyDown(KeyCode.Minus) && Time.timeScale > 0) Time.timeScale -= 1;
+    }
+
+    public void SetTimeScale(int newTimeScale)
+    {
+        if (newTimeScale > 100) newTimeScale = 100;
+        if (newTimeScale < 0) newTimeScale = 0;
+        if (IsDialogueActive()) newTimeScale = 0;
+        Time.timeScale = newTimeScale;
     }
 
     public void PickPla(PlaBtn plaBtn)
@@ -144,28 +163,43 @@ public class GameManager : Singleton<GameManager>
 
     public void SellButtonClick()
     {
-        sellMode = !sellMode;
-        UIUpdater.Instance.UpdateSellMode(sellMode);
+        if (!WaveActive)
+        {
+            sellMode = !sellMode;
+            UIUpdater.Instance.UpdateSellMode(sellMode);
 
-        selectedPla = null;
-        Hover.Instance.Deactivate();
+            selectedPla = null;
+            Hover.Instance.Deactivate();
+        }
+
     }
 
     private void HandleEscape()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (ClickedBtn == null && !gameOver)
+            {
+                HandleTogglePause();
+            }
             Hover.Instance.Deactivate();
         }
+    }
+
+    public void HandleTogglePause() 
+    {
+        this.paused = !this.paused;
+
+        Time.timeScale = paused ? 0 : 1;
+        pausedMenu.SetActive(paused);
     }
 
     public void StartWave()
     {
         wave++;
-        WaveReward = wave * 5; // default WaveReward
-        
-        LevelManager.Instance.GeneratePath();
-        if(WaveManager.Instance.IsWaveDefined(wave))
+        WaveReward = 50 + wave * 5; // default WaveReward
+
+        if (WaveManager.Instance.IsWaveDefined(wave))
             WaveManager.Instance.StartWave(wave);
         else
             StartCoroutine(SpawnWave());
@@ -174,7 +208,8 @@ public class GameManager : Singleton<GameManager>
         waveBtn.SetActive(false);
     }
 
-    public Enemy SpawnEnemy(string type){
+    public Enemy SpawnEnemy(string type)
+    {
         Enemy enemy = Pool.GetObject(type).GetComponent<Enemy>();
         enemy.Spawn(type);
         activeEnemies.Add(enemy);
@@ -186,7 +221,7 @@ public class GameManager : Singleton<GameManager>
         int waveValue = 0;
         int enemyIndex = 0;
 
-        while (waveValue < wave)
+        while (waveValue < wave * 2)
         {
             if (wave < 3)
             {
@@ -203,12 +238,12 @@ public class GameManager : Singleton<GameManager>
                         break;
                     case 1:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                 }
             }
@@ -222,25 +257,25 @@ public class GameManager : Singleton<GameManager>
                         break;
                     case 1:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                     case 2:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                 }
             }
-            else
+            else if (wave < 9)
             {
                 enemyIndex = Random.Range(0, 4);
                 switch (enemyIndex)
@@ -250,28 +285,129 @@ public class GameManager : Singleton<GameManager>
                         break;
                     case 1:
                         waveValue += 3;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 3;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
                         break;
                     case 2:
                         waveValue += 5;
-                        if (waveValue > wave)
-                        {
-                            enemyIndex = 0;
-                            waveValue -= 5;
-                            waveValue++;
-                        }
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
                         break;
                     case 3:
                         waveValue += 5;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
+                        break;
+                }
+            }
+            else if (wave < 15)
+            {
+                enemyIndex = Random.Range(0, 5);
+                switch (enemyIndex)
+                {
+                    case 0:
+                        waveValue++;
+                        break;
+                    case 1:
+                        waveValue += 3;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
+                        break;
+                    case 2:
+                        waveValue += 5;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
+                        break;
+                    case 3:
+                        waveValue += 5;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
+                        break;
+                    case 4:
+                        // waveValue += 3;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
+                        break;
+                }
+            }
+            else
+            {
+                enemyIndex = Random.Range(0, 6);
+                switch (enemyIndex)
+                {
+                    case 0:
+                        waveValue++;
+                        break;
+                    case 1:
+                        waveValue += 3;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
+                        break;
+                    case 2:
+                        waveValue += 5;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
+                        break;
+                    case 3:
+                        waveValue += 5;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 5;
+                        //     waveValue++;
+                        // }
+                        break;
+                    case 4:
+                        waveValue += 3;
+                        // if (waveValue > wave)
+                        // {
+                        //     enemyIndex = 0;
+                        //     waveValue -= 3;
+                        //     waveValue++;
+                        // }
+                        break;
+                    case 5:
+                        waveValue += 15;
                         if (waveValue > wave)
                         {
                             enemyIndex = 0;
-                            waveValue -= 5;
+                            waveValue -= 15;
                             waveValue++;
                         }
                         break;
@@ -294,6 +430,12 @@ public class GameManager : Singleton<GameManager>
                 case 3:
                     type = "AirShip";
                     break;
+                case 4:
+                    type = "Wizard";
+                    break;
+                case 5:
+                    type = "Cat";
+                    break;
             }
 
             SpawnEnemy(type);
@@ -311,7 +453,9 @@ public class GameManager : Singleton<GameManager>
         if (!WaveActive && !gameOver)
         {
             waveBtn.SetActive(true);
-            Debug.Log("currency is added");
+            Debug.Log("Passively added funds:" + WaveReward);
+            Debug.Log("Actively added funds: " + activeReward);
+            activeReward = 0;
             balance += WaveReward;
             UIUpdater.Instance.UpdateBalance(GameManager.Instance.Balance);
         }
@@ -361,31 +505,98 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < total_number; i++)
         {
             Enemy enemy = Pool.GetObject("Soldier").GetComponent<Enemy>();
-            enemy.Spawn("Soldier", position, new(new Stack<Node>(initialPath)));
+            enemy.Spawn("Soldier", position);
             activeEnemies.Add(enemy);
         }
     }
 
-    public void TankSkill(Point currentPos)
+    private List<Point> getPossibleFish(Point currentPos, List<string> unselected)
     {
         List<Point> possibleFish = new();
-        // Debug.Log("shoot some fish");
         for (int dx = -1; dx <= 1; dx++)
         {
             for (int dy = -1; dy <= 1; dy++)
             {
                 Point neighbourPos = new(currentPos.X - dx, currentPos.Y - dy);
-                if (LevelManager.Instance.InBounds(neighbourPos) && !LevelManager.Instance.Tiles[neighbourPos].WalkAble)
+                if (LevelManager.Instance.InBounds(neighbourPos))
                 {
-                    possibleFish.Add(neighbourPos);
+                    TileScript neighbourTile = LevelManager.Instance.Tiles[neighbourPos];
+                    if (!neighbourTile.WalkAble && !unselected.Contains(neighbourTile.PlaType))
+                    {
+                        possibleFish.Add(neighbourPos);
+                    }
                 }
             }
         }
+        return possibleFish;
+    }
+
+    public void TankSkill(Point currentPos)
+    {
+
+        // Debug.Log("shoot some fish");
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
         if (possibleFish.Count != 0)
         {
             int randomIndex = Random.Range(0, possibleFish.Count);
             LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
-            LevelManager.Instance.GeneratePath();
+            AudioManager.instance.Play("Bomb");
         }
+    }
+
+    public void WizardSkill(Point currentPos)
+    {
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string> { "Stone" });
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].TransformStone();
+            AudioManager.instance.Play("Magic");
+        }
+    }
+
+    public void CatSkill(Point currentPos)
+    {
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            AudioManager.instance.Play("Eat");
+        }
+    }
+
+    public void SoldierSkill(Point currentPos)
+    {
+        // Debug.Log("shoot some fish");
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        if (possibleFish.Count != 0)
+        {
+            int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[randomIndex]].RefreshTile();
+            AudioManager.instance.Play("Shoot");
+        }
+    }
+    public void UpdateEnemiesPath()
+    {
+        foreach (var enemy in activeEnemies)
+        {
+            enemy.UpdatePath();
+        }
+    }
+    public void UpdateStory(int step) => storyScript.CallAction(step);
+
+    public void SelfDetonate(Point currentPos)
+    {
+        // Debug.Log("shoot some fish");
+        List<Point> possibleFish = getPossibleFish(currentPos, new List<string>());
+        for (int i = 0; i < possibleFish.Count; i++)
+        {
+            //int randomIndex = Random.Range(0, possibleFish.Count);
+            LevelManager.Instance.Tiles[possibleFish[i]].RefreshTile();
+            AudioManager.instance.Play("Bomb");
+
+        }
+
     }
 }
