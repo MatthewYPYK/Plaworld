@@ -32,6 +32,7 @@ public class TileScript : MonoBehaviour
     private Color32 emptyColor = new Color32(96, 255, 90, 255);
 
     private SpriteRenderer spriteRenderer;
+    public Color32 TileColor() => spriteRenderer.color;
 
     public Vector2 WorldPosition
     {
