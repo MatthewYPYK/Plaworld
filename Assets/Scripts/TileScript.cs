@@ -8,12 +8,14 @@ public class TileScript : MonoBehaviour
 {
     public Point GridPosition { get; private set; }
     private bool walkAble;
-    public bool WalkAble { 
+    public bool WalkAble
+    {
         get => walkAble;
-        set {
+        set
+        {
             this.walkAble = value;
             UpdatePath();
-        } 
+        }
     }
     protected void UpdatePath() => GameManager.Instance.UpdateEnemiesPath();
 
@@ -66,7 +68,8 @@ public class TileScript : MonoBehaviour
         transform.position = worldPos;
         transform.SetParent(parent);
         LevelManager.Instance.Tiles.Add(gridPos, this);
-        if ( isInvisible ) {
+        if (isInvisible)
+        {
             IsEmpty = false;
             walkAble = false;
         }
@@ -109,7 +112,8 @@ public class TileScript : MonoBehaviour
                 if (GameManager.Instance.SellMode)
                 {
                     GameManager.Instance.Balance += (int)Math.Floor(plaPrice * GameManager.Instance.SellMultiplier);
-                    GameManager.Instance.SellButtonClick();
+                    //uncomment to one time sell
+                    // GameManager.Instance.SellButtonClick();
                     AudioManager.instance.Play("Cashier");
                     RefreshTile();
                 }
