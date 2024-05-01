@@ -143,7 +143,7 @@ public class GameManager : Singleton<GameManager>
         {
             this.ClickedBtn = plaBtn;
             //Debug.Log("PlaBtn: " + ClickedBtn);
-            Hover.Instance.Activate(plaBtn.Sprite);
+            Hover.Instance.Activate(plaBtn.Sprite, plaBtn.RangePrefab);
         }
     }
 
@@ -186,7 +186,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void HandleTogglePause() 
+    public void HandleTogglePause()
     {
         this.paused = !this.paused;
 
