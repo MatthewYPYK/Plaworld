@@ -35,6 +35,10 @@ public class Hover : Singleton<Hover>
         float pivot_adjust = LevelManager.Instance.TileSize / 2;
         if (range != null)
         {
+            if (this.range != null)
+            {
+                Destroy(this.range);
+            }
             //add range as a child of hover
             this.range = Instantiate(range, transform.position + Vector3.up * pivot_adjust + Vector3.left * pivot_adjust, Quaternion.identity);
             this.range.transform.parent = transform;

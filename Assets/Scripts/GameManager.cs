@@ -141,6 +141,8 @@ public class GameManager : Singleton<GameManager>
 
         // if (Balance >= plaBtn.Price && !WaveActive)
         {
+            sellMode = false;
+            UIUpdater.Instance.UpdateSellMode(sellMode);
             this.ClickedBtn = plaBtn;
             //Debug.Log("PlaBtn: " + ClickedBtn);
             Hover.Instance.Activate(plaBtn.Sprite, plaBtn.RangePrefab);
