@@ -407,6 +407,10 @@ PrefabInstance:
       propertyPath: isPermanent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: rangePrefab
+      value: 
+      objectReference: {fileID: 3976292077464615572, guid: d404b5dd029c65d46966b24db3f21751, type: 3}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1178,7 +1182,7 @@ PrefabInstance:
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: plaPrefab
       value: 
-      objectReference: {fileID: 4458707895790223509, guid: 8519bd3d7f8bdd1459c43169591743fa, type: 3}
+      objectReference: {fileID: 4039773410698365106, guid: 368f1150d743a1641bc2cb781d155f64, type: 3}
     - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: towerName
       value: CrownFish
@@ -1187,6 +1191,10 @@ PrefabInstance:
       propertyPath: isPermanent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: rangePrefab
+      value: 
+      objectReference: {fileID: 5152130987101099158, guid: 72bd381728be25843bf3d64f6d63b3fe, type: 3}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2454,6 +2462,10 @@ PrefabInstance:
       propertyPath: isPermanent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: rangePrefab
+      value: 
+      objectReference: {fileID: 8379894311106822587, guid: b41f0c00a451a944e987977e16a8b744, type: 3}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2839,6 +2851,10 @@ PrefabInstance:
       propertyPath: isPermanent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: rangePrefab
+      value: 
+      objectReference: {fileID: 6353943597001387799, guid: 209e7be8185fdf54ca2dab71901d3f9a, type: 3}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3605,6 +3621,10 @@ PrefabInstance:
       propertyPath: isPermanent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: rangePrefab
+      value: 
+      objectReference: {fileID: 8050191789850695792, guid: cee00faa1354fb74ea8cf26991bf3a06, type: 3}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4381,6 +4401,10 @@ PrefabInstance:
       propertyPath: isFleeting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: rangePrefab
+      value: 
+      objectReference: {fileID: 6353943597001387799, guid: 209e7be8185fdf54ca2dab71901d3f9a, type: 3}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4748,6 +4772,10 @@ PrefabInstance:
       propertyPath: isFleeting
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: rangePrefab
+      value: 
+      objectReference: {fileID: 6353943597001387799, guid: 209e7be8185fdf54ca2dab71901d3f9a, type: 3}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6931,6 +6959,10 @@ PrefabInstance:
       propertyPath: isPermanent
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: rangePrefab
+      value: 
+      objectReference: {fileID: 5152130987101099158, guid: 72bd381728be25843bf3d64f6d63b3fe, type: 3}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
