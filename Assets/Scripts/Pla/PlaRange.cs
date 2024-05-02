@@ -17,6 +17,7 @@ public abstract class PlaRange : MonoBehaviour
     protected void Start()
     {
         //Debug.Log("Initial Projectile speed: " + projectileSpeed);
+        onStartEnableRange = true;
         setRangeEnable(onStartEnableRange);
         isEnableRange = onStartEnableRange;
     }
@@ -31,6 +32,7 @@ public abstract class PlaRange : MonoBehaviour
     {
         //Debug.Log("Tower selected");
         // spriteRenderer.enabled = !spriteRenderer.enabled;
+        Debug.Log("Range selected");
         setRangeEnable(!isEnableRange);
     }
 

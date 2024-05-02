@@ -12,6 +12,9 @@ public class PlaBtn : MonoBehaviour
     private Sprite sprite;
 
     [SerializeField]
+    private GameObject rangePrefab;
+
+    [SerializeField]
     private string towerName;
 
     [SerializeField]
@@ -38,6 +41,14 @@ public class PlaBtn : MonoBehaviour
         get
         {
             return sprite;
+        }
+    }
+
+    public GameObject RangePrefab
+    {
+        get
+        {
+            return rangePrefab;
         }
     }
     public string TowerName
