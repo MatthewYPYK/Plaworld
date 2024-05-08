@@ -2,9 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
-public class StoryBase : MonoBehaviour
+public class StoryBase : Singleton<StoryBase>
 {
+    [SerializeField] bool useDefaultMap = true;
+    [SerializeField] TextAsset mapData;
+    [SerializeField] OveridableObject<Point> greenSpawn, coral;
+    [SerializeField] int balance = -1;
+    [SerializeField] int lives = -1;
+    [SerializeField] float sellMultiplier = -1;
+    [SerializeField] int nextSceneId = 0;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] protected Image backGroundImage;
     [SerializeField] protected TMP_Text nameText;
@@ -12,15 +20,32 @@ public class StoryBase : MonoBehaviour
     [SerializeField] protected Image characterImage;
     protected bool dialogueStatus = false;
     public bool IsDialogueActive() => dialogueStatus;
-    [SerializeField] private int nextSceneId = 0;
     protected int step;
 
-    void Start() {
+    protected virtual void Awake(){
+        if (!useDefaultMap){
+            if (isnull(mapData)) LevelManager.Instance.mapData = mapData;
+            if (greenSpawn.Overide) LevelManager.Instance.greenSpawn = greenSpawn;
+            if (coral.Overide) LevelManager.Instance.coral = coral;
+        }
+    }
+    // SerializeField GameObject dialogueBox using only " is null" will return false
+    protected bool isnull(object obj){
+        return obj is null || obj.ToString() == "null";
+    }
+    protected virtual void Start() {
+        if (balance > 0) GameManager.Instance.Balance = balance;
+        if (lives > 0) GameManager.Instance.Lives = lives;
+        if (sellMultiplier >= 0) GameManager.Instance.SellMultiplier = sellMultiplier;
+        if (isnull(this.dialogueBox)) this.dialogueBox = UIUpdater.Instance.dialogueBox;
+        if (isnull(this.backGroundImage)) this.backGroundImage = UIUpdater.Instance.backGroundImage;
+        if (isnull(this.nameText)) this.nameText = UIUpdater.Instance.nameText;
+        if (isnull(this.dialogueText)) this.dialogueText = UIUpdater.Instance.dialogueText;
         step = 0;
         UpdateDialogue();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (dialogueBox.activeSelf){
             if (Input.GetMouseButtonDown(0)) UpdateDialogue();

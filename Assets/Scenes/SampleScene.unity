@@ -1222,7 +1222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
   balance: 500
-  storyScript: {fileID: 0}
   lives: 10
   sellMultiplier: 0.6
   waveBtn: {fileID: 721804326}
@@ -2344,6 +2343,14 @@ MonoBehaviour:
   textMesh_waves: {fileID: 0}
   sellPla: {fileID: 592535732}
   textMesh_SellPla: {fileID: 0}
+  dialogueBox: {fileID: 761229463}
+  backGroundImage: {fileID: 1787392667}
+  nameText: {fileID: 1243846546}
+  dialogueText: {fileID: 2037141742}
+  characterImage: {fileID: 1815423902}
+  startButton: {fileID: 721804326}
+  sellButton: {fileID: 1988645826}
+  SpeedControlUI: {fileID: 778829079}
 --- !u!1 &678897815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,8 +2885,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f3ac1f1e0eff440b40b722ca6b1d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueBox: {fileID: 761229463}
-  dialogueText: {fileID: 2037141742}
+  useDefaultMap: 1
+  mapData: {fileID: 0}
+  greenSpawn:
+    Overide: 0
+    value:
+      X: 0
+      Y: 0
+  coral:
+    Overide: 0
+    value:
+      X: 0
+      Y: 0
+  balance: -1
+  lives: -1
+  sellMultiplier: -1
+  nextSceneId: 0
+  dialogueBox: {fileID: 0}
+  backGroundImage: {fileID: 0}
+  nameText: {fileID: 0}
+  dialogueText: {fileID: 0}
+  characterImage: {fileID: 0}
 --- !u!1 &778829079
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,7 +3373,7 @@ GameObject:
   - component: {fileID: 1010892185}
   - component: {fileID: 1010892184}
   m_Layer: 5
-  m_Name: TextBackground
+  m_Name: DialogueBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4189,7 +4215,7 @@ GameObject:
   - component: {fileID: 1243846547}
   - component: {fileID: 1243846546}
   m_Layer: 5
-  m_Name: DialogueText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

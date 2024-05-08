@@ -12,6 +12,11 @@ public class Level1Story : StoryBase
     int curColor = 0;
     [SerializeField] private int intervalBlinkTime = 100;
 
+    protected override void Start() {
+        if (isnull(this.startButton)) this.startButton = UIUpdater.Instance.startButton;
+        if (isnull(this.sellButton)) this.sellButton = UIUpdater.Instance.sellButton;
+        base.Start();
+    }
     protected override void UpdateDialogue(){
         if (step == 0) {
             dialogueText.text = "Help! Some oil company just hired an army to attack us!\nListen to me now! I'll tell you everything you need to know!\nClick anywhere on this screen to continue.\n(You can pause the game using 'esc' key.)";
