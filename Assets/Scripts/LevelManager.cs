@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] private TextAsset mapData;
+    [SerializeField] public TextAsset mapData;
 
     [SerializeField]
     private GameObject[] tilePrefabs;
@@ -16,7 +16,7 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     public CameraMovement cameraMovement;
 
-    [SerializeField] private Point greenSpawn, coral;
+    [SerializeField] public Point greenSpawn, coral;
     
     public Point GreenSpawn { 
         get => greenSpawn;

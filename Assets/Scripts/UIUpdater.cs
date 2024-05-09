@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIUpdater : Singleton<UIUpdater>
@@ -17,6 +18,17 @@ public class UIUpdater : Singleton<UIUpdater>
 
     public GameObject sellPla;
     public TextMeshProUGUI textMesh_SellPla;
+    
+    //  vvvvv=====dialogue=====vvvvv
+    public GameObject dialogueBox;
+    public Image backGroundImage;
+    public TMP_Text nameText;
+    public TMP_Text dialogueText;
+    public Image characterImage;
+    public GameObject startButton;
+    public GameObject sellButton;
+    public GameObject SpeedControlUI;
+    //  ^^^^^=====dialogue=====^^^^^
 
     private GameManager gameManager;
     public void UpdateBalance(int value)

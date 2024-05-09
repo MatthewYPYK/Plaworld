@@ -927,7 +927,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedPla: {fileID: 0}
   balance: 500
-  storyScript: {fileID: 1076877760}
   lives: 10
   sellMultiplier: 0.6
   waveBtn: {fileID: 721804326}
@@ -1953,6 +1952,14 @@ MonoBehaviour:
   textMesh_waves: {fileID: 0}
   sellPla: {fileID: 592535732}
   textMesh_SellPla: {fileID: 0}
+  dialogueBox: {fileID: 0}
+  backGroundImage: {fileID: 0}
+  nameText: {fileID: 0}
+  dialogueText: {fileID: 0}
+  characterImage: {fileID: 0}
+  startButton: {fileID: 0}
+  sellButton: {fileID: 0}
+  SpeedControlUI: {fileID: 0}
 --- !u!1 &678897815
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,12 +3166,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32801941a545ad64e9c8d2c75278ef2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useDefaultMap: 0
+  mapData: {fileID: 4900000, guid: 013f8e202b4583f438254030e3cfca93, type: 3}
+  greenSpawn:
+    Overide: 0
+    value:
+      X: 0
+      Y: 4
+  coral:
+    Overide: 0
+    value:
+      X: 20
+      Y: 4
+  balance: 500
+  lives: 10
+  sellMultiplier: -1
+  nextSceneId: 0
   dialogueBox: {fileID: 761229463}
   backGroundImage: {fileID: 1787392667}
   nameText: {fileID: 1243846546}
   dialogueText: {fileID: 2037141742}
   characterImage: {fileID: 1815423902}
-  nextSceneId: 0
 --- !u!4 &1076877761
 Transform:
   m_ObjectHideFlags: 0

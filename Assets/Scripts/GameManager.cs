@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private int balance;
-    [SerializeField] private StoryBase storyScript;
+    private StoryBase storyScript;
     private int wave = 0;
     public int Wave => wave; // wave getter
 
@@ -39,6 +39,10 @@ public class GameManager : Singleton<GameManager>
         get
         {
             return sellMultiplier;
+        }
+        set
+        {
+            sellMultiplier = value;
         }
     }
 
@@ -114,6 +118,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
+        storyScript = StoryBase.Instance;
         Balance = balance;
         Lives = lives;
         SetTimeScale(1);
