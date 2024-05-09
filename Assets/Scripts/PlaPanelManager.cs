@@ -26,12 +26,12 @@ public class PlaManager : Singleton<PlaManager>
     {
         if (Input.GetKeyDown(KeyCode.Space))
             TogglePlaPanel();
-        for (int i = 0; i < plaBtnsList.Count; i++)
+        foreach (PlaBtn plaBtn in plaBtnsList)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            if (Input.GetKeyDown(KeyCode.Alpha1 + plaBtn.TowerNumber - 1))
             {
-                if (i < plaBtnsList.Count)
-                    GameManager.Instance.PickPla(plaBtnsList[i]);
+                if (plaBtn.TowerNumber - 1 < plaBtnsList.Count)
+                    GameManager.Instance.PickPla(plaBtn);
                 break;
             }
         }
