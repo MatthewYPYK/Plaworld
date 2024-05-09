@@ -411,6 +411,10 @@ PrefabInstance:
       propertyPath: rangePrefab
       value: 
       objectReference: {fileID: 3976292077464615572, guid: d404b5dd029c65d46966b24db3f21751, type: 3}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: towerNumber
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -418,6 +422,14 @@ PrefabInstance:
     - target: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Name
       value: Swordfish
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Pivot.x
@@ -997,6 +1009,10 @@ PrefabInstance:
       propertyPath: rangePrefab
       value: 
       objectReference: {fileID: 5152130987101099158, guid: 72bd381728be25843bf3d64f6d63b3fe, type: 3}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: towerNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1004,6 +1020,14 @@ PrefabInstance:
     - target: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Name
       value: CrownFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Pivot.x
@@ -1395,6 +1419,10 @@ PrefabInstance:
       propertyPath: rangePrefab
       value: 
       objectReference: {fileID: 5152130987101099158, guid: 72bd381728be25843bf3d64f6d63b3fe, type: 3}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: towerNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1402,6 +1430,18 @@ PrefabInstance:
     - target: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Name
       value: GoldFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_text
+      value: '[<FishNumber>]<FishName>:<Price>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Pivot.x
@@ -1938,7 +1978,7 @@ RectTransform:
   m_AnchorMin: {x: 0.85, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 73.98, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &536788060
 MonoBehaviour:
@@ -1958,11 +1998,11 @@ MonoBehaviour:
     m_Top: 20
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_StartCorner: 1
-  m_StartAxis: 1
-  m_CellSize: {x: 60, y: 35}
-  m_Spacing: {x: 30, y: 30}
-  m_Constraint: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 80, y: 60}
+  m_Spacing: {x: 30, y: 50}
+  m_Constraint: 1
   m_ConstraintCount: 2
 --- !u!222 &536788061
 CanvasRenderer:
@@ -2086,8 +2126,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2669,6 +2709,10 @@ PrefabInstance:
       propertyPath: rangePrefab
       value: 
       objectReference: {fileID: 8379894311106822587, guid: b41f0c00a451a944e987977e16a8b744, type: 3}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: towerNumber
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2676,6 +2720,14 @@ PrefabInstance:
     - target: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Name
       value: Angler
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Pivot.x
@@ -3077,6 +3129,10 @@ PrefabInstance:
       propertyPath: rangePrefab
       value: 
       objectReference: {fileID: 6353943597001387799, guid: 209e7be8185fdf54ca2dab71901d3f9a, type: 3}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: towerNumber
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3084,6 +3140,14 @@ PrefabInstance:
     - target: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Name
       value: Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Pivot.x
@@ -3847,6 +3911,10 @@ PrefabInstance:
       propertyPath: rangePrefab
       value: 
       objectReference: {fileID: 8050191789850695792, guid: cee00faa1354fb74ea8cf26991bf3a06, type: 3}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: towerNumber
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3854,6 +3922,14 @@ PrefabInstance:
     - target: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Name
       value: Pufferfish
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Pivot.x
@@ -4627,6 +4703,10 @@ PrefabInstance:
       propertyPath: rangePrefab
       value: 
       objectReference: {fileID: 6353943597001387799, guid: 209e7be8185fdf54ca2dab71901d3f9a, type: 3}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: towerNumber
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4634,6 +4714,14 @@ PrefabInstance:
     - target: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Name
       value: Orca
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Pivot.x
@@ -4998,6 +5086,10 @@ PrefabInstance:
       propertyPath: rangePrefab
       value: 
       objectReference: {fileID: 6353943597001387799, guid: 209e7be8185fdf54ca2dab71901d3f9a, type: 3}
+    - target: {fileID: 1383387072014479113, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: towerNumber
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3965891521175508433, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5005,6 +5097,14 @@ PrefabInstance:
     - target: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Name
       value: Shark
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273238694651032647, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7445930839635004825, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
       propertyPath: m_Pivot.x
@@ -6595,8 +6695,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 454, y: -269}
-  m_SizeDelta: {x: 127.75, y: 23.95}
+  m_AnchoredPosition: {x: 416.05, y: -226.4}
+  m_SizeDelta: {x: 198.7, y: 92.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988645828
 MonoBehaviour:

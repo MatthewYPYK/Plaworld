@@ -18,6 +18,9 @@ public class PlaBtn : MonoBehaviour
     private string towerName;
 
     [SerializeField]
+    private int towerNumber;
+
+    [SerializeField]
     private int price;
 
     [SerializeField]
@@ -74,6 +77,13 @@ public class PlaBtn : MonoBehaviour
             price = value;
         }
     }
+    public int TowerNumber
+    {
+        get
+        {
+            return towerNumber;
+        }
+    }
     public bool HasRange
     {
         get
@@ -91,7 +101,7 @@ public class PlaBtn : MonoBehaviour
     void Start()
     {
         textMesh_buttonText = buttonText.GetComponent<TextMeshProUGUI>();
-        textMesh_buttonText.text = towerName + ":" + price.ToString();
+        textMesh_buttonText.text = towerName + "\n" + "[" + towerNumber + "] " + "$" + price.ToString();
     }
 
 }
