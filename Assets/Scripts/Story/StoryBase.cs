@@ -24,7 +24,7 @@ public class StoryBase : Singleton<StoryBase>
 
     protected virtual void Awake(){
         if (!useDefaultMap){
-            if (isnull(mapData)) LevelManager.Instance.mapData = mapData;
+            if (!isnull(mapData)) LevelManager.Instance.mapData = mapData;
             if (greenSpawn.Overide) LevelManager.Instance.greenSpawn = greenSpawn;
             if (coral.Overide) LevelManager.Instance.coral = coral;
         }

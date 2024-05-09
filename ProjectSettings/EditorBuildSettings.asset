@@ -14,31 +14,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Level/1/Level 1 old.unity
-    guid: 16e02ea2702b8f24aa3aeeba3a62204d
-  - enabled: 0
-    path: Assets/Level/2/Level 2.unity
-    guid: 22d82195ffed8c6468512cc100f27664
-  - enabled: 0
-    path: Assets/Level/3/Level 3.unity
-    guid: 9b1fabafa0ccea145a64b3a0df664218
-  - enabled: 0
-    path: Assets/Level/10/Level 10.unity
-    guid: 4cfa0911c4d08da439d4284fb1ec453d
   - enabled: 1
     path: Assets/Level/1/1.unity
-    guid: cc6fe529b55789f4abcfa0200befbb36
+    guid: d458487b7d842334082610b76314f3e0
   - enabled: 1
     path: Assets/Level/2/2.unity
-    guid: b869ca07c6e0b434387fffc1df5d88cd
+    guid: 19afac7db19aeec4e8d2e5594d720266
   - enabled: 1
     path: Assets/Level/3/3.unity
-    guid: 9cfe46e4a8044ee408feed60ed73a611
+    guid: b29262ecdc9bb204abd7582dc38e3bf0
   - enabled: 1
     path: Assets/Level/10/10.unity
-    guid: 49d411581b19c6b47b4667a2087e3134
+    guid: 5dbae4d91c3b67545b7baab028445700
   - enabled: 1
     path: Assets/Scenes/EasyMode/EasyMode.unity
-    guid: 957b5855e92843b48a3f75bba10af3bc
+    guid: 55cb323d12f19c74f86e302c4e120a9a
   m_configObjects: {}

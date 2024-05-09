@@ -30,8 +30,7 @@ public class PlaManager : Singleton<PlaManager>
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + plaBtn.TowerNumber - 1))
             {
-                if (plaBtn.TowerNumber - 1 < plaBtnsList.Count)
-                    GameManager.Instance.PickPla(plaBtn);
+                GameManager.Instance.PickPla(plaBtn);
                 break;
             }
         }

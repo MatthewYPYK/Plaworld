@@ -71,14 +71,14 @@ public class Level3Story : StoryBase
         step += 1;
     }
     protected override bool EventTriggered(){
-        if (step == 2)return GameManager.Instance.Wave == 2 && !GameManager.Instance.WaveActive;
-        if (step == 5)return GameManager.Instance.Wave == 3 && !GameManager.Instance.WaveActive;
-        if (step == 10)return GameManager.Instance.Wave == 5 && !GameManager.Instance.WaveActive;
+        if (step == 2)return GameManager.Instance.Wave == 1 && !GameManager.Instance.WaveActive;
+        if (step == 5)return GameManager.Instance.Wave == 2 && !GameManager.Instance.WaveActive;
+        if (step == 10)return GameManager.Instance.Wave == 4 && !GameManager.Instance.WaveActive;
         if (GameManager.Instance.Balance <= 10000){
             step = 90;
             return true;
         }
-        if (GameManager.Instance.Wave == 6 && !GameManager.Instance.WaveActive){
+        if (GameManager.Instance.Wave == 5 && !GameManager.Instance.WaveActive){
             step = 100;
             return true;
         }
