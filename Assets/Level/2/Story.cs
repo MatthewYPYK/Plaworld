@@ -10,7 +10,7 @@ public class Level2Story : StoryBase
         else if (step == 1) SetDialogueActive(false);
         else if (step == 2) {
             SetDialogueText($"You only have {GameManager.Instance.Lives} life left! Take this money and try to survive until the end!");
-            GameManager.Instance.Balance = GameManager.Instance.Balance + 10000;
+            GameManager.Instance.Balance = GameManager.Instance.Balance + 2000;
         }
         else if (step == 3) SetDialogueActive(false);
         else if (step == 10) {

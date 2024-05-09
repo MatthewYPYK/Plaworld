@@ -22,6 +22,8 @@ public class TileScript : MonoBehaviour
     public bool IsEmpty { get; private set; }
 
     private GameObject pla = null;
+    // public GameObject Pla { get => pla; }
+    public bool HasPla { get => pla is not null; }
     private int plaPrice = 0;
 
     private PlaRange myPlaRange;

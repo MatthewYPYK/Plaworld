@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 500
+  WaveReward: 300
   timeBetweenSpawn: 1
   waveData:
   - key: AirShip
@@ -4533,7 +4533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d65f9268978c69469845b1065db9b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveReward: 150
+  WaveReward: 300
   timeBetweenSpawn: 3
   waveData:
   - key: Tank
@@ -4588,13 +4588,13 @@ MonoBehaviour:
     Overide: 1
     value:
       X: 0
-      Y: 3
+      Y: 0
   coral:
     Overide: 1
     value:
       X: 15
-      Y: 3
-  balance: 400
+      Y: 2
+  balance: 500
   lives: 10
   sellMultiplier: -1
   nextSceneId: 5

@@ -528,7 +528,7 @@ public class GameManager : Singleton<GameManager>
                 if (LevelManager.Instance.InBounds(neighbourPos))
                 {
                     TileScript neighbourTile = LevelManager.Instance.Tiles[neighbourPos];
-                    if (!neighbourTile.WalkAble && !unselected.Contains(neighbourTile.PlaType))
+                    if (!neighbourTile.WalkAble && neighbourTile.HasPla && !unselected.Contains(neighbourTile.PlaType))
                     {
                         possibleFish.Add(neighbourPos);
                     }
