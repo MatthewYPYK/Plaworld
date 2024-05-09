@@ -660,71 +660,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228908071}
   m_CullTransparentMesh: 1
---- !u!1 &232179542
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 232179544}
-  - component: {fileID: 232179543}
-  m_Layer: 0
-  m_Name: StoryScript
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &232179543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232179542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ef9b4f8ca905ee4ea0fef5cd24ed1e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useDefaultMap: 1
-  mapData: {fileID: 0}
-  greenSpawn:
-    Overide: 0
-    value:
-      X: 0
-      Y: 0
-  coral:
-    Overide: 0
-    value:
-      X: 0
-      Y: 0
-  balance: 1000000000
-  lives: 1000000
-  sellMultiplier: -1
-  nextSceneId: 0
-  dialogueBox: {fileID: 1451292821}
-  backGroundImage: {fileID: 0}
-  nameText: {fileID: 0}
-  dialogueText: {fileID: 228908073}
-  characterImage: {fileID: 0}
---- !u!4 &232179544
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232179542}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 4.25, z: -9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &236294746 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5137639064476122740, guid: 985db44aadca87b45ae2d173cf1ca0a7, type: 3}
@@ -3252,7 +3187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &778829080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5534,6 +5469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1451292822}
+  - component: {fileID: 1451292823}
   m_Layer: 5
   m_Name: Dialogue
   m_TagString: Untagged
@@ -5564,6 +5500,39 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1451292823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451292821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef9b4f8ca905ee4ea0fef5cd24ed1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useDefaultMap: 1
+  mapData: {fileID: 0}
+  greenSpawn:
+    Overide: 0
+    value:
+      X: 0
+      Y: 0
+  coral:
+    Overide: 0
+    value:
+      X: 0
+      Y: 0
+  balance: 1000000000
+  lives: 1000000
+  sellMultiplier: -1
+  nextSceneId: 0
+  dialogueBox: {fileID: 1451292821}
+  backGroundImage: {fileID: 0}
+  nameText: {fileID: 0}
+  dialogueText: {fileID: 228908073}
+  characterImage: {fileID: 0}
 --- !u!1 &1550821839
 GameObject:
   m_ObjectHideFlags: 0
@@ -7247,4 +7216,3 @@ SceneRoots:
   - {fileID: 238154061}
   - {fileID: 1729998989}
   - {fileID: 281496208}
-  - {fileID: 232179544}
