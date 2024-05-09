@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
@@ -113,7 +114,7 @@ public class LevelManager : Singleton<LevelManager>
             newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map, true);
         
         } else {
-            int tileIndex = int.Parse(tileType);
+            if (!int.TryParse(tileType, out int tileIndex)) return;
             newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
             newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (TileSize * x), worldStart.y - (TileSize * y), 0), map, false);
         }
@@ -124,7 +125,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         string data = mapData.text.Replace(Environment.NewLine, string.Empty);
 
-        return data.Split('-');
+        return Regex.Replace(data, @"\p{C}", "").Split('-');//.Replace(" ", "").Replace("\n", "").Replace("\r", "")
     }
 
     private void SpawnPortals()

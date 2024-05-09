@@ -14,7 +14,7 @@ public class Level3Story : StoryBase
         }
         else if (step == 2) SetDialogueText("He who advances is sure of salvation, but he who retreats will go to hell.");
         else if (step == 3) {
-            dialogueText.fontSize = 36;
+            dialogueText.fontSize = 40;
             SetDialogueText("He who advances is sure of salvation! \nBut he who retreats will go to hell!!!");
         }
         else if (step == 4) {
@@ -26,33 +26,33 @@ public class Level3Story : StoryBase
             SetDialogueText("They have tanks, we have sharks. Answer prevailed without being asked.");
         }
         else if (step == 6) {
-            dialogueText.fontSize = 40;
+            dialogueText.fontSize = 48;
             SetDialogueText("What answer?");
         }
         else if (step == 7) {
-            dialogueText.fontSize = 56;
-            SetDialogueText("IT'S TIME TO CHARGE!!!!!!");
+            dialogueText.fontSize = 60;
+            SetDialogueText("IT'S TIME TO CHARGE!!!!!");
         }
         else if (step == 8) {
-            dialogueText.fontSize = 80;
-            SetDialogueText("URAAAAAAAA");
+            dialogueText.fontSize = 120;
+            SetDialogueText("URAAAAAAA");
         }
         else if (step == 9) {
             SetDialogueActive(false);
             GameManager.Instance.SetTimeScale(2);
         }
         else if (step == 10) {
-            dialogueText.fontSize = 36;
-            SetDialogueText("If they send a big thingy, should not we 'sasageyo'?");
+            dialogueText.fontSize = 40;
+            SetDialogueText("If they send a big thingy, should not we \"sasageyo\"?");
         }
         else if (step == 11) {
             nameText.text = "E*win";
-            dialogueText.fontSize = 64;
+            dialogueText.fontSize = 80;
             SetDialogueText("SHINZOU WO...");
         }
         else if (step == 12) {
-            dialogueText.fontSize = 80;
-            SetDialogueText("SASAGEYO!!!!");
+            dialogueText.fontSize = 120;
+            SetDialogueText("SASAGEYO!!");
         }
         else if (step == 90) {
             SetDialogueText("We are rich! Take this money and try to survive until the end!");
