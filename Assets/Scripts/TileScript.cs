@@ -21,6 +21,8 @@ public class TileScript : MonoBehaviour
 
     public bool IsEmpty { get; private set; }
 
+    public bool Final { get; private set; }
+
     private GameObject pla = null;
     // public GameObject Pla { get => pla; }
     public bool HasPla { get => pla is not null; }
@@ -66,6 +68,7 @@ public class TileScript : MonoBehaviour
     {
         IsEmpty = true;
         walkAble = true;
+        Final = false;
         this.GridPosition = gridPos;
         transform.position = worldPos;
         transform.SetParent(parent);
@@ -74,6 +77,7 @@ public class TileScript : MonoBehaviour
         {
             IsEmpty = false;
             walkAble = false;
+            Final = true;
         }
     }
 
@@ -154,9 +158,6 @@ public class TileScript : MonoBehaviour
         int newPrice = GameManager.Instance.BuyPla();
         plaPrice = newPrice == -1 ? plaPrice : newPrice;
 
-        //Debug.Log("TileScript: PlacePla: pla: " + pla);
-        //Debug.Log("TileScript: PlacePla: myPla: " + myPla);
-
     }
 
     public void ColorTile(Color newColor)
@@ -166,12 +167,11 @@ public class TileScript : MonoBehaviour
 
     public void RefreshTile()
     {
-        // Debug.Log("Pla at (" + GridPosition.X + ", " + GridPosition.Y + ") is destroy");
+        if (Final) return;
         IsEmpty = true;
         WalkAble = true;
         if (pla != null)
         {
-            //StartCoroutine(myPla.Scale(new Vector3(1,1),new Vector3(0.1f,0.1f), true));
             Destroy(pla);
             pla = null;
         }
