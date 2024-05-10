@@ -154,12 +154,13 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public int BuyPla()
+    public int BuyPla(PlaBtn plaBtn = null)
     {
-        int price = ClickedBtn.Price;
-        if (Balance >= ClickedBtn.Price)
+        plaBtn = plaBtn??ClickedBtn;
+        int price = plaBtn.Price;
+        if (Balance >= plaBtn.Price)
         {
-            Balance = Balance - ClickedBtn.Price;
+            Balance = Balance - plaBtn.Price;
             //Debug.Log("Currency: " + Currency);
             Hover.Instance.Deactivate();
             //Debug.Log("PlaBtn deac: " + ClickedBtn);

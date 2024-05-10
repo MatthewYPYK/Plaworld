@@ -40,6 +40,7 @@ public class LevelManager : Singleton<LevelManager>
     private Transform map;
 
     private Point mapSize;
+    public Point MapSize { get => mapSize; }
 
     private Vector3 worldStart = new Vector3(0,0,0);
 
@@ -148,7 +149,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public Bounds BoundingBox{
         get{
-            Vector3 bottomRight = Tiles[new Point(mapSize.X - 1, mapSize.Y - 1)].transform.position;
+            Vector3 bottomRight = Tiles[new Point(MapSize.X - 1, MapSize.Y - 1)].transform.position;
             bottomRight += new Vector3(TileSize,-TileSize,0);
             Vector3 topLeft = Tiles[new Point(0, 0)].transform.position;
 

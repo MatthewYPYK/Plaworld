@@ -132,11 +132,11 @@ public class TileScript : MonoBehaviour
         ColorTile(Color.white);
     }
 
-    private void PlacePla()
+    public void PlacePla(PlaBtn plaBtn = null, bool buypla = true)
     {
 
 
-        PlaBtn plaBtn = GameManager.Instance.ClickedBtn;
+        plaBtn = plaBtn??GameManager.Instance.ClickedBtn;
         PlaType = plaBtn.TowerName;
         pla = (GameObject)Instantiate(plaBtn.PlaPrefab, transform.position, Quaternion.identity);
         pla.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y + 1;
@@ -155,7 +155,8 @@ public class TileScript : MonoBehaviour
             WalkAble = false;
             ColorTile(Color.white);
         }
-        int newPrice = GameManager.Instance.BuyPla();
+        int newPrice = -1;
+        if(buypla) newPrice = GameManager.Instance.BuyPla(plaBtn);
         plaPrice = newPrice == -1 ? plaPrice : newPrice;
 
     }

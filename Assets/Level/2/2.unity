@@ -1596,7 +1596,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.95
+  m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3069,7 +3069,7 @@ MonoBehaviour:
   balance: 500
   lives: 10
   sellMultiplier: -1
-  nextSceneId: 5
+  nextSceneId: 6
   dialogueBox: {fileID: 872138073}
   backGroundImage: {fileID: 1182273427}
   nameText: {fileID: 1936245620}

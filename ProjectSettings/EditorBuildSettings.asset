@@ -15,18 +15,21 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/EasyMode/EasyMode.unity
+    guid: 55cb323d12f19c74f86e302c4e120a9a
+  - enabled: 1
     path: Assets/Level/1/1.unity
     guid: d458487b7d842334082610b76314f3e0
   - enabled: 1
     path: Assets/Level/2/2.unity
     guid: 19afac7db19aeec4e8d2e5594d720266
   - enabled: 1
+    path: Assets/Level/2.5/2.5.unity
+    guid: c31812f31fce01f4389aa908e7ac3b97
+  - enabled: 1
     path: Assets/Level/3/3.unity
     guid: b29262ecdc9bb204abd7582dc38e3bf0
   - enabled: 1
     path: Assets/Level/10/10.unity
     guid: 5dbae4d91c3b67545b7baab028445700
-  - enabled: 1
-    path: Assets/Scenes/EasyMode/EasyMode.unity
-    guid: 55cb323d12f19c74f86e302c4e120a9a
   m_configObjects: {}
